@@ -1,0 +1,557 @@
+# 🎨 GolfFox Design System Tokens
+# Version: 2.0 (Consolidated)
+# Generated: 22 de fevereiro de 2026
+# Based on: Audit + Consolidation Reports
+# Format: W3C Design Tokens Community Group (DTCG) compatible
+
+---
+
+# ============================================================================
+# COLOR TOKENS
+# ============================================================================
+
+colors:
+  # PRIMARY BRAND COLORS
+  brand:
+    base:
+      value: '#F97316'
+      description: 'Primary brand color - main actions, navigation (orange)'
+      type: color
+
+  brand-dark:
+    base:
+      value: '#EA580C'
+      description: 'Brand hover/active state'
+      type: color
+
+  brand-light:
+    base:
+      value: '#FFF7ED'
+      description: 'Brand background tint'
+      type: color
+
+  brand-soft:
+    base:
+      value: '#FFEDD5'
+      description: 'Brand soft background'
+      type: color
+
+  brand-hover:
+    base:
+      value: '#FB923C'
+      description: 'Brand hover state'
+      type: color
+
+  brand-muted:
+    base:
+      value: '#FDBA74'
+      description: 'Brand muted tone'
+      type: color
+
+  # SEMANTIC COLORS
+  error:
+    base:
+      value: '#DC2626'
+      description: 'Error states, validation failures'
+      type: color
+    dark:
+      value: '#991B1B'
+      description: 'Error hover/active state'
+
+  success:
+    base:
+      value: '#10B981'
+      description: 'Success confirmations, valid states'
+      type: color
+
+  warning:
+    base:
+      value: '#F59E0B'
+      description: 'Warning alerts, caution states'
+      type: color
+
+  info:
+    base:
+      value: '#3B82F6'
+      description: 'Information messages, hints'
+      type: color
+
+  # NEUTRAL PALETTE
+  foreground:
+    base:
+      value: '#1A1A1A'
+      description: 'Primary text color on light backgrounds'
+      type: color
+
+  muted:
+    base:
+      value: '#666666'
+      description: 'Muted/secondary text, disabled states'
+      type: color
+
+  border:
+    base:
+      value: '#CCCCCC'
+      description: 'Default border color'
+      type: color
+
+  background:
+    base:
+      value: '#FFFFFF'
+      description: 'Primary background, page color'
+      type: color
+
+  card:
+    base:
+      value: '#F5F5F5'
+      description: 'Card background, secondary background'
+      type: color
+
+  # CUSTOM GOLFFOX PALETTE
+  ink-strong:
+    base:
+      value: '#262626'
+      description: 'Very dark text, strong emphasis'
+      type: color
+
+  ink-muted:
+    base:
+      value: '#999999'
+      description: 'Medium muted text'
+      type: color
+
+  # DARK MODE COLOR PALETTE
+  # Semantic color tokens for dark theme
+  dark:
+    background:
+      value: '#0F0F0F'
+      description: 'Dark mode primary background (page)'
+      type: color
+
+    surface:
+      value: '#1A1A1A'
+      description: 'Dark mode secondary background (surfaces, cards)'
+      type: color
+
+    surface-hover:
+      value: '#2A2A2A'
+      description: 'Dark mode hover state for surfaces'
+      type: color
+
+    foreground:
+      value: '#FFFFFF'
+      description: 'Dark mode primary text color'
+      type: color
+
+    foreground-muted:
+      value: '#B0B0B0'
+      description: 'Dark mode secondary text, muted'
+      type: color
+
+    border:
+      value: '#404040'
+      description: 'Dark mode border color'
+      type: color
+
+    border-subtle:
+      value: '#2A2A2A'
+      description: 'Dark mode subtle border (less prominent)'
+      type: color
+
+    shadow-sm:
+      value: 'rgba(0, 0, 0, 0.5)'
+      description: 'Dark mode small shadow'
+      type: color
+
+    shadow-md:
+      value: 'rgba(0, 0, 0, 0.8)'
+      description: 'Dark mode medium shadow'
+      type: color
+
+    # Dark mode semantic colors (adjusted for dark background)
+    error-dark:
+      value: '#FF6B6B'
+      description: 'Error color for dark mode (higher contrast)'
+      type: color
+
+    success-dark:
+      value: '#51CF66'
+      description: 'Success color for dark mode'
+      type: color
+
+    warning-dark:
+      value: '#FFD43B'
+      description: 'Warning color for dark mode'
+      type: color
+
+    info-dark:
+      value: '#74C0FC'
+      description: 'Info color for dark mode'
+      type: color
+
+    brand-dark:
+      value: '#F97316'
+      description: 'Brand color for dark mode (same orange, elevated)'
+      type: color
+
+---
+
+# ============================================================================
+# SPACING TOKENS
+# ============================================================================
+
+spacing:
+  # 4px base unit (Tailwind default)
+  # Following 8px system for consistency
+
+  xs:
+    base:
+      value: '4px'
+      description: 'Minimal spacing - tight padding, small gaps'
+      type: dimension
+
+  sm:
+    base:
+      value: '8px'
+      description: 'Small spacing - gaps between small elements'
+      type: dimension
+
+  md:
+    base:
+      value: '12px'
+      description: 'Medium spacing - default internal padding'
+      type: dimension
+
+  lg:
+    base:
+      value: '16px'
+      description: 'Large spacing - DEFAULT, gaps between major elements'
+      type: dimension
+
+  xl:
+    base:
+      value: '24px'
+      description: 'Extra large spacing - between sections'
+      type: dimension
+
+  '2xl':
+    base:
+      value: '32px'
+      description: 'Double extra large - between major sections'
+      type: dimension
+
+  '3xl':
+    base:
+      value: '48px'
+      description: 'Triple extra large - major layout spacing'
+      type: dimension
+
+---
+
+# ============================================================================
+# TYPOGRAPHY TOKENS
+# ============================================================================
+
+typography:
+  # FONT FAMILIES
+  font-family:
+    sans:
+      value: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+      description: 'Primary font family'
+      type: fontFamily
+
+    mono:
+      value: "'Courier New', Courier, monospace"
+      description: 'Monospace font for code'
+      type: fontFamily
+
+  # FONT SIZES
+  font-size:
+    xs:
+      value: '12px'
+      description: 'Small text - captions, small labels'
+      type: dimension
+
+    sm:
+      value: '14px'
+      description: 'Small - body text, most common'
+      type: dimension
+
+    base:
+      value: '16px'
+      description: 'Base size - standard text'
+      type: dimension
+
+    lg:
+      value: '18px'
+      description: 'Large text'
+      type: dimension
+
+    xl:
+      value: '20px'
+      description: 'Extra large - headings'
+      type: dimension
+
+  # FONT WEIGHTS
+  font-weight:
+    normal:
+      value: '400'
+      description: 'Regular text (deprecated - use medium)'
+      type: number
+
+    medium:
+      value: '500'
+      description: 'Default/medium weight - body text'
+      type: number
+
+    semibold:
+      value: '600'
+      description: 'Semibold - labels, emphasis'
+      type: number
+
+    bold:
+      value: '700'
+      description: 'Bold - headings, strong emphasis'
+      type: number
+
+  # LINE HEIGHT
+  line-height:
+    tight:
+      value: '1.2'
+      description: 'Tight line height - headings'
+      type: number
+
+    normal:
+      value: '1.5'
+      description: 'Normal line height - body text'
+      type: number
+
+    relaxed:
+      value: '1.75'
+      description: 'Relaxed line height - readable paragraphs'
+      type: number
+
+  # LETTER SPACING
+  letter-spacing:
+    tight:
+      value: '-0.02em'
+      description: 'Tight letter spacing - headings'
+      type: dimension
+
+    normal:
+      value: '0em'
+      description: 'Normal letter spacing'
+      type: dimension
+
+    wide:
+      value: '0.02em'
+      description: 'Wide letter spacing - emphasis'
+      type: dimension
+
+---
+
+# ============================================================================
+# BORDER RADIUS TOKENS
+# ============================================================================
+
+border-radius:
+  none:
+    base:
+      value: '0px'
+      description: 'No border radius - flat edges'
+      type: dimension
+
+  sm:
+    base:
+      value: '4px'
+      description: 'Small radius - slight curve'
+      type: dimension
+
+  md:
+    base:
+      value: '8px'
+      description: 'Medium radius - input fields'
+      type: dimension
+
+  lg:
+    base:
+      value: '12px'
+      description: 'Large radius - DEFAULT for cards'
+      type: dimension
+
+  xl:
+    base:
+      value: '16px'
+      description: 'Extra large - modals, larger containers'
+      type: dimension
+
+  '2xl':
+    base:
+      value: '24px'
+      description: 'Double extra large - hero sections'
+      type: dimension
+
+  full:
+    base:
+      value: '9999px'
+      description: 'Full radius - perfect circles, pills'
+      type: dimension
+
+---
+
+# ============================================================================
+# SHADOW TOKENS
+# ============================================================================
+
+shadows:
+  # Elevation-based shadows
+  sm:
+    value: '0 1px 2px 0 rgba(0, 0, 0, 0.05)'
+    description: 'Small shadow - subtle elevation'
+    type: shadow
+
+  base:
+    value: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)'
+    description: 'Default shadow - standard elevation'
+    type: shadow
+
+  md:
+    value: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)'
+    description: 'Medium shadow - elevated content'
+    type: shadow
+
+  lg:
+    value: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)'
+    description: 'Large shadow - modal elevation'
+    type: shadow
+
+  xl:
+    value: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+    description: 'Extra large shadow - high elevation'
+    type: shadow
+
+---
+
+# ============================================================================
+# COMPONENT TOKENS (Composite/Semantic)
+# ============================================================================
+
+components:
+  # BUTTON TOKENS
+  button:
+    primary:
+      background:
+        value: '{colors.brand.base.value}'
+        description: 'Primary button background'
+        type: color
+      text:
+        value: '{colors.background.base.value}'
+        description: 'Primary button text'
+        type: color
+      border:
+        value: 'transparent'
+        description: 'Primary button border'
+        type: color
+
+    secondary:
+      background:
+        value: 'transparent'
+        description: 'Secondary button background'
+        type: color
+      text:
+        value: '{colors.foreground.base.value}'
+        description: 'Secondary button text'
+        type: color
+      border:
+        value: '{colors.border.base.value}'
+        description: 'Secondary button border'
+        type: color
+
+    destructive:
+      background:
+        value: '{colors.error.base.value}'
+        description: 'Destructive button background'
+        type: color
+      text:
+        value: '{colors.background.base.value}'
+        description: 'Destructive button text'
+        type: color
+      border:
+        value: '{colors.error.base.value}'
+        description: 'Destructive button border'
+        type: color
+
+  # FORM FIELD TOKENS
+  input:
+    background:
+      value: '{colors.background.base.value}'
+      description: 'Input field background'
+      type: color
+    border:
+      value: '{colors.border.base.value}'
+      description: 'Input field border'
+      type: color
+    text:
+      value: '{colors.foreground.base.value}'
+      description: 'Input field text'
+      type: color
+    placeholder:
+      value: '{colors.muted.base.value}'
+      description: 'Input field placeholder text'
+      type: color
+    focus-ring:
+      value: '{colors.brand.base.value}'
+      description: 'Input field focus ring'
+      type: color
+
+  # CARD TOKENS
+  card:
+    background:
+      value: '{colors.card.base.value}'
+      description: 'Card background'
+      type: color
+    border:
+      value: '{colors.border.base.value}'
+      description: 'Card border'
+      type: color
+    text:
+      value: '{colors.foreground.base.value}'
+      description: 'Card text'
+      type: color
+    shadow:
+      value: '{shadows.base.value}'
+      description: 'Card shadow'
+      type: shadow
+    padding:
+      value: '{spacing.lg.base.value}'
+      description: 'Card padding'
+      type: dimension
+    radius:
+      value: '{border-radius.lg.base.value}'
+      description: 'Card border radius'
+      type: dimension
+
+---
+
+# ============================================================================
+# METADATA
+# ============================================================================
+
+$metadata:
+  version: '2.0'
+  generated-at: '2026-02-22T00:00:00Z'
+  generator: 'Uma (ux-design-expert) - YOLO mode'
+  based-on:
+    - audit-report: '01-AUDIT-REPORT.md'
+    - consolidation: '02-CONSOLIDATION-REPORT.md'
+    - documentation: '03-DESIGN-SYSTEM-DOCUMENTATION.md'
+  standards:
+    - 'W3C Design Tokens Community Group (DTCG)'
+    - 'Tailwind CSS v4'
+    - 'CSS Custom Properties'
+  compatibility:
+    tailwind: true
+    figma: true
+    css-variables: true
+  next-review: '2026-03-22'
+  maintained-by: '@architect, @ux-design-expert'

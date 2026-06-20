@@ -1,0 +1,281 @@
+"use client";
+
+import { useState } from "react";
+
+import Link from "next/link";
+
+import { motion } from "framer-motion";
+import { Calendar, Clock, CheckCircle, ArrowRight } from "lucide-react";
+
+import { trackFormSubmit } from "@/lib/analytics/track-events";
+import { COMPANY_INFO } from "@/lib/constants/company-info";
+
+function buildWhatsAppLink(phoneNumber: string, text?: string) {
+    const cleaned = phoneNumber.replace(/\D/g, "");
+    const base = `https://wa.me/${cleaned}`;
+    if (!text) return base;
+    return `${base}?text=${encodeURIComponent(text)}`;
+}
+
+export function DemoContent() {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        company: "",
+        phone: "",
+        employees: "",
+        message: "",
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [whatsAppHref, setWhatsAppHref] = useState<string>("");
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        const messageLines = [
+            "Olá! Gostaria de agendar uma demonstração da GOLF FOX.",
+            "",
+            `Nome: ${formData.name}`,
+            `Email: ${formData.email}`,
+            `Empresa: ${formData.company}`,
+            formData.phone ? `Telefone: ${formData.phone}` : null,
+            formData.employees
+                ? `Colaboradores transportados: ${formData.employees}`
+                : null,
+            formData.message ? `Mensagem: ${formData.message}` : null,
+        ].filter(Boolean) as string[];
+
+        const href = buildWhatsAppLink(
+            COMPANY_INFO.whatsapp.number,
+            messageLines.join("\n"),
+        );
+
+        setWhatsAppHref(href);
+
+        // Prefer new tab, but fall back to same tab if popups are blocked.
+        const opened = window.open(href, "_blank", "noopener,noreferrer");
+        if (!opened) window.location.href = href;
+
+        trackFormSubmit("demo");
+        setIsSubmitted(true);
+        setIsSubmitting(false);
+    };
+
+    const benefits = [
+        "Demonstração personalizada para seu cenário",
+        "Visão de todos os módulos da plataforma",
+        "Simulação com seus dados (opcional)",
+        "Tire dúvidas com especialistas",
+        "Sem compromisso",
+    ];
+
+    if (isSubmitted) {
+        return (
+            <section className="min-h-[70vh] flex items-center justify-center bg-gray-950 px-4">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="text-center max-w-md"
+                >
+                    <div className="w-20 h-20 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-6">
+                        <CheckCircle className="w-10 h-10 text-green-500" />
+                    </div>
+                    <h2 className="text-3xl font-bold text-white mb-4">
+                        Quase pronto
+                    </h2>
+                    <p className="text-gray-400 mb-8">
+                        Abrimos o WhatsApp com sua solicitação preenchida. Se não abriu automaticamente, clique no botão abaixo.
+                    </p>
+                    <a
+                        href={whatsAppHref || COMPANY_INFO.whatsapp.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center w-full px-6 py-4 rounded-xl bg-whatsapp text-white font-semibold hover:bg-whatsapp-hover transition-colors mb-6"
+                    >
+                        Abrir WhatsApp
+                    </a>
+                    <Link
+                        href="/"
+                        className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 font-medium"
+                    >
+                        Voltar para o site
+                        <ArrowRight className="w-4 h-4" />
+                    </Link>
+                </motion.div>
+            </section>
+        );
+    }
+
+    return (
+        <section className="min-h-[70vh] bg-gray-950 pt-24 pb-16">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
+                    {/* Lado esquerdo - Info */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                    >
+                        <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase bg-orange-500/10 text-orange-400 border border-orange-500/20 mb-6">
+                            Demonstração gratuita
+                        </span>
+                        <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6">
+                            Veja a GOLF FOX em ação
+                        </h1>
+                        <p className="text-lg text-gray-400 mb-10">
+                            Agende uma demonstração personalizada e descubra como transformar
+                            seu fretamento corporativo em governança.
+                        </p>
+
+                        <div className="space-y-4 mb-10">
+                            {benefits.map((benefit, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, x: -10 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: index * 0.1 }}
+                                    className="flex items-center gap-3"
+                                >
+                                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                                    <span className="text-gray-300">{benefit}</span>
+                                </motion.div>
+                            ))}
+                        </div>
+
+                        <div className="flex items-center gap-6 text-sm text-gray-500">
+                            <div className="flex items-center gap-2">
+                                <Clock className="w-4 h-4" />
+                                30-45 minutos
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Calendar className="w-4 h-4" />
+                                Online via Google Meet
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Lado direito - Formulário */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.2 }}
+                    >
+                        <form
+                            onSubmit={handleSubmit}
+                            className="p-8 rounded-2xl bg-gray-900 border border-gray-800"
+                        >
+                            <h2 className="text-xl font-bold text-white mb-6">
+                                Preencha seus dados
+                            </h2>
+
+                            <div className="space-y-4">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-400 mb-1.5">
+                                        Nome completo *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        required
+                                        value={formData.name}
+                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                        className="w-full px-4 py-3 rounded-xl bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors"
+                                        placeholder="Seu nome"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-400 mb-1.5">
+                                        E-mail corporativo *
+                                    </label>
+                                    <input
+                                        type="email"
+                                        required
+                                        value={formData.email}
+                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                        className="w-full px-4 py-3 rounded-xl bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors"
+                                        placeholder="email@empresa.com"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-400 mb-1.5">
+                                        Empresa *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        required
+                                        value={formData.company}
+                                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                                        className="w-full px-4 py-3 rounded-xl bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors"
+                                        placeholder="Nome da empresa"
+                                    />
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-400 mb-1.5">
+                                            Telefone
+                                        </label>
+                                        <input
+                                            type="tel"
+                                            value={formData.phone}
+                                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                            className="w-full px-4 py-3 rounded-xl bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors"
+                                            placeholder="(00) 00000-0000"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-400 mb-1.5">
+                                            Colaboradores transportados
+                                        </label>
+                                        <select
+                                            value={formData.employees}
+                                            onChange={(e) => setFormData({ ...formData, employees: e.target.value })}
+                                            className="w-full px-4 py-3 rounded-xl bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-orange-500 transition-colors"
+                                        >
+                                            <option value="">Selecione</option>
+                                            <option value="1-100">1 - 100</option>
+                                            <option value="101-500">101 - 500</option>
+                                            <option value="501-1000">501 - 1.000</option>
+                                            <option value="1001-5000">1.001 - 5.000</option>
+                                            <option value="5000+">5.000+</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-400 mb-1.5">
+                                        Mensagem (opcional)
+                                    </label>
+                                    <textarea
+                                        rows={3}
+                                        value={formData.message}
+                                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                        className="w-full px-4 py-3 rounded-xl bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors resize-none"
+                                        placeholder="Conte um pouco sobre sua operação atual..."
+                                    />
+                                </div>
+                            </div>
+
+                            <button
+                                type="submit"
+                                disabled={isSubmitting}
+                                className="w-full mt-6 px-6 py-4 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {isSubmitting ? "Enviando..." : "Agendar demonstração"}
+                            </button>
+
+                            <p className="text-xs text-gray-500 text-center mt-4">
+                                Ao enviar, você concorda com nossa{" "}
+                                <Link href="/privacidade" className="text-orange-500 hover:underline">
+                                    Política de Privacidade
+                                </Link>
+                            </p>
+                        </form>
+                    </motion.div>
+                </div>
+            </div>
+        </section>
+    );
+}

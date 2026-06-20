@@ -1,0 +1,86 @@
+/* ============================================================
+   PREMIUM DESIGN TOKENS V2 - ELITE DARK
+   Escopo: .premium-theme
+   ============================================================ */
+
+.premium-theme {
+  /* --- Palette: The Void (Deep Blacks & Metallic Grays) --- */
+  --p-void-100: #1a1a1a;
+  --p-void-200: #141414;
+  --p-void-300: #0f0f0f;
+  --p-void-400: #0a0a0a;
+  --p-void-500: #050505;
+  --p-void-950: #000000;
+
+  /* --- Scale: Silver & Mercury (Text Hierarchies) --- */
+  --p-silver-50: #ffffff;
+  --p-silver-100: #f5f5f7;
+  /* Apple gray */
+  --p-silver-200: #e2e2e5;
+  --p-silver-300: #a1a1aa;
+  --p-silver-400: #71717a;
+  --p-silver-500: #52525b;
+
+  /* --- Brand: Electric Indigo (Accents) --- */
+  --p-brand-primary: #6366f1;
+  --p-brand-secondary: #818cf8;
+  --p-brand-glow: rgba(99, 102, 241, 0.15);
+
+  /* --- Surfaces & Borders (Elite Glass) --- */
+  --p-surface-glass: rgba(10, 10, 10, 0.7);
+  --p-border-glass: rgba(255, 255, 255, 0.08);
+  --p-border-glass-bright: rgba(255, 255, 255, 0.15);
+
+  /* --- Elevation & Shadows --- */
+  --p-shadow-premium: 0 0 0 1px var(--p-border-glass), 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+  --p-shadow-glow: 0 0 40px var(--p-brand-glow);
+
+  /* --- Typography Scale --- */
+  --p-font-display: var(--font-inter), "SF Pro Display", -apple-system, sans-serif;
+  --p-font-body: var(--font-inter), "SF Pro Text", -apple-system, sans-serif;
+
+  /* --- Global Theme Mapping (Always Dark by Intent) --- */
+  --p-bg-main: var(--p-void-950);
+  --p-bg-surface: var(--p-void-400);
+  --p-text-main: var(--p-silver-50);
+  --p-text-muted: var(--p-silver-300);
+  --p-text-dim: var(--p-silver-400);
+
+  /* --- Easing 3.0 (Organic Fluidity) --- */
+  --p-ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --p-ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --p-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* --- APEX Effects (Hyper-Interaction) --- */
+  --p-apex-glow: rgba(99, 102, 241, 0.15);
+  --p-apex-glow-bright: rgba(255, 255, 255, 0.12);
+  --p-apex-mesh-1: radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%);
+  --p-apex-mesh-2: radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 1) 0, transparent 50%);
+
+  --p-duration-slow: 800ms;
+  --p-duration-normal: 400ms;
+  --p-duration-fast: 200ms;
+}
+
+/* Ensure premium-theme is always dark even if system is light, 
+   unless specifically overridden for a light section later */
+.premium-theme {
+  color-scheme: dark;
+  background-color: var(--p-bg-main);
+  color: var(--p-text-main);
+}
+
+/* Custom Utilities for .premium-theme */
+.premium-theme .glass-card {
+  background: var(--p-surface-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--p-border-glass);
+  box-shadow: var(--p-shadow-premium);
+}
+
+.premium-theme .glow-text {
+  background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.6) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

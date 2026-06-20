@@ -1,0 +1,100 @@
+/* 
+ * GolfFox Design System - CSS Custom Properties
+ * Auto-generated from design-system/tokens.yaml
+ * DO NOT EDIT MANUALLY - Generated 2026-02-24T02:11:51.225Z
+ */
+
+:root {
+
+  /* COLORS TOKENS */
+  --gf-colors-brand: #F97316;
+  --gf-colors-brand-dark: #EA580C;
+  --gf-colors-brand-light: #FFF7ED;
+  --gf-colors-error: #DC2626;
+  --gf-colors-success: #10B981;
+  --gf-colors-warning: #F59E0B;
+  --gf-colors-info: #3B82F6;
+  --gf-colors-foreground: #1A1A1A;
+  --gf-colors-muted: #666666;
+  --gf-colors-border: #CCCCCC;
+  --gf-colors-background: #FFFFFF;
+  --gf-colors-card: #F5F5F5;
+  --gf-colors-ink-strong: #262626;
+  --gf-colors-ink-muted: #999999;
+  --gf-colors-dark-background: #0F0F0F;
+  --gf-colors-dark-surface: #1A1A1A;
+  --gf-colors-dark-surface-hover: #2A2A2A;
+  --gf-colors-dark-foreground: #FFFFFF;
+  --gf-colors-dark-foreground-muted: #B0B0B0;
+  --gf-colors-dark-border: #404040;
+  --gf-colors-dark-border-subtle: #2A2A2A;
+  --gf-colors-dark-shadow-sm: rgba(0, 0, 0, 0.5);
+  --gf-colors-dark-shadow-md: rgba(0, 0, 0, 0.8);
+  --gf-colors-dark-error-dark: #FF6B6B;
+  --gf-colors-dark-success-dark: #51CF66;
+  --gf-colors-dark-warning-dark: #FFD43B;
+  --gf-colors-dark-info-dark: #74C0FC;
+  --gf-colors-dark-brand-dark: #4A9EFF;
+
+  /* SPACING TOKENS */
+  --gf-spacing-xs: 4px;
+  --gf-spacing-sm: 8px;
+  --gf-spacing-md: 12px;
+  --gf-spacing-lg: 16px;
+  --gf-spacing-xl: 24px;
+  --gf-spacing-2xl: 32px;
+  --gf-spacing-3xl: 48px;
+
+  /* TYPOGRAPHY TOKENS */
+  --gf-typography-font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --gf-typography-font-family-mono: 'Courier New', Courier, monospace;
+  --gf-typography-font-size: 16px;
+  --gf-typography-font-weight-normal: 400;
+  --gf-typography-font-weight-medium: 500;
+  --gf-typography-font-weight-semibold: 600;
+  --gf-typography-font-weight-bold: 700;
+  --gf-typography-line-height-tight: 1.2;
+  --gf-typography-line-height-normal: 1.5;
+  --gf-typography-line-height-relaxed: 1.75;
+  --gf-typography-letter-spacing-tight: -0.02em;
+  --gf-typography-letter-spacing-normal: 0em;
+  --gf-typography-letter-spacing-wide: 0.02em;
+
+  /* BORDER-RADIUS TOKENS */
+  --gf-border-radius-none: 0px;
+  --gf-border-radius-sm: 4px;
+  --gf-border-radius-md: 8px;
+  --gf-border-radius-lg: 12px;
+  --gf-border-radius-xl: 16px;
+  --gf-border-radius-2xl: 24px;
+  --gf-border-radius-full: 9999px;
+
+  /* SHADOWS TOKENS */
+  --gf-shadows-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --gf-shadows-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --gf-shadows-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --gf-shadows-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --gf-shadows-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+  /* COMPONENTS TOKENS */
+  --gf-components-button-primary-background: var(--gf-colors-brand);
+  --gf-components-button-primary-text: var(--gf-colors-background);
+  --gf-components-button-primary-border: transparent;
+  --gf-components-button-secondary-background: transparent;
+  --gf-components-button-secondary-text: var(--gf-colors-foreground);
+  --gf-components-button-secondary-border: var(--gf-colors-border);
+  --gf-components-button-destructive-background: var(--gf-colors-error);
+  --gf-components-button-destructive-text: var(--gf-colors-background);
+  --gf-components-button-destructive-border: var(--gf-colors-error);
+  --gf-components-input-background: var(--gf-colors-background);
+  --gf-components-input-border: var(--gf-colors-border);
+  --gf-components-input-text: var(--gf-colors-foreground);
+  --gf-components-input-placeholder: var(--gf-colors-muted);
+  --gf-components-input-focus-ring: var(--gf-colors-brand);
+  --gf-components-card-background: var(--gf-colors-card);
+  --gf-components-card-border: var(--gf-colors-border);
+  --gf-components-card-text: var(--gf-colors-foreground);
+  --gf-components-card-shadow: var(--gf-shadows-base);
+  --gf-components-card-padding: var(--gf-spacing-lg);
+  --gf-components-card-radius: var(--gf-border-radius-lg);
+}

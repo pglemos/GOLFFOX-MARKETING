@@ -1,0 +1,222 @@
+/* ============================================================
+   GOLF FOX - Base Styles
+   Estilos globais mínimos: typography, selection, scrollbar
+   ============================================================ */
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    background: linear-gradient(
+      135deg,
+      var(--gf-bg) 0%,
+      var(--gf-bg-soft) 100%
+    );
+    background-attachment: fixed;
+    color: hsl(var(--foreground));
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1,
+      "kern" 1,
+      "liga" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+
+    /* Global Text Wrapping Fixes */
+    overflow-wrap: break-word !important;
+    /* Prevents overflow but respects words */
+    word-break: normal !important;
+    /* Keeps words together unless single word > line */
+    hyphens: none !important;
+    /* Force reset hyphens */
+    -webkit-hyphens: none !important;
+    -moz-hyphens: none !important;
+  }
+
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Reset universal selectors to ensure consistency */
+  *,
+  *::before,
+  *::after {
+    word-break: normal;
+    /* Default to normal */
+  }
+
+  /* Specific fix for elements that might inherit odd behaviors */
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  span,
+  div,
+  a,
+  li,
+  td,
+  th {
+    hyphens: none;
+  }
+
+  .dark body {
+    background: linear-gradient(
+      135deg,
+      var(--gf-bg) 0%,
+      var(--gf-bg-pattern) 100%
+    );
+  }
+
+  /* Font Smooth Utility */
+  .font-smooth {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Premium Typography System */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    letter-spacing: 0;
+    font-weight: 600;
+    line-height: 1.2;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 3vw, 1.875rem);
+    font-weight: 600;
+  }
+
+  p {
+    line-height: 1.6;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1;
+  }
+
+  /* Text selection must use a solid color; gradients are ignored by browsers in ::selection. */
+  ::selection {
+    background-color: var(--gf-selection-bg);
+    color: var(--gf-selection-ink);
+    text-shadow: none;
+  }
+
+  .dark ::selection {
+    background-color: var(--gf-selection-bg);
+    color: var(--gf-selection-ink);
+    text-shadow: none;
+  }
+
+  input::selection,
+  textarea::selection {
+    background-color: var(--gf-selection-bg);
+    color: var(--gf-selection-ink);
+    text-shadow: none;
+  }
+}
+
+/* Ultra Premium Scrollbar - Glassmorphism */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gf-bg-soft);
+  border-radius: 12px;
+  border: 1px solid var(--gf-border-light);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: var(--gf-bg-soft);
+  border-color: var(--gf-border);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--gf-border-strong) 0%,
+    var(--gf-border) 100%
+  );
+  border-radius: 12px;
+  border: 2.5px solid var(--gf-bg-soft);
+  transition: all var(--gf-transition-smooth);
+  position: relative;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--gf-ink-muted) 0%,
+    var(--gf-ink-strong) 100%
+  );
+  border-color: var(--gf-bg-soft);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    var(--gf-brand) 0%,
+    var(--gf-brand-hover) 100%
+  );
+  border-color: var(--gf-bg-soft);
+  box-shadow: 0 0 8px rgba(249, 115, 22, 0.3);
+  transform: scale(1.1);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    var(--gf-brand) 0%,
+    var(--gf-brand-hover) 100%
+  );
+  box-shadow: 0 0 12px rgba(249, 115, 22, 0.4);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--gf-brand);
+  box-shadow: 0 0 16px rgba(249, 115, 22, 0.5);
+}
+
+/* Firefox Scrollbar Premium */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gf-border-strong) var(--gf-bg-soft);
+}
+
+.dark * {
+  scrollbar-color: var(--gf-ink-muted) var(--gf-bg-soft);
+}
+
+/* Google Maps Autocomplete Fix for Modals */
+.pac-container {
+  z-index: 99999 !important;
+}

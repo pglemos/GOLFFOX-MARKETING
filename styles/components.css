@@ -1,0 +1,406 @@
+/* ============================================================
+   GOLF FOX - Component Styles
+   Classes de componentes premium (cards, badges, tooltips, etc.)
+   ============================================================ */
+
+@layer components {
+  [data-slot="button"] {
+    border-radius: var(--radius) !important;
+  }
+
+  [data-slot="button"][class*="bg-brand"],
+  [data-slot="button"][class*="bg-primary"],
+  [data-slot="button"][class*="bg-blue"],
+  [data-slot="button"][class*="bg-emerald"],
+  [data-slot="button"][class*="bg-indigo"],
+  [data-slot="button"][class*="bg-purple"] {
+    background-color: hsl(var(--primary)) !important;
+    border-color: transparent !important;
+    color: hsl(var(--primary-foreground)) !important;
+  }
+
+  [data-slot="button"][class*="bg-brand"]:hover,
+  [data-slot="button"][class*="bg-primary"]:hover,
+  [data-slot="button"][class*="bg-blue"]:hover,
+  [data-slot="button"][class*="bg-emerald"]:hover,
+  [data-slot="button"][class*="bg-indigo"]:hover,
+  [data-slot="button"][class*="bg-purple"]:hover,
+  [data-slot="button"][class*="hover:bg-brand"]:hover,
+  [data-slot="button"][class*="hover:bg-primary"]:hover,
+  [data-slot="button"][class*="hover:bg-blue"]:hover,
+  [data-slot="button"][class*="hover:bg-emerald"]:hover,
+  [data-slot="button"][class*="hover:bg-indigo"]:hover,
+  [data-slot="button"][class*="hover:bg-purple"]:hover {
+    background-color: hsl(var(--primary) / 0.9) !important;
+    color: hsl(var(--primary-foreground)) !important;
+  }
+
+  [data-radix-collection-item][role="tab"] {
+    border-radius: var(--radius) !important;
+  }
+}
+
+@layer utilities {
+  /* Ultra Premium Card - Enhanced */
+  .card-premium {
+    background-color: var(--gf-bg);
+    border: 1px solid var(--gf-border);
+    border-radius: var(--radius);
+    box-shadow: var(--gf-shadow-soft);
+    transition: all var(--gf-transition-smooth);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    margin: 0;
+  }
+
+  .card-premium > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-premium::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--gf-brand),
+      transparent
+    );
+    opacity: 0;
+    transition: opacity var(--gf-transition-smooth);
+    z-index: 0;
+  }
+
+  .card-premium::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--gf-radius-lg);
+    padding: 1.5px;
+    background: linear-gradient(
+      135deg,
+      var(--gf-brand),
+      var(--gf-brand-hover),
+      transparent
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity var(--gf-transition-smooth);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .card-premium:hover {
+    box-shadow: var(--gf-shadow-md);
+    border-color: var(--gf-brand);
+  }
+
+  .card-premium:hover::before {
+    opacity: 1;
+  }
+
+  .card-premium:hover::after {
+    opacity: 0.8;
+  }
+
+  /* Ultra Premium Card Glass */
+  .card-glass {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0.4) 100%
+    );
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+      var(--gf-shadow-soft),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+  }
+
+  .dark .card-glass {
+    background: linear-gradient(
+      135deg,
+      rgba(30, 41, 59, 0.8) 0%,
+      rgba(15, 23, 42, 0.6) 100%
+    );
+    border-color: rgba(51, 65, 85, 0.4);
+    box-shadow:
+      var(--gf-shadow-soft),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .card-glass:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(255, 255, 255, 0.6) 100%
+    );
+    box-shadow:
+      var(--gf-shadow-lg),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
+  }
+
+  .dark .card-glass:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(30, 41, 59, 0.9) 0%,
+      rgba(15, 23, 42, 0.7) 100%
+    );
+  }
+
+  /* Ultra Premium Stat Card */
+  .stat-card {
+    background: linear-gradient(
+      135deg,
+      var(--gf-bg) 0%,
+      var(--gf-bg-elevated) 100%
+    );
+    border: 1.5px solid var(--gf-border);
+    border-radius: var(--radius);
+    padding: var(--gf-space-lg);
+    box-shadow: var(--gf-shadow-soft);
+    transition: all var(--gf-transition-smooth);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    margin: 0;
+  }
+
+  .stat-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .stat-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(
+      90deg,
+      var(--gf-brand),
+      var(--gf-brand-hover),
+      var(--gf-brand)
+    );
+    background-size: 200% 100%;
+    opacity: 0;
+    transition: opacity var(--gf-transition-smooth);
+    animation: gradient-shift 3s ease infinite;
+    z-index: 0;
+  }
+
+  .stat-card::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+      circle,
+      rgba(249, 115, 22, 0.1) 0%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity var(--gf-transition-smooth);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .stat-card:hover {
+    box-shadow: var(--gf-shadow-md), var(--gf-shadow-brand);
+    border-color: var(--gf-brand);
+    background: linear-gradient(
+      135deg,
+      var(--gf-bg-elevated) 0%,
+      var(--gf-bg) 100%
+    );
+  }
+
+  .stat-card:hover::before {
+    opacity: 1;
+  }
+
+  .stat-card:hover::after {
+    opacity: 1;
+  }
+
+  .stat-card:active {
+    transition: all var(--gf-transition-fast);
+  }
+
+  /* Premium Icon Styles */
+  .icon-premium {
+    transition: all var(--gf-transition-smooth);
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+  }
+
+  .icon-premium:hover {
+    transform: scale(1.15) rotate(5deg);
+    color: var(--gf-brand);
+    filter: drop-shadow(0 4px 8px rgba(249, 115, 22, 0.3));
+  }
+
+  /* Premium Badge Styles */
+  .badge-premium {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--gf-space-xs);
+    padding: var(--gf-space-xs) var(--gf-space-sm);
+    border-radius: var(--gf-radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: all var(--gf-transition-smooth);
+    backdrop-filter: blur(8px);
+  }
+
+  .badge-premium:hover {
+    box-shadow: var(--gf-shadow-sm);
+  }
+
+  [data-gf-shell="content"] {
+    container-type: inline-size;
+  }
+
+  [data-gf-shell="content"],
+  [data-gf-shell="content"]
+    :where(.flex, .grid, section, article, aside, header, footer) {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  [data-gf-shell="content"]
+    :where(h1, h2, h3, h4, h5, h6, p, span, label, button, a, td, th) {
+    overflow-wrap: anywhere;
+  }
+
+  [data-gf-shell="content"] :where(button, a, [role="button"]) {
+    min-height: 2.25rem;
+  }
+
+  [data-gf-shell="content"] :where(svg) {
+    flex-shrink: 0;
+  }
+
+  [data-gf-shell="content"] :where(.sticky) {
+    max-width: 100%;
+  }
+
+  [data-gf-shell="content"] [class*="absolute"][class*="blur-"] {
+    display: none;
+  }
+
+  [data-gf-shell="content"] :where([role="tablist"]) {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    justify-content: flex-start;
+    scrollbar-width: thin;
+  }
+
+  [data-gf-shell="content"] :where([role="tab"]) {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    [data-gf-shell="content"] {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    [data-gf-shell="content"]
+      :where(.rounded-2xl, .rounded-3xl, .rounded-\[2\.5rem\]) {
+      border-radius: var(--radius);
+    }
+
+    [data-gf-shell="content"] :where(.p-8, .p-10, .p-12) {
+      padding: 1rem;
+    }
+
+    [data-gf-shell="content"] :where(.gap-8, .gap-10, .gap-12) {
+      gap: 1rem;
+    }
+
+    [data-gf-shell="content"] :where(.text-4xl, .text-5xl) {
+      font-size: 1.875rem;
+      line-height: 2.25rem;
+    }
+
+    [data-gf-shell="content"] :where(table) {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    [data-gf-shell="content"] :where(.sticky, header) :where(.flex) {
+      min-width: 0;
+    }
+
+    [data-gf-shell="content"] :where(.leaflet-right) {
+      right: 0.75rem;
+    }
+
+    [data-gf-shell="content"] :where(.leaflet-right .leaflet-control) {
+      margin-right: 0;
+    }
+
+    [data-gf-shell="content"]
+      :where(.gm-style button[title="Atalhos do teclado"]) {
+      display: none !important;
+    }
+  }
+
+  /* Premium Loading Spinner */
+  .spinner-premium {
+    border: 3px solid var(--gf-border);
+    border-top-color: var(--gf-brand);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    filter: drop-shadow(0 0 4px rgba(249, 115, 22, 0.3));
+  }
+
+  /* Premium Tooltip Base */
+  .tooltip-premium {
+    background: linear-gradient(135deg, var(--gf-bg-elevated), var(--gf-bg));
+    border: 1px solid var(--gf-border);
+    box-shadow: var(--gf-shadow-xl);
+    backdrop-filter: blur(12px);
+    border-radius: var(--gf-radius-lg);
+    padding: var(--gf-space-sm) var(--gf-space-md);
+  }
+
+  /* Glass Panel */
+  .glass-panel {
+    background-color: rgba(20, 20, 25, 0.85);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .dark .glass-panel {
+    background-color: rgba(10, 10, 15, 0.85);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+}

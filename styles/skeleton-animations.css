@@ -1,0 +1,64 @@
+/* Skeleton Loading Animations */
+
+/* Pulse animation (subtle breathing effect) */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Shimmer animation (moving highlight effect) */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton-shimmer {
+  animation: shimmer 2s infinite;
+  background: linear-gradient(
+    90deg,
+    var(--gf-bg-soft) 25%,
+    var(--gf-border) 50%,
+    var(--gf-bg-soft) 75%
+  );
+  background-size: 1000px 100%;
+  background-position: 0 0;
+}
+
+/* Dark mode shimmer */
+@media (prefers-color-scheme: dark) {
+  .skeleton-shimmer {
+    background: linear-gradient(
+      90deg,
+      var(--gf-dark-border) 25%,
+      var(--gf-dark-surface-hover) 50%,
+      var(--gf-dark-border) 75%
+    );
+  }
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse,
+  .skeleton-shimmer {
+    animation: none;
+  }
+}
+
+/* Cumulative Layout Shift prevention */
+.skeleton,
+[role="status"][aria-live] {
+  contain: layout;
+}
