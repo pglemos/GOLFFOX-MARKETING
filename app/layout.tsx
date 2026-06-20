@@ -11,6 +11,8 @@ const inter = localFont({
   fallback: ["system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
 });
 
+const isVercelRuntime = process.env.VERCEL === "1";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://golffox.com.br"),
   title: {
@@ -42,8 +44,12 @@ export default function RootLayout({
     <html lang="pt-BR" className={inter.variable}>
       <body className={`${inter.className} antialiased`}>
         {children}
-        <Analytics />
-        <SpeedInsights />
+        {isVercelRuntime ? (
+          <>
+            <Analytics />
+            <SpeedInsights />
+          </>
+        ) : null}
       </body>
     </html>
   );
