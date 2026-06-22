@@ -1,0 +1,73 @@
+/* ============================================================
+   GOLF FOX — Landing (home) animations & helpers
+   CSS separado do markup (antes era inline no export de design)
+   ============================================================ */
+
+/* Fontes da marca (carregadas via next/font no app/layout.tsx) */
+.font-archivo {
+  font-family: var(--font-archivo), system-ui, -apple-system, sans-serif;
+}
+
+/* Display = Archivo no peso black (900). Use com font-black para o look "expanded". */
+.font-display {
+  font-family: var(--font-archivo), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Linha de rota "viva" que percorre o traçado no mapa/hero */
+@keyframes gfDash {
+  to {
+    stroke-dashoffset: -240;
+  }
+}
+
+/* Pulso do indicador "AO VIVO" */
+@keyframes gfPulseDot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.7);
+  }
+}
+
+.gf-route-dash {
+  animation: gfDash 4s linear infinite;
+}
+
+.gf-live-dot {
+  animation: gfPulseDot 1.6s ease-in-out infinite;
+}
+
+/* FAQ acordeão usando <details> nativo (sem JS) */
+details.gf-faq summary {
+  list-style: none;
+}
+
+details.gf-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+details.gf-faq .gf-chev {
+  transition: transform 0.22s ease;
+}
+
+details.gf-faq[open] .gf-chev {
+  transform: rotate(135deg);
+}
+
+details.gf-faq[open] {
+  border-color: #ffd9bf;
+  box-shadow: 0 10px 30px rgba(11, 36, 64, 0.08);
+}
+
+/* Respeita usuários que preferem menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  .gf-route-dash,
+  .gf-live-dot {
+    animation: none;
+  }
+}
