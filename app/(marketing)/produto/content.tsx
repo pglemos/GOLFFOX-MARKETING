@@ -129,8 +129,9 @@ export function ProdutoContent() {
                 </section>
 
                 {/* ===================== PRODUTOS (linhas alternadas) ===================== */}
-                <section className="bg-white px-5 py-24 sm:px-8 lg:py-32">
-                    <div className="mx-auto flex max-w-[1140px] flex-col gap-20 lg:gap-28">
+                <section className="relative overflow-hidden bg-white px-5 py-24 sm:px-8 lg:py-32">
+                    <div className="gf-aurora-light" aria-hidden="true" />
+                    <div className="relative z-10 mx-auto flex max-w-[1140px] flex-col gap-20 lg:gap-28">
                         {PRODUCTS.map((p, i) => {
                             const reversed = i % 2 === 1;
                             return (

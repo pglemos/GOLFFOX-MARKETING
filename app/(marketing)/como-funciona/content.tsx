@@ -554,8 +554,9 @@ export function ComoFuncionaContent() {
             </section>
 
             {/* 3 Fases (design Golf Fox) */}
-            <section className="font-archivo bg-white px-5 py-20 sm:px-8 lg:py-24">
-                <div className="mx-auto max-w-[1080px]">
+            <section className="font-archivo relative overflow-hidden bg-white px-5 py-20 sm:px-8 lg:py-24">
+                <div className="gf-aurora-light" aria-hidden="true" />
+                <div className="relative z-10 mx-auto max-w-[1080px]">
                     <div className="mx-auto mb-14 max-w-[680px] text-center">
                         <Eyebrow>O processo</Eyebrow>
                         <motion.h2

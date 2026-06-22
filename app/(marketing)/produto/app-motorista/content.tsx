@@ -136,8 +136,9 @@ export function AppMotoristaContent() {
                 </section>
 
                 {/* ===================== BENEFÍCIOS ===================== */}
-                <section className="bg-white px-5 py-24 sm:px-8 lg:py-32">
-                    <div className="mx-auto max-w-[1140px]">
+                <section className="relative overflow-hidden bg-white px-5 py-24 sm:px-8 lg:py-32">
+                    <div className="gf-aurora-light" aria-hidden="true" />
+                    <div className="relative z-10 mx-auto max-w-[1140px]">
                         <div className="mb-14 max-w-[640px]">
                             <Eyebrow>Tecnologia a bordo</Eyebrow>
                             <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">

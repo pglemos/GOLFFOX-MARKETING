@@ -209,8 +209,9 @@ export function AppPassageiroContent() {
                 </section>
 
                 {/* ===================== EXPERIÊNCIA + BENEFÍCIOS ===================== */}
-                <section className="bg-white px-5 py-24 sm:px-8 lg:py-32">
-                    <div className="mx-auto grid max-w-[1140px] items-center gap-12 lg:grid-cols-2 lg:gap-16">
+                <section className="relative overflow-hidden bg-white px-5 py-24 sm:px-8 lg:py-32">
+                    <div className="gf-aurora-light" aria-hidden="true" />
+                    <div className="relative z-10 mx-auto grid max-w-[1140px] items-center gap-12 lg:grid-cols-2 lg:gap-16">
                         {/* Mockup */}
                         <motion.div
                             variants={fadeUp}
