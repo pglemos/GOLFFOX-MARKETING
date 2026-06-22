@@ -17,6 +17,8 @@ import {
     MessageCircle,
     BarChart3,
     CheckCircle,
+    Check,
+    X,
     TrendingUp,
     Clock,
     Zap,
@@ -747,114 +749,111 @@ export function RecursosContent() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                        {/* Antes */}
+                    <div className="grid gap-6 md:grid-cols-2">
+                        {/* Sem Golf Fox */}
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="p-6 rounded-2xl bg-red-50 border-2 border-red-200"
+                            className="flex flex-col overflow-hidden rounded-[18px] border border-[#E2E6EC] bg-[#F1F3F6]"
                         >
-                            <h4 className="text-lg font-bold text-red-900 mb-4 flex items-center gap-2">
-                                <span className="text-2xl">❌</span> Sem GOLF FOX
-                            </h4>
-                            <ul className="space-y-2 text-sm text-red-800">
-                                <li className="flex items-start gap-2">
-                                    <span>•</span>
-                                    <span>Planejamento manual de rotas em planilhas</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <span>•</span>
-                                    <span>Sem visibilidade em tempo real dos veículos</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <span>•</span>
-                                    <span>Check-in manual com papel e caneta</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <span>•</span>
-                                    <span>Relatórios manuais demorados e propensos a erros</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <span>•</span>
-                                    <span>Sem rastreabilidade de ações e alterações</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <span>•</span>
-                                    <span>Rateio de custos manual e demorado</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <span>•</span>
-                                    <span>Sem alertas automáticos de problemas</span>
-                                </li>
-                            </ul>
+                            <div className="flex items-center gap-2.5 bg-[#E7EAEF] px-6 py-[18px]">
+                                <span className="flex h-[30px] w-[30px] items-center justify-center rounded-[9px] bg-[#C4CBD4]">
+                                    <X className="h-4 w-4 text-[#6B7585]" aria-hidden="true" />
+                                </span>
+                                <span className="text-base font-extrabold text-[#5A6675]">Sem Golf Fox</span>
+                            </div>
+                            <div className="flex flex-col px-6 pb-6 pt-2">
+                                {[
+                                    "Planejamento manual de rotas em planilhas",
+                                    "Sem visibilidade em tempo real dos veículos",
+                                    "Check-in manual com papel e caneta",
+                                    "Relatórios manuais demorados e propensos a erros",
+                                    "Sem rastreabilidade de ações e alterações",
+                                    "Rateio de custos manual e demorado",
+                                    "Sem alertas automáticos de problemas",
+                                ].map((item, i, arr) => (
+                                    <div
+                                        key={item}
+                                        className={`flex items-start gap-3 py-3.5 ${i < arr.length - 1 ? "border-b border-[#E4E8ED]" : ""}`}
+                                    >
+                                        <span className="mt-0.5 flex h-[22px] w-[22px] flex-none items-center justify-center rounded-full bg-[#E2E6EC]">
+                                            <X className="h-3 w-3 text-[#8A93A0]" aria-hidden="true" />
+                                        </span>
+                                        <span className="text-[15.5px] font-semibold text-[#515C6B]">{item}</span>
+                                    </div>
+                                ))}
+                            </div>
                         </motion.div>
 
-                        {/* Depois */}
+                        {/* Com Golf Fox */}
                         <motion.div
                             initial={{ opacity: 0, x: 20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="p-6 rounded-2xl bg-green-50 border-2 border-green-200"
+                            className="flex flex-col overflow-hidden rounded-[18px] border border-[#FFD9BF] bg-white shadow-[0_18px_44px_rgba(11,36,64,0.12)]"
                         >
-                            <h4 className="text-lg font-bold text-green-900 mb-4 flex items-center gap-2">
-                                <span className="text-2xl">✅</span> Com GOLF FOX
-                            </h4>
-                            <ul className="space-y-2 text-sm text-green-800">
-                                <li className="flex items-start gap-2">
-                                    <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
-                                    <span>Roteirização automática com otimização inteligente</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
-                                    <span>Rastreamento em tempo real de todos os veículos</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
-                                    <span>Check-in digital com QR Code ou NFC em segundos</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
-                                    <span>Relatórios automáticos agendados e precisos</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
-                                    <span>Audit log completo com 100% de rastreabilidade</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
-                                    <span>Rateio automático de custos por centro</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
-                                    <span>Alertas automáticos em tempo real</span>
-                                </li>
-                            </ul>
+                            <div className="flex items-center gap-2.5 bg-[#0B2440] px-6 py-[18px]">
+                                <span className="flex h-[30px] w-[30px] items-center justify-center rounded-[9px] bg-[#E6F7EE]">
+                                    <Check className="h-4 w-4 text-[#1A8F52]" aria-hidden="true" />
+                                </span>
+                                <span className="text-base font-extrabold text-white">Com Golf Fox</span>
+                            </div>
+                            <div className="flex flex-col px-6 pb-6 pt-2">
+                                {[
+                                    "Roteirização automática com otimização inteligente",
+                                    "Rastreamento em tempo real de todos os veículos",
+                                    "Check-in digital com QR Code ou NFC em segundos",
+                                    "Relatórios automáticos agendados e precisos",
+                                    "Audit log completo com 100% de rastreabilidade",
+                                    "Rateio automático de custos por centro",
+                                    "Alertas automáticos em tempo real",
+                                ].map((item, i, arr) => (
+                                    <div
+                                        key={item}
+                                        className={`flex items-start gap-3 py-3.5 ${i < arr.length - 1 ? "border-b border-[#F0F3F6]" : ""}`}
+                                    >
+                                        <span className="mt-0.5 flex h-[22px] w-[22px] flex-none items-center justify-center rounded-full bg-[#E6F7EE]">
+                                            <Check className="h-3 w-3 text-[#1A8F52]" aria-hidden="true" />
+                                        </span>
+                                        <span className="text-[15.5px] font-semibold text-[#1F3147]">{item}</span>
+                                    </div>
+                                ))}
+                            </div>
                         </motion.div>
                     </div>
 
-                    {/* Resumo de benefícios */}
+                    {/* Resultados com a Golf Fox */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="mx-auto mt-8 max-w-3xl rounded-[20px] border border-[#FFD9BF] bg-[#FFF0E6] p-8"
+                        className="relative mt-10 overflow-hidden rounded-[22px] bg-[#0B2440] px-6 py-12 text-white sm:px-12"
                     >
-                        <div className="text-center">
-                            <h4 className="mb-6 text-xl font-extrabold tracking-[-0.02em] text-[#0B2440]">Resultados com a Golf Fox</h4>
-                            <div className="grid grid-cols-3 gap-4">
-                                <div>
-                                    <div className="font-display text-4xl font-extrabold tabular-nums text-[#FA6007]">30%</div>
-                                    <div className="mt-1 text-sm text-[#52647A]">Economia em custos</div>
-                                </div>
-                                <div>
-                                    <div className="font-display text-4xl font-extrabold tabular-nums text-[#FA6007]">50%</div>
-                                    <div className="mt-1 text-sm text-[#52647A]">Redução em tempo</div>
-                                </div>
-                                <div>
-                                    <div className="font-display text-4xl font-extrabold tabular-nums text-[#FA6007]">100%</div>
-                                    <div className="mt-1 text-sm text-[#52647A]">Rastreabilidade</div>
-                                </div>
+                        <RouteBackdrop />
+                        <div className="relative mx-auto max-w-[820px]">
+                            <p className="mb-10 text-center text-xs font-bold uppercase tracking-[0.22em] text-[#FFB07A]">
+                                Resultados com a Golf Fox
+                            </p>
+                            <div className="grid grid-cols-3 gap-y-8">
+                                {[
+                                    { value: "30%", label: "Economia em custos" },
+                                    { value: "50%", label: "Redução em tempo" },
+                                    { value: "100%", label: "Rastreabilidade" },
+                                ].map((stat, i) => (
+                                    <div
+                                        key={stat.label}
+                                        className={`flex flex-col items-center px-2 text-center sm:px-6 ${i > 0 ? "border-l border-white/10" : ""}`}
+                                    >
+                                        <div className="font-display text-[2.75rem] font-black leading-none tabular-nums text-[#FA6007] sm:text-5xl">
+                                            {stat.value}
+                                        </div>
+                                        <div className="mt-3 h-px w-8 bg-[#FA6007]/40" aria-hidden="true" />
+                                        <div className="mt-3 max-w-[160px] text-sm leading-snug text-[#A9BACD]">
+                                            {stat.label}
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </motion.div>

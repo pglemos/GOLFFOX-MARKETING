@@ -6,11 +6,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { motion } from "framer-motion";
-import { FileText, Settings, Play, CheckCircle, Upload, Download, Shield, Clock, Heart, FileCheck, FileSpreadsheet, BookOpen, Video, ArrowRight, Truck, Users, Zap, Award, Headphones, X, TrendingUp, Smartphone } from "lucide-react";
+import { FileText, Settings, Play, CheckCircle, Upload, Download, Shield, Clock, Heart, FileCheck, FileSpreadsheet, BookOpen, Video, ArrowRight, Truck, Users, Zap, Award, Headphones, X, Smartphone } from "lucide-react";
 
 import { FinalCTA, TimelineSection, ScreenshotSection, ProcessDiagram, ROICalculator } from "@/components/marketing";
 import { Eyebrow, RouteBackdrop } from "@/components/marketing/landing-ui";
 import { FaqTwoColumn } from "@/components/marketing/faq-two-column";
+import { StackedCards } from "@/components/ui/stacked-cards";
 import { comoFunciona } from "@/content/marketing";
 import { trackEvent, trackDemoClick, createScrollTracker } from "@/lib/analytics/track-events";
 import { cn } from "@/lib/utils";
@@ -522,11 +523,10 @@ export function ComoFuncionaContent() {
                 </div>
             </section>
 
-            {/* 3 Fases (design Golf Fox) */}
-            <section className="font-archivo relative overflow-hidden bg-white px-5 py-20 sm:px-8 lg:py-24">
-                <div className="gf-aurora-light" aria-hidden="true" />
-                <div className="relative z-10 mx-auto max-w-[1080px]">
-                    <div className="mx-auto mb-14 max-w-[680px] text-center">
+            {/* 3 Fases (design Golf Fox) — stacked cards */}
+            <section className="font-archivo bg-[#F4F7FA] px-5 pt-20 sm:px-8 lg:pt-24">
+                <div className="mx-auto max-w-[1080px]">
+                    <div className="mx-auto max-w-[680px] text-center">
                         <Eyebrow>O processo</Eyebrow>
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
@@ -537,143 +537,71 @@ export function ComoFuncionaContent() {
                             Da análise à operação contínua, em 3 fases.
                         </motion.h2>
                         <p className="mt-4 text-lg text-[#52647A]">
-                            Sem interromper sua operação — você não troca de fornecedor.
+                            Sem interromper sua operação — role para ver cada fase.
                         </p>
                     </div>
 
-                    <div className="flex flex-col gap-6">
-                        {steps.map((step, index) => {
-                            const Icon = step.icon;
-                            const isLast = index === steps.length - 1;
-                            return (
-                                <motion.div
-                                    key={step.step}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1 }}
-                                    className="grid grid-cols-[auto_1fr] gap-4 sm:gap-7"
-                                >
-                                    {/* Trilho numerado */}
-                                    <div className="flex flex-col items-center">
-                                        <div
-                                            className={`flex h-14 w-14 items-center justify-center rounded-full font-display text-2xl font-black text-white ${isLast ? "bg-[#D14600] shadow-[0_10px_24px_rgba(250,96,7,0.3)]" : "bg-[#0B2440]"}`}
-                                        >
-                                            {step.step}
-                                        </div>
-                                        {!isLast && (
-                                            <div
-                                                className="mt-2 w-0.5 flex-1 bg-[repeating-linear-gradient(#D5DEE8_0_6px,transparent_6px_14px)]"
-                                                aria-hidden="true"
-                                            />
-                                        )}
+                    <StackedCards
+                        items={steps.map((s) => ({ ...s, id: s.step }))}
+                        renderCard={(step) => (
+                            <div className="mx-auto max-w-4xl rounded-[28px] border border-[#1c3a5e] bg-[#0B2440] p-8 text-white shadow-[0_40px_90px_rgba(0,0,0,0.35)] sm:p-10">
+                                <div className="flex items-center gap-5">
+                                    <span className="font-display text-5xl font-black leading-none text-[#FA6007] sm:text-6xl">
+                                        {String(step.step).padStart(2, "0")}
+                                    </span>
+                                    <div>
+                                        <span className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#FFB07A]">
+                                            Fase {step.step}
+                                            {step.duration ? ` · ${step.duration}` : ""}
+                                        </span>
+                                        <h3 className="mt-1 text-2xl font-extrabold tracking-[-0.01em] sm:text-3xl">{step.title}</h3>
                                     </div>
-
-                                    {/* Card da fase */}
-                                    <div className="mb-2 rounded-[18px] border border-[#E7EDF3] bg-white p-6 shadow-[0_1px_2px_rgba(11,36,64,0.04)] sm:p-8">
-                                        <div className="flex flex-wrap items-center gap-3">
-                                            <span className="text-[12px] font-bold uppercase tracking-[0.12em] text-[#C2410C]">
-                                                Fase {step.step}
-                                            </span>
-                                            {step.duration && (
-                                                <span className="rounded-full bg-[#FFF0E6] px-3 py-1 text-[11px] font-bold text-[#C24A00]">
-                                                    {step.duration}
-                                                </span>
-                                            )}
+                                </div>
+                                <p className="mt-4 max-w-2xl text-[15.5px] leading-relaxed text-[#B7C6D8]">{step.description}</p>
+                                <div className="mt-7 grid gap-4 sm:grid-cols-3">
+                                    {step.deliverables && step.deliverables.length > 0 && (
+                                        <div className="rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                                            <h4 className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#FFB07A]">Entregas</h4>
+                                            <ul className="space-y-1.5">
+                                                {step.deliverables.map((d) => (
+                                                    <li key={d} className="flex items-start gap-2 text-[13px] leading-snug text-[#A9BACD]">
+                                                        <span className="mt-0.5 text-[#FA6007]" aria-hidden="true">•</span>
+                                                        {d}
+                                                    </li>
+                                                ))}
+                                            </ul>
                                         </div>
-                                        <h3 className="mt-2 flex items-center gap-2.5 text-2xl font-extrabold text-[#0B2440]">
-                                            <Icon className="h-6 w-6 flex-none text-[#FA6007]" aria-hidden="true" />
-                                            {step.title}
-                                        </h3>
-                                        <p className="mt-3 text-[16.5px] leading-relaxed text-[#52647A]">{step.description}</p>
-
-                                        {/* Screenshot real da fase */}
-                                        {step.screenshot && (
-                                            <figure className="mt-5 overflow-hidden rounded-xl border border-[#E7EDF3] bg-[#0E2C4D]">
-                                                <figcaption className="flex items-center justify-between px-4 py-2.5 text-[12px] font-bold text-white">
-                                                    <span>{step.screenshot.title}</span>
-                                                    <span className="rounded-full bg-[#FA6007]/20 px-2.5 py-0.5 text-[10.5px] font-bold uppercase tracking-wide text-[#FFB07A]">
-                                                        {step.screenshot.feature}
-                                                    </span>
-                                                </figcaption>
-                                                <Image
-                                                    src={step.screenshot.src}
-                                                    alt={step.screenshot.alt}
-                                                    width={920}
-                                                    height={520}
-                                                    className="h-auto w-full"
-                                                />
-                                            </figure>
-                                        )}
-
-                                        {/* Checklist de detalhes */}
-                                        <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                                            {step.details.map((detail) => (
-                                                <div key={detail} className="flex items-center gap-2.5 text-[15px] font-medium text-[#1F3147]">
-                                                    <span className="flex h-5 w-5 flex-none items-center justify-center rounded-full bg-[#E6F7EE]">
-                                                        <CheckCircle className="h-3.5 w-3.5 text-[#1A8F52]" aria-hidden="true" />
-                                                    </span>
-                                                    {detail}
-                                                </div>
-                                            ))}
+                                    )}
+                                    {step.tools && step.tools.length > 0 && (
+                                        <div className="rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                                            <h4 className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#7FB2D9]">Tecnologias</h4>
+                                            <ul className="space-y-1.5">
+                                                {step.tools.map((t) => (
+                                                    <li key={t} className="flex items-start gap-2 text-[13px] leading-snug text-[#A9BACD]">
+                                                        <span className="mt-0.5 text-[#7FB2D9]" aria-hidden="true">→</span>
+                                                        {t}
+                                                    </li>
+                                                ))}
+                                            </ul>
                                         </div>
-
-                                        {/* Entregas / Tecnologias / Resultados */}
-                                        <div className="mt-6 grid gap-4 lg:grid-cols-3">
-                                            {step.deliverables && step.deliverables.length > 0 && (
-                                                <div className="rounded-xl border border-[#E7EDF3] bg-[#F4F7FA] p-4">
-                                                    <h4 className="mb-2.5 flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.08em] text-[#0B2440]">
-                                                        <FileCheck className="h-4 w-4 text-[#C2410C]" aria-hidden="true" />
-                                                        Entregas
-                                                    </h4>
-                                                    <ul className="space-y-1.5">
-                                                        {step.deliverables.map((d) => (
-                                                            <li key={d} className="flex items-start gap-2 text-[13.5px] leading-snug text-[#52647A]">
-                                                                <span className="mt-1 text-[#C2410C]" aria-hidden="true">•</span>
-                                                                {d}
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                            )}
-                                            {step.tools && step.tools.length > 0 && (
-                                                <div className="rounded-xl border border-[#D9E6F2] bg-[#EEF5FB] p-4">
-                                                    <h4 className="mb-2.5 flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.08em] text-[#01557E]">
-                                                        <Settings className="h-4 w-4 text-[#01557E]" aria-hidden="true" />
-                                                        Tecnologias
-                                                    </h4>
-                                                    <ul className="space-y-1.5">
-                                                        {step.tools.map((t) => (
-                                                            <li key={t} className="flex items-start gap-2 text-[13.5px] leading-snug text-[#2A4A63]">
-                                                                <span className="mt-0.5 text-[#01557E]" aria-hidden="true">→</span>
-                                                                {t}
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                            )}
-                                            {step.metrics && step.metrics.length > 0 && (
-                                                <div className="rounded-xl border border-[#D6EEE0] bg-[#EAF7F0] p-4">
-                                                    <h4 className="mb-2.5 flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.08em] text-[#1A6B41]">
-                                                        <TrendingUp className="h-4 w-4 text-[#1A8F52]" aria-hidden="true" />
-                                                        Resultados esperados
-                                                    </h4>
-                                                    <ul className="space-y-1.5">
-                                                        {step.metrics.map((m) => (
-                                                            <li key={m} className="flex items-start gap-2 text-[13.5px] leading-snug text-[#1F4A33]">
-                                                                <span className="mt-0.5 font-bold text-[#1A8F52]" aria-hidden="true">✓</span>
-                                                                {m}
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                            )}
+                                    )}
+                                    {step.metrics && step.metrics.length > 0 && (
+                                        <div className="rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                                            <h4 className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#7FE1A6]">Resultados</h4>
+                                            <ul className="space-y-1.5">
+                                                {step.metrics.map((m) => (
+                                                    <li key={m} className="flex items-start gap-2 text-[13px] leading-snug text-[#A9BACD]">
+                                                        <span className="mt-0.5 font-bold text-[#7FE1A6]" aria-hidden="true">✓</span>
+                                                        {m}
+                                                    </li>
+                                                ))}
+                                            </ul>
                                         </div>
-                                    </div>
-                                </motion.div>
-                            );
-                        })}
-                    </div>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+                    />
 
                     {/* CTA Intermediário */}
                     <motion.div
