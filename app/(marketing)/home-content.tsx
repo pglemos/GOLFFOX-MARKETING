@@ -398,7 +398,7 @@ export function HomePage() {
                             >
                                 <Link
                                     href="#cta"
-                                    className="group inline-flex items-center gap-2.5 rounded-xl bg-[#FA6007] px-7 py-4 text-base font-bold text-white shadow-[0_12px_30px_rgba(250,96,7,0.36)] transition-all duration-200 hover:bg-[#E04E00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                                    className="group inline-flex items-center gap-2.5 rounded-xl bg-[#D14600] px-7 py-4 text-base font-bold text-white shadow-[0_12px_30px_rgba(250,96,7,0.36)] transition-all duration-200 hover:bg-[#B03B00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                                 >
                                     Quero controlar meu transporte
                                     <ArrowRight className="h-[18px] w-[18px] transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
@@ -687,7 +687,7 @@ export function HomePage() {
                                         onClick={() => handleProfileSelect(i, p.label)}
                                         className={`inline-flex items-center gap-2 rounded-full px-6 py-3 text-[15px] font-bold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FA6007] ${
                                             isActive
-                                                ? "border border-[#FA6007] bg-[#FA6007] text-white shadow-[0_10px_24px_rgba(250,96,7,0.3)]"
+                                                ? "border border-[#D14600] bg-[#D14600] text-white shadow-[0_10px_24px_rgba(250,96,7,0.3)]"
                                                 : "border border-[#DCE4EC] bg-white text-[#3C4D60] hover:bg-[#F4F7FA]"
                                         }`}
                                     >
@@ -832,7 +832,7 @@ export function HomePage() {
                                 className="grid items-stretch gap-4 lg:grid-cols-[1.04fr_0.96fr]"
                             >
                                 <div className="px-6 py-7">
-                                    <div className="mb-3.5 text-[13px] font-bold uppercase tracking-[0.04em] text-[#FA6007]">{sector.label}</div>
+                                    <div className="mb-3.5 text-[13px] font-bold uppercase tracking-[0.12em] text-[#C2410C]">{sector.label}</div>
                                     <h3 className="mb-4 text-balance text-2xl font-extrabold leading-[1.12] tracking-tight text-[#0B2440] sm:text-[32px]">
                                         {sector.title}
                                     </h3>
@@ -850,7 +850,7 @@ export function HomePage() {
                                     <div className="flex flex-wrap gap-3">
                                         <Link
                                             href="#cta"
-                                            className="inline-flex items-center gap-2 rounded-[10px] bg-[#FA6007] px-6 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_24px_rgba(250,96,7,0.28)] transition-colors duration-200 hover:bg-[#E04E00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B2440]"
+                                            className="inline-flex items-center gap-2 rounded-[10px] bg-[#D14600] px-6 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_24px_rgba(250,96,7,0.28)] transition-colors duration-200 hover:bg-[#B03B00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B2440]"
                                         >
                                             Falar com a Golf Fox
                                         </Link>
@@ -901,7 +901,7 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== CTA FINAL ===================== */}
-                <section id="cta" className="relative overflow-hidden bg-gradient-to-br from-[#FA6007] to-[#E04E00] px-5 py-20 text-white sm:px-8 lg:py-24">
+                <section id="cta" className="relative overflow-hidden bg-gradient-to-br from-[#D14600] to-[#A83800] px-5 py-20 text-white sm:px-8 lg:py-24">
                     <svg viewBox="0 0 1440 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true" className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.22]">
                         <path d="M-40,260 C320,260 420,90 720,90 C1020,90 1140,260 1500,230" fill="none" stroke="#fff" strokeWidth="2" strokeDasharray="2 12" />
                         <path d="M-40,320 C360,320 460,160 760,160 C1060,160 1160,320 1500,300" fill="none" stroke="#fff" strokeWidth="1.5" strokeDasharray="1 16" />
