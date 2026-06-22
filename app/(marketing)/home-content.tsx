@@ -731,17 +731,17 @@ export function HomePage() {
                         <h2 className="text-balance text-[2rem] font-extrabold leading-[1.1] tracking-[-0.02em] sm:text-[2.6rem] lg:text-5xl">
                             Você no controle de
                         </h2>
-                        <div className="relative mx-auto mt-2 flex h-[1.25em] w-full items-center justify-center overflow-hidden">
+                        <div className="relative mx-auto mt-2 h-[1.5em] w-full overflow-hidden text-[2.5rem] font-black leading-none sm:text-6xl lg:text-7xl">
                             {ROTATING.map((w, i) => (
                                 <motion.span
                                     key={w}
                                     aria-hidden={rotIndex !== i}
-                                    className="absolute font-display text-[2.5rem] font-black text-[#FA6007] sm:text-6xl lg:text-7xl"
-                                    initial={{ opacity: 0, y: "-120%" }}
+                                    className="absolute inset-0 flex items-center justify-center font-display text-[#FA6007]"
+                                    initial={{ opacity: 0, y: "-110%" }}
                                     animate={
                                         rotIndex === i
                                             ? { y: "0%", opacity: 1 }
-                                            : { y: rotIndex > i ? "-120%" : "120%", opacity: 0 }
+                                            : { y: rotIndex > i ? "-110%" : "110%", opacity: 0 }
                                     }
                                     transition={{ type: "spring", stiffness: 70, damping: 16 }}
                                 >
