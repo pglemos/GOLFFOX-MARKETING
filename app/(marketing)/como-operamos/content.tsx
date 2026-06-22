@@ -1030,6 +1030,7 @@ export function ComoOperamosContent() {
                         </p>
                     </div>
 
+                    {/* TODO(backend): servir os materiais reais para download (URLs/arquivos) — GET /api/recursos -> { title, type, url } e/ou registrar o download (POST /api/leads { recurso, ...lead }). Hoje download: "#" não baixa nada. */}
                     <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
                         {[
                             {

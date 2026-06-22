@@ -116,19 +116,6 @@ export function CasesContent() {
                     </svg>
                 </section>
 
-                {/* ===================== LOGOS ===================== */}
-                <section className="border-b border-[#EEF2F6] bg-white px-5 py-12 sm:px-8">
-                    <div className="mx-auto max-w-[1100px] text-center">
-                        <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#8392A3]">
-                            Operações que já confiam na Golf Fox
-                        </p>
-                        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-16 gap-y-8">
-                            <Image src="/images/clientes/jbs.png" alt="JBS Foods" width={150} height={94} className="h-12 w-auto opacity-70 grayscale transition duration-200 hover:opacity-100 hover:grayscale-0" />
-                            <Image src="/images/clientes/minerva.png" alt="Minerva Foods" width={160} height={67} className="h-9 w-auto opacity-70 grayscale transition duration-200 hover:opacity-100 hover:grayscale-0" />
-                        </div>
-                    </div>
-                </section>
-
                 {/* ===================== IMPACTO CONSOLIDADO ===================== */}
                 <section className="relative overflow-hidden bg-[#0B2440] px-5 py-20 text-white sm:px-8">
                     <RouteBackdrop />

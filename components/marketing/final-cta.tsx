@@ -38,6 +38,8 @@ export function FinalCTA({
         e.preventDefault();
         setFormState('loading');
 
+        // TODO(backend): enviar lead para o CRM/DB — POST /api/leads { name, email, company, phone, origem: "final-cta" }
+        // Substituir o setTimeout abaixo (simulação) pela chamada real e tratar erro/sucesso.
         // Simular envio
         await new Promise(resolve => setTimeout(resolve, 1500));
 

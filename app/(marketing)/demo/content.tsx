@@ -5,7 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 import { motion } from "framer-motion";
-import { Calendar, Clock, CheckCircle, ArrowRight } from "lucide-react";
+import { Calendar, Clock, CheckCircle } from "lucide-react";
 
 import { Eyebrow } from "@/components/marketing/landing-ui";
 import { SchedulingCalendar } from "@/components/marketing/scheduling-calendar";
@@ -56,9 +56,8 @@ export function DemoContent() {
 
         setWhatsAppHref(href);
 
-        // Prefer new tab, but fall back to same tab if popups are blocked.
-        const opened = window.open(href, "_blank", "noopener,noreferrer");
-        if (!opened) window.location.href = href;
+        // TODO(backend): enviar lead para o CRM/DB — POST /api/leads { name, email, company, phone, employees, message, origem: "demo" }
+        // Mantém o fallback de WhatsApp acima; persistir o lead aqui antes (ou em paralelo).
 
         trackFormSubmit("demo");
         setIsSubmitted(true);
@@ -75,43 +74,35 @@ export function DemoContent() {
 
     if (isSubmitted) {
         return (
-            <section className="min-h-[70vh] flex items-center justify-center bg-gray-950 px-4">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="text-center max-w-md"
-                >
-                    <div className="w-20 h-20 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-6">
-                        <CheckCircle className="w-10 h-10 text-green-500" />
+            <section className="font-archivo bg-[#F4F7FA] px-5 py-24 sm:px-8 lg:py-32">
+                <div className="mx-auto max-w-[920px]">
+                    <div className="mx-auto mb-12 max-w-[680px] text-center">
+                        <Eyebrow tone="orange">Agenda</Eyebrow>
+                        <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.02em] text-[#0B2440] sm:text-4xl">
+                            {formData.name ? `Quase lá, ${formData.name.split(" ")[0]}!` : "Quase lá!"} Escolha o melhor horário
+                        </h2>
+                        <p className="mx-auto mt-4 max-w-[560px] text-pretty text-lg leading-relaxed text-[#52647A]">
+                            Selecione um dia e horário disponível para sua demonstração de 30 minutos. Sem compromisso.
+                        </p>
                     </div>
-                    <h2 className="text-3xl font-bold text-white mb-4">
-                        Quase pronto
-                    </h2>
-                    <p className="text-gray-400 mb-8">
-                        Abrimos o WhatsApp com sua solicitação preenchida. Se não abriu automaticamente, clique no botão abaixo.
+                    <SchedulingCalendar />
+                    <p className="mt-8 text-center text-sm text-[#52647A]">
+                        Prefere falar agora?{" "}
+                        <a
+                            href={whatsAppHref || COMPANY_INFO.whatsapp.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-bold text-[#D14600] hover:underline"
+                        >
+                            Abrir no WhatsApp
+                        </a>
                     </p>
-                    <a
-                        href={whatsAppHref || COMPANY_INFO.whatsapp.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center w-full px-6 py-4 rounded-xl bg-whatsapp text-white font-semibold hover:bg-whatsapp-hover transition-colors mb-6"
-                    >
-                        Abrir WhatsApp
-                    </a>
-                    <Link
-                        href="/"
-                        className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 font-medium"
-                    >
-                        Voltar para o site
-                        <ArrowRight className="w-4 h-4" />
-                    </Link>
-                </motion.div>
+                </div>
             </section>
         );
     }
 
     return (
-        <>
         <section className="min-h-[70vh] bg-gray-950 pt-24 pb-16">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
@@ -280,21 +271,5 @@ export function DemoContent() {
                 </div>
             </div>
         </section>
-
-        {/* Seção da agenda — calendário de marca Golf Fox */}
-        <section className="font-archivo bg-[#F4F7FA] px-5 py-24 sm:px-8 lg:py-32">
-            <div className="mx-auto mb-12 max-w-[680px] text-center">
-                <Eyebrow tone="orange">Agenda</Eyebrow>
-                <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.02em] text-[#0B2440] sm:text-4xl">
-                    Escolha o melhor horário
-                </h2>
-                <p className="mx-auto mt-4 max-w-[560px] text-pretty text-lg leading-relaxed text-[#52647A]">
-                    Selecione um dia e horário disponível para sua demonstração de
-                    30 minutos. Sem compromisso.
-                </p>
-            </div>
-            <SchedulingCalendar />
-        </section>
-        </>
     );
 }

@@ -63,8 +63,8 @@ function StackedCard({
     }, [index, total]);
 
     return (
-        <div ref={containerRef} className="sticky top-0 flex h-screen items-center justify-center">
-            <div ref={cardRef} className="relative w-full" style={{ top: `${index * 1.75}rem` }}>
+        <div ref={containerRef} className="sticky top-16 flex h-[58vh] items-center justify-center md:top-20">
+            <div ref={cardRef} className="relative w-full" style={{ top: `${index}rem` }}>
                 {children}
             </div>
         </div>

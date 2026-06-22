@@ -8,7 +8,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FileText, Settings, Play, CheckCircle, Upload, Download, Shield, Clock, Heart, FileCheck, FileSpreadsheet, BookOpen, Video, ArrowRight, Truck, Users, Zap, Award, Headphones, X, Smartphone } from "lucide-react";
 
-import { FinalCTA, TimelineSection, ScreenshotSection, ProcessDiagram, ROICalculator } from "@/components/marketing";
+import { TimelineSection, ScreenshotSection, ProcessDiagram, ROICalculator } from "@/components/marketing";
 import { Eyebrow, RouteBackdrop } from "@/components/marketing/landing-ui";
 import { FaqTwoColumn } from "@/components/marketing/faq-two-column";
 import { StackedCards } from "@/components/ui/stacked-cards";
@@ -23,14 +23,6 @@ export function ComoFuncionaContent() {
     const [showStickyCTA, setShowStickyCTA] = useState(false);
 
     // Função para obter o próximo mês dinamicamente
-    const getNextMonth = () => {
-        const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-            "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-        const nextMonth = new Date();
-        nextMonth.setMonth(nextMonth.getMonth() + 1);
-        return months[nextMonth.getMonth()];
-    };
-
     // Scroll tracking para analytics
     useEffect(() => {
         const handleScroll = createScrollTracker([50, 75, 90]);
@@ -756,90 +748,82 @@ export function ComoFuncionaContent() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="max-w-4xl mx-auto"
+                        className="mx-auto mt-16 max-w-5xl"
                     >
-                        <div className="text-center mb-8">
-                            <h3 className="text-2xl font-bold text-gray-900 mb-2">Antes vs Depois</h3>
-                            <p className="text-gray-600">Veja a transformação na sua operação</p>
+                        <div className="mb-10 text-center">
+                            <Eyebrow>Transformação</Eyebrow>
+                            <h3 className="mt-5 text-[1.8rem] font-extrabold tracking-[-0.02em] text-[#0B2440] sm:text-4xl">
+                                Antes e depois da Golf Fox
+                            </h3>
+                            <p className="mt-3 text-lg text-[#52647A]">A diferença no dia a dia da sua operação.</p>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {/* Antes */}
-                            <div className="p-6 rounded-2xl bg-red-50 border-2 border-red-200">
-                                <h4 className="text-lg font-bold text-red-900 mb-4 flex items-center gap-2">
-                                    <span className="text-2xl">❌</span> Antes da GOLF FOX
+                        <div className="grid gap-6 md:grid-cols-2">
+                            {/* Sem a Golf Fox */}
+                            <div className="rounded-2xl border border-[#E2E6EC] bg-[#F1F3F6] p-7">
+                                <h4 className="mb-5 flex items-center gap-2.5 text-lg font-extrabold text-[#515C6B]">
+                                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#E2E6EC] text-[#8A93A0]">
+                                        <X className="h-4 w-4" aria-hidden="true" />
+                                    </span>
+                                    Sem a Golf Fox
                                 </h4>
-                                <ul className="space-y-2 text-sm text-red-800">
-                                    <li className="flex items-start gap-2">
-                                        <span>•</span>
-                                        <span>Planilhas Excel manuais (15-20 horas/semana)</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <span>•</span>
-                                        <span>Sem visibilidade em tempo real</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <span>•</span>
-                                        <span>Reclamações constantes no RH</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <span>•</span>
-                                        <span>Custos ocultos e sem controle</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <span>•</span>
-                                        <span>Risco trabalhista por falta de auditoria</span>
-                                    </li>
+                                <ul className="space-y-3.5">
+                                    {[
+                                        "Planilhas Excel manuais (15-20 horas/semana)",
+                                        "Sem visibilidade em tempo real",
+                                        "Reclamações constantes no RH",
+                                        "Custos ocultos e sem controle",
+                                        "Risco trabalhista por falta de auditoria",
+                                    ].map((t) => (
+                                        <li key={t} className="flex items-start gap-3 text-[15px] leading-snug text-[#515C6B]">
+                                            <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-[#E2E6EC]">
+                                                <X className="h-3 w-3 text-[#8A93A0]" aria-hidden="true" />
+                                            </span>
+                                            {t}
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
 
-                            {/* Depois */}
-                            <div className="p-6 rounded-2xl bg-green-50 border-2 border-green-200">
-                                <h4 className="text-lg font-bold text-green-900 mb-4 flex items-center gap-2">
-                                    <span className="text-2xl">✅</span> Depois da GOLF FOX
+                            {/* Com a Golf Fox */}
+                            <div className="rounded-2xl border border-[#FFD9BF] bg-white p-7 shadow-[0_18px_44px_rgba(11,36,64,0.12)]">
+                                <h4 className="mb-5 flex items-center gap-2.5 text-lg font-extrabold text-[#0B2440]">
+                                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#E6F7EE] text-[#1A8F52]">
+                                        <CheckCircle className="h-4 w-4" aria-hidden="true" />
+                                    </span>
+                                    Com a Golf Fox
                                 </h4>
-                                <ul className="space-y-2 text-sm text-green-800">
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
-                                        <span>Automação completa (0 horas manuais)</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
-                                        <span>Monitoramento em tempo real 24/7</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
-                                        <span>Redução de 40% em reclamações</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
-                                        <span>Economia de 30% em custos operacionais</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
-                                        <span>Auditoria completa e compliance total</span>
-                                    </li>
+                                <ul className="space-y-3.5">
+                                    {[
+                                        "Automação completa (0 horas manuais)",
+                                        "Monitoramento em tempo real 24/7",
+                                        "Redução de 40% em reclamações",
+                                        "Economia de 30% em custos operacionais",
+                                        "Auditoria completa e compliance total",
+                                    ].map((t) => (
+                                        <li key={t} className="flex items-start gap-3 text-[15px] font-medium leading-snug text-[#1F3147]">
+                                            <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-[#E6F7EE]">
+                                                <CheckCircle className="h-3 w-3 text-[#1A8F52]" aria-hidden="true" />
+                                            </span>
+                                            {t}
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
                         </div>
 
-                        {/* ROI Summary */}
-                        <div className="mt-8 p-6 rounded-2xl bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200">
-                            <div className="text-center">
-                                <h4 className="text-xl font-bold text-orange-900 mb-2">ROI Médio</h4>
-                                <div className="grid grid-cols-3 gap-4 mt-4">
-                                    <div>
-                                        <div className="text-3xl font-bold text-orange-600">30%</div>
-                                        <div className="text-sm text-orange-800">Redução de custos</div>
-                                    </div>
-                                    <div>
-                                        <div className="text-3xl font-bold text-orange-600">15h</div>
-                                        <div className="text-sm text-orange-800">Economia/semana</div>
-                                    </div>
-                                    <div>
-                                        <div className="text-3xl font-bold text-orange-600">3-6</div>
-                                        <div className="text-sm text-orange-800">Meses para ROI</div>
-                                    </div>
-                                </div>
+                        {/* ROI band */}
+                        <div className="mt-6 grid grid-cols-3 gap-4 rounded-2xl bg-[#0B2440] px-6 py-8 text-center text-white">
+                            <div>
+                                <div className="font-display text-4xl font-black tabular-nums text-[#FA6007] lg:text-5xl">30%</div>
+                                <div className="mt-2 text-[13px] text-[#A9BACD]">Redução de custos</div>
+                            </div>
+                            <div>
+                                <div className="font-display text-4xl font-black tabular-nums text-[#FA6007] lg:text-5xl">15h</div>
+                                <div className="mt-2 text-[13px] text-[#A9BACD]">Economia/semana</div>
+                            </div>
+                            <div>
+                                <div className="font-display text-4xl font-black tabular-nums text-[#FA6007] lg:text-5xl">3-6</div>
+                                <div className="mt-2 text-[13px] text-[#A9BACD]">Meses para ROI</div>
                             </div>
                         </div>
                     </motion.div>
@@ -999,6 +983,7 @@ export function ComoFuncionaContent() {
                 title="Perguntas frequentes"
                 description="Tire suas dúvidas sobre implantação e funcionamento."
                 items={faqs.map((f) => ({ q: f.question, a: f.answer }))}
+                initialCount={4}
             />
 
             {/* Garantias - com 3 principais destacadas */}
@@ -1364,61 +1349,6 @@ export function ComoFuncionaContent() {
                 </div>
             </section>
 
-            {/* CTA com badge de urgência e formulário */}
-            <section className="py-20 lg:py-24 relative overflow-hidden bg-gradient-to-br from-orange-500 via-orange-600 to-red-600">
-                {/* Decorative elements */}
-                <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-                <div className="absolute bottom-0 right-0 w-96 h-96 bg-black/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
-
-                <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="max-w-4xl mx-auto text-center">
-                        {/* Badge de urgência - dinâmico */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="mb-6"
-                        >
-                            <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-white/20 text-white border border-white/30 backdrop-blur-sm">
-                                <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse" />
-                                Vagas limitadas para implantação em {getNextMonth()}
-                            </span>
-                        </motion.div>
-                    </div>
-                </div>
-
-                {/* Formulário usando FinalCTA */}
-                <FinalCTA
-                    title="Pronto para transformar seu fretamento?"
-                    subtitle="Preencha o formulário e receba uma proposta personalizada em até 24 horas. Demonstração gratuita, sem compromisso."
-                    showForm={true}
-                    variant="gradient"
-                    className="py-0! bg-transparent!"
-                />
-
-                {/* Mini proof points */}
-                <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 mt-8">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="flex flex-wrap justify-center gap-6 text-white/70 text-sm"
-                    >
-                        <span className="flex items-center gap-2">
-                            <CheckCircle size={16} className="text-green-400" />
-                            Demonstração gratuita
-                        </span>
-                        <span className="flex items-center gap-2">
-                            <CheckCircle size={16} className="text-green-400" />
-                            Sem compromisso
-                        </span>
-                        <span className="flex items-center gap-2">
-                            <CheckCircle size={16} className="text-green-400" />
-                            Proposta em 24h
-                        </span>
-                    </motion.div>
-                </div>
-            </section>
 
             {/* Contador de empresas atendidas */}
             <section className="py-8 bg-gray-100 border-t border-gray-200 mb-16 md:mb-0">
