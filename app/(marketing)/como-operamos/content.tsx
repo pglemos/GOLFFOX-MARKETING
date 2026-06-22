@@ -7,8 +7,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Radio, AlertTriangle, FileText, Shield, Eye, Building2, Truck, CheckCircle, Activity, Clock, Server, Zap, Database, Globe, Headphones, CheckCircle2, AlertCircle, ShieldCheck, Lock, FileCheck, Award, FileText as FileTextIcon, Download, BookOpen, FileSpreadsheet, ArrowRight } from "lucide-react";
 
-import { HeroSection, FinalCTA, TestimonialsSection, FAQSection, ScreenshotSection, MonitoringFlowDiagram, SLAInfographic } from "@/components/marketing";
-import { comoOperamos } from "@/content/marketing";
+import { HeroSection, FinalCTA, FAQSection, ScreenshotSection, MonitoringFlowDiagram, SLAInfographic } from "@/components/marketing";
 
 export function ComoOperamosContent() {
     // Adicionar schema FAQPage
@@ -415,14 +414,6 @@ export function ComoOperamosContent() {
                     </div>
                 </div>
             </section>
-
-            {/* Testimonials */}
-            <TestimonialsSection
-                testimonials={comoOperamos.testimonials}
-                title="Confiança comprovada"
-                subtitle="Veja o que nossos clientes dizem sobre nossa operação e confiabilidade"
-                variant="default"
-            />
 
             {/* SLA Infographic */}
             <SLAInfographic

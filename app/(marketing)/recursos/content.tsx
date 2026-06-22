@@ -30,8 +30,8 @@ import {
 } from "lucide-react";
 
 
-import { HeroSection, FinalCTA, FAQSection, ResourceDetailModal, TestimonialsSection, ScreenshotSection, ResourceROICalculator } from "@/components/marketing";
-import { resources, resourceCategories, resourceProfiles, resourceTestimonials } from "@/content/marketing";
+import { HeroSection, FinalCTA, FAQSection, ResourceDetailModal, ScreenshotSection, ResourceROICalculator } from "@/components/marketing";
+import { resources, resourceCategories, resourceProfiles } from "@/content/marketing";
 import { trackFeatureFilter, trackEvent } from "@/lib/analytics/track-events";
 import { cn } from "@/lib/utils";
 
@@ -788,27 +788,6 @@ export function RecursosContent() {
                         subtitle="Capturas de tela reais dos recursos da plataforma"
                         columns={selectedCategory !== "all" ? 2 : 3}
                         dark={false}
-                    />
-                );
-            })()}
-
-            {/* Testimonials por Categoria */}
-            {selectedCategory !== "all" && resourceTestimonials && (() => {
-                // Coletar testemunhos dos recursos da categoria selecionada
-                const categoryResources = resources.filter(r => r.category === selectedCategory);
-                const testimonials = categoryResources
-                    .map(r => resourceTestimonials[r.id])
-                    .filter(Boolean)
-                    .flat();
-
-                if (testimonials.length === 0) return null;
-
-                return (
-                    <TestimonialsSection
-                        testimonials={testimonials}
-                        title={`O que dizem sobre ${resourceCategories.find(c => c.id === selectedCategory)?.name}`}
-                        subtitle="Testemunhos reais de clientes usando recursos desta categoria"
-                        variant="default"
                     />
                 );
             })()}
