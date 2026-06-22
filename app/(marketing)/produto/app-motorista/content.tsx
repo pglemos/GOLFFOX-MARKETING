@@ -120,11 +120,11 @@ export function AppMotoristaContent() {
                                 <div className="absolute -right-[15px] top-[140px] h-[64px] w-[3px] rounded-e-lg bg-[#060F1B]" aria-hidden="true" />
                                 <div className="relative h-full w-full overflow-hidden rounded-[1.9rem] bg-white">
                                     <Image
-                                        src="/assets/product/app-motorista.png"
-                                        alt="Interface do App Motorista GOLF FOX"
+                                        src="/images/app-motorista/perfil.png"
+                                        alt="Central do Motorista no app Golf Fox"
                                         fill
                                         sizes="296px"
-                                        className="object-cover"
+                                        className="object-cover object-top"
                                     />
                                 </div>
                             </motion.div>
@@ -165,6 +165,45 @@ export function AppMotoristaContent() {
                                     <h3 className="text-xl font-extrabold tracking-[-0.02em] text-[#0B2440]">{benefit.title}</h3>
                                     <p className="mt-3 text-pretty leading-relaxed text-[#52647A]">{benefit.description}</p>
                                 </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* ===================== GALERIA (telas reais) ===================== */}
+                <section className="relative overflow-hidden bg-[#F4F7FA] px-5 py-24 sm:px-8 lg:py-32">
+                    <div className="gf-aurora-light" aria-hidden="true" />
+                    <div className="relative z-10 mx-auto max-w-[1140px]">
+                        <div className="mx-auto mb-14 max-w-[640px] text-center">
+                            <Eyebrow>Por dentro do app</Eyebrow>
+                            <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">
+                                Feito para o dia a dia de quem dirige
+                            </h2>
+                        </div>
+                        <div className="flex flex-wrap items-start justify-center gap-10 sm:gap-12">
+                            {[
+                                { src: "/images/app-motorista/rota.png", title: "Em rota", desc: "Inicie a viagem e controle o embarque por QR Code." },
+                                { src: "/images/app-motorista/abastecimento.png", title: "Abastecimento", desc: "Lance valor, litros e km com foto do comprovante." },
+                                { src: "/images/app-motorista/seguranca.png", title: "Segurança", desc: "Acesso protegido e gestão de sessões do dispositivo." },
+                            ].map((s, i) => (
+                                <motion.figure
+                                    key={s.src}
+                                    initial={{ opacity: 0, y: 24 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: i * 0.1 }}
+                                    className="flex w-[216px] flex-col items-center text-center"
+                                >
+                                    <div className="relative h-[460px] w-[216px] rounded-[2rem] border-[10px] border-[#060F1B] bg-[#060F1B] shadow-[0_24px_60px_rgba(11,36,64,0.22)]">
+                                        <div className="relative h-full w-full overflow-hidden rounded-[1.4rem] bg-white">
+                                            <Image src={s.src} alt={`Tela ${s.title} do app Golf Fox`} fill sizes="216px" className="object-cover object-top" />
+                                        </div>
+                                    </div>
+                                    <figcaption className="mt-5">
+                                        <div className="text-[17px] font-extrabold text-[#0B2440]">{s.title}</div>
+                                        <p className="mx-auto mt-1 max-w-[200px] text-[14px] leading-snug text-[#52647A]">{s.desc}</p>
+                                    </figcaption>
+                                </motion.figure>
                             ))}
                         </div>
                     </div>
