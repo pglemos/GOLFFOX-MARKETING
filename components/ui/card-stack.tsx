@@ -191,6 +191,7 @@ export function CardStack<T extends CardStackItem>({
                                     animate={{ opacity: 1, x, y: y + lift, rotateZ, rotateX, scale }}
                                     transition={{ type: "spring", stiffness: springStiffness, damping: springDamping }}
                                     onClick={() => setActive(i)}
+                                    onMouseEnter={() => setActive(i)}
                                     {...dragProps}
                                 >
                                     <div className="h-full w-full" style={{ transform: `translateZ(${z}px)`, transformStyle: "preserve-3d" }}>

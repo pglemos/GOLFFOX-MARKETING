@@ -198,6 +198,9 @@ export function PortalTransportadoraContent() {
                 {/* ===================== BENEFÍCIOS ===================== */}
                 <section className="relative overflow-hidden bg-white px-5 py-24 sm:px-8 lg:py-32">
                     <div className="gf-aurora-light" aria-hidden="true" />
+                    <div className="pointer-events-none absolute inset-0 opacity-60">
+                        <RouteBackdrop />
+                    </div>
                     <div className="relative z-10 mx-auto max-w-[1140px]">
                         <div className="mx-auto mb-16 max-w-[680px] text-center">
                             <Eyebrow>Cresça com rentabilidade</Eyebrow>
@@ -221,9 +224,6 @@ export function PortalTransportadoraContent() {
                                 }))}
                                 cardWidth={400}
                                 cardHeight={300}
-                                autoAdvance
-                                intervalMs={3200}
-                                pauseOnHover
                                 renderCard={(item) => (
                                     <div className="relative flex h-full w-full flex-col justify-between overflow-hidden bg-[#0B2440] p-8 text-white">
                                         <div className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(250,96,7,0.25),transparent_70%)] blur-[10px]" aria-hidden="true" />
@@ -240,7 +240,6 @@ export function PortalTransportadoraContent() {
                                     </div>
                                 )}
                             />
-                            <p className="mt-2 text-center text-sm text-[#8392A3]">Arraste, clique nos cards ou use as setas ←/→</p>
                         </div>
                     </div>
                 </section>
