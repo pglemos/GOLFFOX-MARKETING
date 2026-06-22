@@ -8,15 +8,15 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FileText, Settings, Play, CheckCircle, Upload, Download, Shield, Clock, Heart, FileCheck, FileSpreadsheet, BookOpen, Video, ArrowRight, Truck, Users, Zap, Award, Headphones, X, TrendingUp, Smartphone } from "lucide-react";
 
-import { FAQSection, FinalCTA, TimelineSection, ScreenshotSection, ProcessDiagram, ROICalculator } from "@/components/marketing";
+import { FinalCTA, TimelineSection, ScreenshotSection, ProcessDiagram, ROICalculator } from "@/components/marketing";
 import { Eyebrow, RouteBackdrop } from "@/components/marketing/landing-ui";
+import { FaqTwoColumn } from "@/components/marketing/faq-two-column";
 import { comoFunciona } from "@/content/marketing";
 import { trackEvent, trackDemoClick, createScrollTracker } from "@/lib/analytics/track-events";
 import { cn } from "@/lib/utils";
 
 export function ComoFuncionaContent() {
     // Estado para controlar FAQs visíveis
-    const [showAllFaqs, setShowAllFaqs] = useState(false);
 
     // Estado para controle do sticky CTA mobile
     const [showStickyCTA, setShowStickyCTA] = useState(false);
@@ -706,43 +706,38 @@ export function ComoFuncionaContent() {
                 />
             )}
 
-            {/* Métricas Agregadas */}
-            <section className="py-16 lg:py-24 bg-orange-600">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center max-w-3xl mx-auto mb-12">
+            {/* Impacto consolidado */}
+            <section className="font-archivo relative overflow-hidden bg-[#0B2440] px-5 py-20 text-white sm:px-8 lg:py-24">
+                <RouteBackdrop />
+                <div className="relative mx-auto max-w-[1100px]">
+                    <div className="mx-auto mb-14 max-w-[640px] text-center">
+                        <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#FFB07A]">
+                            Impacto consolidado
+                        </span>
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-3xl lg:text-4xl font-bold text-white mb-4"
+                            className="mt-5 text-balance text-[2rem] font-extrabold leading-[1.1] tracking-[-0.02em] sm:text-[2.6rem] lg:text-5xl"
                         >
-                            Impacto consolidado
+                            Resultados agregados dos clientes
                         </motion.h2>
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
-                            className="text-lg text-orange-100"
-                        >
-                            Resultados agregados de nossos clientes
-                        </motion.p>
                     </div>
-
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                    <div className="grid grid-cols-2 gap-y-12 lg:grid-cols-4">
                         {comoFunciona.metrics.map((metric, index) => (
                             <motion.div
                                 key={index}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                                className="text-center"
+                                transition={{ delay: index * 0.08 }}
+                                className="flex flex-col items-center px-4 text-center sm:px-6 lg:border-l lg:border-white/10 lg:first:border-l-0"
                             >
-                                <div className="text-4xl lg:text-5xl font-bold text-white mb-2">
+                                <div className="font-display text-[3.25rem] font-black leading-none tabular-nums text-[#FA6007] lg:text-6xl">
                                     {metric.value}
                                 </div>
-                                <div className="text-sm font-medium text-orange-100">
+                                <div className="mt-4 h-px w-8 bg-[#FA6007]/40" aria-hidden="true" />
+                                <div className="mt-4 max-w-[180px] text-sm leading-snug text-[#A9BACD] sm:text-[14.5px]">
                                     {metric.label}
                                 </div>
                             </motion.div>
@@ -1072,36 +1067,11 @@ export function ComoFuncionaContent() {
             </section>
 
             {/* FAQ */}
-            <section className="py-16 lg:py-24 bg-gray-50">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <FAQSection
-                        faqs={showAllFaqs ? faqs : faqs.slice(0, 7)}
-                        title="Perguntas frequentes"
-                        subtitle="Tire suas dúvidas sobre implantação e funcionamento"
-                    />
-                    {faqs.length > 7 && !showAllFaqs && (
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            className="text-center mt-8"
-                        >
-                            <button
-                                onClick={() => {
-                                    setShowAllFaqs(true);
-                                    trackEvent({
-                                        event: 'faq_expand',
-                                        properties: { action: 'show_all' },
-                                    });
-                                }}
-                                className="text-orange-600 font-medium hover:text-orange-700 hover:underline"
-                            >
-                                Ver todas as {faqs.length} perguntas
-                            </button>
-                        </motion.div>
-                    )}
-                </div>
-            </section>
+            <FaqTwoColumn
+                title="Perguntas frequentes"
+                description="Tire suas dúvidas sobre implantação e funcionamento."
+                items={faqs.map((f) => ({ q: f.question, a: f.answer }))}
+            />
 
             {/* Garantias - com 3 principais destacadas */}
             <section className="py-16 lg:py-24 bg-white">
