@@ -13,6 +13,7 @@ import {
     MessageSquare,
     Coffee,
     Check,
+    Bus,
 } from "lucide-react";
 
 import { Eyebrow, RouteBackdrop } from "@/components/marketing/landing-ui";
@@ -219,9 +220,70 @@ export function AppPassageiroContent() {
                             whileInView="show"
                             viewport={{ once: true, margin: "-80px" }}
                             transition={{ duration: 0.5 }}
-                            className="order-2 lg:order-1"
+                            className="order-2 flex justify-center lg:order-1"
                         >
-                            <PhoneMockup />
+                            {/* Tela "Onde está meu ônibus?" (mock desenhado) */}
+                            <div className="relative mx-auto h-[600px] w-[300px]">
+                                <div className="pointer-events-none absolute -right-6 -top-6 h-44 w-44 rounded-full bg-[radial-gradient(circle,rgba(250,96,7,0.28),transparent_70%)] blur-[12px]" aria-hidden="true" />
+                                <div className="relative h-full w-full rounded-[2.5rem] border-[14px] border-[#0A1A2C] bg-[#0A1A2C] shadow-[0_40px_90px_rgba(0,0,0,0.5)]">
+                                    <div className="absolute left-1/2 top-0 z-10 h-[18px] w-[148px] -translate-x-1/2 rounded-b-[1rem] bg-[#0A1A2C]" aria-hidden="true" />
+                                    <div className="relative flex h-full w-full flex-col overflow-hidden rounded-[2rem] bg-[#0B2440] text-white">
+                                        {/* barra de status */}
+                                        <div className="flex items-center justify-between bg-[#FA6007] px-5 pb-3 pt-6 text-[11px] font-bold">
+                                            <span className="tabular-nums">09:30</span>
+                                            <span className="inline-flex items-center gap-1.5">
+                                                <span className="gf-live-dot h-1.5 w-1.5 rounded-full bg-white" aria-hidden="true" />
+                                                AO VIVO
+                                            </span>
+                                        </div>
+                                        {/* header */}
+                                        <div className="px-5 pt-4">
+                                            <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#FFB07A]">Onde está meu ônibus?</div>
+                                            <div className="mt-1 text-lg font-extrabold">Linha 402 · Centro</div>
+                                        </div>
+                                        {/* mapa */}
+                                        <div className="relative mx-4 mt-4 flex-1 overflow-hidden rounded-2xl bg-gradient-to-br from-[#0E2C4D] to-[#0B2440]">
+                                            <svg viewBox="0 0 240 300" preserveAspectRatio="none" className="absolute inset-0 h-full w-full" aria-hidden="true">
+                                                <g stroke="rgba(255,255,255,0.06)" strokeWidth="1">
+                                                    <path d="M0,70 H240 M0,150 H240 M0,230 H240 M70,0 V300 M160,0 V300" fill="none" />
+                                                </g>
+                                                <path d="M30,250 C70,250 80,150 130,120 C180,90 190,60 215,55" fill="none" stroke="rgba(250,96,7,0.25)" strokeWidth="4" strokeLinecap="round" />
+                                                <path d="M30,250 C70,250 80,150 130,120 C180,90 190,60 215,55" fill="none" stroke="#FA6007" strokeWidth="4" strokeLinecap="round" strokeDasharray="10 260" className="gf-route-dash" />
+                                                <circle cx="215" cy="55" r="6" fill="#fff" />
+                                            </svg>
+                                            <div className="absolute left-[52%] top-[42%] -translate-x-1/2 -translate-y-1/2">
+                                                <div className="flex h-8 w-8 items-center justify-center rounded-[10px] bg-[#FA6007] shadow-[0_6px_14px_rgba(250,96,7,0.5)]">
+                                                    <Bus className="h-4 w-4 text-white" aria-hidden="true" />
+                                                </div>
+                                            </div>
+                                            <div className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/30 px-2.5 py-1 text-[10px] font-semibold backdrop-blur-sm">
+                                                <span className="h-2 w-2 rounded-full bg-[#34D17E]" aria-hidden="true" />
+                                                Seu ponto
+                                            </div>
+                                        </div>
+                                        {/* ETA */}
+                                        <div className="mx-4 mt-4 rounded-2xl bg-white/[0.06] p-4">
+                                            <div className="flex items-end justify-between">
+                                                <div>
+                                                    <div className="text-[11px] text-[#8FA3B8]">Chega em</div>
+                                                    <div className="font-display text-3xl font-black leading-none tabular-nums text-[#FA6007]">4 min</div>
+                                                </div>
+                                                <div className="text-right text-[11px] leading-snug text-[#A9BACD]">
+                                                    Praça Central
+                                                    <br />
+                                                    Lotação 62%
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {/* botão */}
+                                        <div className="px-4 pb-5 pt-3">
+                                            <div className="rounded-xl bg-[#FA6007] py-3 text-center text-[13px] font-bold text-white">
+                                                Confirmar embarque
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </motion.div>
 
                         {/* Texto + benefícios */}
