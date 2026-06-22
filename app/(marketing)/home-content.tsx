@@ -262,15 +262,16 @@ function Eyebrow({
     } as const;
     return (
         <span
-            className={`inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-[0.05em] ${tones[tone]}`}
+            className={`inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] ${tones[tone]}`}
         >
             {children}
         </span>
     );
 }
 
-/** Traçado de rota decorativo usado nos fundos escuros (hero, faixas). */
-function RouteBackdrop({ withGlow = false }: { withGlow?: boolean }) {
+/** Traçado de rota decorativo usado nos fundos escuros (hero, faixas).
+ *  É a "assinatura" da marca; no hero a rota principal é animada (tese: ao vivo). */
+function RouteBackdrop({ withGlow = false, animated = false }: { withGlow?: boolean; animated?: boolean }) {
     return (
         <svg
             viewBox="0 0 1440 760"
@@ -295,6 +296,7 @@ function RouteBackdrop({ withGlow = false }: { withGlow?: boolean }) {
                 strokeDasharray="2 12"
                 strokeLinecap="round"
                 opacity="0.7"
+                className={animated ? "gf-route-dash" : undefined}
             />
             <path
                 d="M-40,640 C320,640 420,440 720,440 C1020,440 1140,640 1500,610"
@@ -362,7 +364,7 @@ export function HomePage() {
             <div className="font-archivo text-[#122334]">
                 {/* ===================== HERO ===================== */}
                 <section id="top" className="relative overflow-hidden bg-[#0B2440] text-white">
-                    <RouteBackdrop withGlow />
+                    <RouteBackdrop withGlow animated />
                     <div className="relative mx-auto grid max-w-[1200px] items-center gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:py-24">
                         <div>
                             <motion.h1
@@ -584,7 +586,7 @@ export function HomePage() {
                                             <span className="mt-0.5 flex h-[22px] w-[22px] flex-none items-center justify-center rounded-full bg-[#E2E6EC]">
                                                 <X className="h-3 w-3 text-[#8A93A0]" aria-hidden="true" />
                                             </span>
-                                            <span className="text-[15.5px] font-semibold text-[#6A7585]">{item}</span>
+                                            <span className="text-[15.5px] font-semibold text-[#515C6B]">{item}</span>
                                         </div>
                                     ))}
                                 </div>
