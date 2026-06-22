@@ -196,13 +196,13 @@ export function PortalTransportadoraContent() {
                 </section>
 
                 {/* ===================== BENEFÍCIOS ===================== */}
-                <section className="relative overflow-hidden bg-white px-5 py-24 sm:px-8 lg:py-32">
+                <section className="relative overflow-hidden bg-white px-5 py-16 sm:px-8 lg:py-20">
                     <div className="gf-aurora-light" aria-hidden="true" />
                     <div className="pointer-events-none absolute inset-0 opacity-60">
                         <RouteBackdrop />
                     </div>
                     <div className="relative z-10 mx-auto max-w-[1140px]">
-                        <div className="mx-auto mb-16 max-w-[680px] text-center">
+                        <div className="mx-auto mb-10 max-w-[680px] text-center">
                             <Eyebrow>Cresça com rentabilidade</Eyebrow>
                             <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">
                                 Cresça com rentabilidade
@@ -213,7 +213,7 @@ export function PortalTransportadoraContent() {
                             </p>
                         </div>
 
-                        <div className="overflow-hidden">
+                        <div className="-mx-5 px-5 sm:-mx-8 sm:px-8">
                             <CardStack
                                 items={BENEFITS.map((b, i) => ({
                                     id: i,
@@ -224,6 +224,11 @@ export function PortalTransportadoraContent() {
                                 }))}
                                 cardWidth={400}
                                 cardHeight={300}
+                                maxVisible={3}
+                                spreadDeg={10}
+                                overlap={0.5}
+                                tiltXDeg={8}
+                                activeLiftPx={16}
                                 renderCard={(item) => (
                                     <div className="relative flex h-full w-full flex-col justify-between overflow-hidden bg-[#0B2440] p-8 text-white">
                                         <div className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(250,96,7,0.25),transparent_70%)] blur-[10px]" aria-hidden="true" />

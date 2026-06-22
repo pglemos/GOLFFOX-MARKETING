@@ -139,11 +139,11 @@ export function CardStack<T extends CardStackItem>({
         >
             <div
                 className="relative w-full"
-                style={{ height: Math.max(380, cardHeight + 80) }}
+                style={{ height: cardHeight + 72 }}
                 tabIndex={0}
                 onKeyDown={onKeyDown}
             >
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 mx-auto h-40 w-[76%] rounded-full bg-[#0B2440]/10 blur-3xl" aria-hidden="true" />
+                <div className="pointer-events-none absolute inset-x-0 bottom-2 mx-auto h-28 w-[70%] rounded-full bg-[#0B2440]/10 blur-3xl" aria-hidden="true" />
 
                 <div className="absolute inset-0 flex items-end justify-center" style={{ perspective: `${perspectivePx}px` }}>
                     <AnimatePresence initial={false}>
