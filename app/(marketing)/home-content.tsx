@@ -649,24 +649,33 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== FAIXA DE NÚMEROS ===================== */}
-                <section className="relative overflow-hidden bg-[#0B2440] px-5 py-16 text-white sm:px-8">
+                <section className="relative overflow-hidden bg-[#0B2440] px-5 py-20 text-white sm:px-8 lg:py-24">
                     <RouteBackdrop />
-                    <div className="relative mx-auto grid max-w-[1100px] grid-cols-2 gap-8 text-center lg:grid-cols-4">
-                        {STATS.map((stat, i) => (
-                            <motion.div
-                                key={stat.label}
-                                variants={fadeUp}
-                                initial="hidden"
-                                whileInView="show"
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.08 }}
-                            >
-                                <div className="font-display text-5xl font-black leading-none tabular-nums text-[#FA6007] lg:text-[56px]">
-                                    {stat.value}
-                                </div>
-                                <div className="mt-2 text-sm leading-snug text-[#A9BACD] sm:text-[14.5px]">{stat.label}</div>
-                            </motion.div>
-                        ))}
+                    <div className="relative mx-auto max-w-[1100px]">
+                        <p className="mb-12 text-center text-xs font-bold uppercase tracking-[0.22em] text-[#FFB07A]">
+                            O que muda na prática
+                        </p>
+                        <div className="grid grid-cols-2 gap-y-12 lg:grid-cols-4">
+                            {STATS.map((stat, i) => (
+                                <motion.div
+                                    key={stat.label}
+                                    variants={fadeUp}
+                                    initial="hidden"
+                                    whileInView="show"
+                                    viewport={{ once: true }}
+                                    transition={{ delay: i * 0.08 }}
+                                    className="flex flex-col items-center px-4 text-center sm:px-6 lg:border-l lg:border-white/10 lg:first:border-l-0"
+                                >
+                                    <div className="font-display text-[3.25rem] font-black leading-none tabular-nums text-[#FA6007] lg:text-6xl">
+                                        {stat.value}
+                                    </div>
+                                    <div className="mt-4 h-px w-8 bg-[#FA6007]/40" aria-hidden="true" />
+                                    <div className="mt-4 max-w-[180px] text-sm leading-snug text-[#A9BACD] sm:text-[14.5px]">
+                                        {stat.label}
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
                 </section>
 
