@@ -986,6 +986,7 @@ export function HomePage() {
                     title="Tire suas dúvidas sobre o controle."
                     description="Tudo que você precisa saber antes de começar."
                     items={FAQS}
+                    className="bg-transparent"
                 />
 
                 {/* ===================== CTA FINAL ===================== */}

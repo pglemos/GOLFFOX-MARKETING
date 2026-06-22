@@ -30,7 +30,8 @@ import {
 } from "lucide-react";
 
 
-import { HeroSection, FinalCTA, FAQSection, ResourceDetailModal, ScreenshotSection, ResourceROICalculator } from "@/components/marketing";
+import { FinalCTA, FAQSection, ResourceDetailModal, ScreenshotSection, ResourceROICalculator } from "@/components/marketing";
+import { RouteBackdrop } from "@/components/marketing/landing-ui";
 import { resources, resourceCategories, resourceProfiles } from "@/content/marketing";
 import { trackFeatureFilter, trackEvent } from "@/lib/analytics/track-events";
 import { cn } from "@/lib/utils";
@@ -311,12 +312,48 @@ export function RecursosContent() {
 
     return (
         <>
-            {/* Hero */}
-            <HeroSection
-                title="Potencialize sua operação de transporte"
-                subtitle="Explore nossa biblioteca completa de ferramentas. Inteligência para planejar, precisão para executar e governança para escalar."
-                variant="centered"
-            />
+            {/* Hero (design Golf Fox) */}
+            <section className="font-archivo relative overflow-hidden bg-[#0B2440] text-white">
+                <RouteBackdrop withGlow animated />
+                <div className="relative mx-auto max-w-[900px] px-5 pt-20 text-center sm:px-8 lg:pt-28">
+                    <span className="mb-6 inline-flex text-xs font-bold uppercase tracking-[0.22em] text-[#FFB07A]">
+                        Recursos
+                    </span>
+                    <h1 className="text-balance text-[2.75rem] font-extrabold leading-[1.02] tracking-[-0.025em] sm:text-6xl lg:text-7xl">
+                        Tudo que sua operação precisa, <span className="text-[#FA6007]">num lugar só</span>.
+                    </h1>
+                    <p className="mx-auto mt-5 max-w-[620px] text-pretty text-lg leading-relaxed text-[#B7C6D8] sm:text-xl">
+                        Inteligência para planejar, precisão para executar e governança para escalar — a
+                        biblioteca completa de ferramentas da Golf Fox.
+                    </p>
+                    <div className="mt-9 flex justify-center">
+                        <Link
+                            href="/demo"
+                            className="group inline-flex min-h-[44px] items-center gap-2.5 rounded-xl bg-[#D14600] px-7 py-4 text-base font-bold text-white shadow-[0_12px_30px_rgba(250,96,7,0.36)] transition-all duration-200 hover:bg-[#B03B00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                        >
+                            Agendar demonstração
+                            <ArrowRight className="h-[18px] w-[18px] transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+                        </Link>
+                    </div>
+                </div>
+                {/* Screenshot inclinado em 3D */}
+                <div className="relative mx-auto mt-14 max-w-7xl px-6 [mask-image:linear-gradient(to_bottom,#000_55%,transparent_100%)]">
+                    <div className="[perspective:1200px]">
+                        <div className="mx-auto max-w-5xl [transform:rotateX(22deg)]">
+                            <div className="overflow-hidden rounded-t-2xl border border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.5)]">
+                                <Image
+                                    src="/images/screenshots/monitoramento.png"
+                                    alt="Painel de recursos da Golf Fox em operação"
+                                    width={1600}
+                                    height={1040}
+                                    className="h-auto w-full"
+                                    priority
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             {/* Navegue por Impacto - Nova Seção de Hierarquia */}
             <section className="py-16 bg-white">
