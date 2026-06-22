@@ -8,9 +8,9 @@
   font-family: var(--font-archivo), system-ui, -apple-system, sans-serif;
 }
 
-/* Display = Archivo no peso black (900). Use com font-black para o look "expanded". */
+/* Display = Archivo Black (par tipográfico com a Archivo do corpo). */
 .font-display {
-  font-family: var(--font-archivo), system-ui, sans-serif;
+  font-family: var(--font-archivo-black), var(--font-archivo), system-ui, sans-serif;
   letter-spacing: -0.02em;
 }
 

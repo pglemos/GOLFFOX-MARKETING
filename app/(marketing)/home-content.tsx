@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import Image from "next/image";
 import Link from "next/link";
 
 import { MotionConfig, motion } from "framer-motion";
@@ -521,8 +522,20 @@ export function HomePage() {
                             className="relative order-2 lg:order-1"
                         >
                             <div className="overflow-hidden rounded-[18px] border border-white shadow-[0_24px_60px_rgba(11,36,64,0.22)]">
-                                <div className="bg-[#0E2C4D] px-5 py-3.5 text-sm font-bold text-white">Toda a operação, ao vivo</div>
-                                <RouteMap className="h-[260px]" />
+                                <div className="flex items-center justify-between bg-[#0E2C4D] px-5 py-3.5 text-sm font-bold text-white">
+                                    <span>Painel de monitoramento</span>
+                                    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#7FE1A6]/[0.12] px-2.5 py-1 text-[11px] font-bold text-[#7FE1A6]">
+                                        <span className="gf-live-dot h-[6px] w-[6px] rounded-full bg-[#34D17E]" aria-hidden="true" />
+                                        AO VIVO
+                                    </span>
+                                </div>
+                                <Image
+                                    src="/images/screenshots/monitoramento.png"
+                                    alt="Painel da Golf Fox monitorando rotas e veículos das transportadoras em tempo real"
+                                    width={760}
+                                    height={520}
+                                    className="h-auto w-full"
+                                />
                             </div>
                             <div className="absolute -bottom-5 -left-4 flex items-center gap-3 rounded-2xl border border-[#EAEFF4] bg-white px-4 py-3.5 shadow-[0_18px_40px_rgba(11,36,64,0.18)]">
                                 <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0B2440]">
@@ -685,7 +698,7 @@ export function HomePage() {
                                         role="tab"
                                         aria-selected={isActive}
                                         onClick={() => handleProfileSelect(i, p.label)}
-                                        className={`inline-flex items-center gap-2 rounded-full px-6 py-3 text-[15px] font-bold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FA6007] ${
+                                        className={`inline-flex min-h-[44px] items-center gap-2 rounded-full px-6 py-3 text-[15px] font-bold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FA6007] ${
                                             isActive
                                                 ? "border border-[#D14600] bg-[#D14600] text-white shadow-[0_10px_24px_rgba(250,96,7,0.3)]"
                                                 : "border border-[#DCE4EC] bg-white text-[#3C4D60] hover:bg-[#F4F7FA]"
@@ -812,7 +825,7 @@ export function HomePage() {
                                         role="tab"
                                         aria-selected={isActive}
                                         onClick={() => setActiveSector(i)}
-                                        className={`rounded-full px-5 py-3 text-[14.5px] font-bold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B2440] ${
+                                        className={`min-h-[44px] rounded-full px-5 py-3 text-[14.5px] font-bold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B2440] ${
                                             isActive
                                                 ? "border border-[#0B2440] bg-[#0B2440] text-white shadow-[0_8px_20px_rgba(11,36,64,0.22)]"
                                                 : "border border-[#DCE4EC] bg-white text-[#3C4D60] hover:bg-[#F4F7FA]"

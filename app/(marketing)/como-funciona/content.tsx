@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 
+import Image from "next/image";
 import Link from "next/link";
 
 import { motion } from "framer-motion";
@@ -606,6 +607,25 @@ export function ComoFuncionaContent() {
                                             {step.title}
                                         </h3>
                                         <p className="mt-3 text-[16.5px] leading-relaxed text-[#52647A]">{step.description}</p>
+
+                                        {/* Screenshot real da fase */}
+                                        {step.screenshot && (
+                                            <figure className="mt-5 overflow-hidden rounded-xl border border-[#E7EDF3] bg-[#0E2C4D]">
+                                                <figcaption className="flex items-center justify-between px-4 py-2.5 text-[12px] font-bold text-white">
+                                                    <span>{step.screenshot.title}</span>
+                                                    <span className="rounded-full bg-[#FA6007]/20 px-2.5 py-0.5 text-[10.5px] font-bold uppercase tracking-wide text-[#FFB07A]">
+                                                        {step.screenshot.feature}
+                                                    </span>
+                                                </figcaption>
+                                                <Image
+                                                    src={step.screenshot.src}
+                                                    alt={step.screenshot.alt}
+                                                    width={920}
+                                                    height={520}
+                                                    className="h-auto w-full"
+                                                />
+                                            </figure>
+                                        )}
 
                                         {/* Checklist de detalhes */}
                                         <div className="mt-5 grid gap-3 sm:grid-cols-2">
