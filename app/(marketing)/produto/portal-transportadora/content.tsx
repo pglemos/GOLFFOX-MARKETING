@@ -79,7 +79,8 @@ const FAQS = [
     },
 ];
 
-const HERO_ROTATING = ["Alta Performance", "Margem Garantida", "Controle Total", "Dados e Auditoria"];
+// Mantidas curtas (<= 14 caracteres com espaço) para não cortar no text-7xl.
+const HERO_ROTATING = ["Performance", "Margem Real", "Controle", "Dados Reais"];
 
 export function PortalTransportadoraContent() {
     const [rotIndex, setRotIndex] = useState(0);
