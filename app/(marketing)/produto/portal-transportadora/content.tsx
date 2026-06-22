@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -77,7 +79,18 @@ const FAQS = [
     },
 ];
 
+const HERO_ROTATING = ["Alta Performance", "Margem Garantida", "Controle Total", "Dados e Auditoria"];
+
 export function PortalTransportadoraContent() {
+    const [rotIndex, setRotIndex] = useState(0);
+
+    useEffect(() => {
+        const id = setInterval(() => {
+            setRotIndex((prev) => (prev + 1) % HERO_ROTATING.length);
+        }, 2200);
+        return () => clearInterval(id);
+    }, []);
+
     return (
         <MotionConfig reducedMotion="user">
             <div className="font-archivo text-[#122334]">
@@ -104,8 +117,25 @@ export function PortalTransportadoraContent() {
                                 transition={{ duration: 0.5 }}
                                 className="text-balance text-[2.75rem] font-extrabold leading-[1.02] tracking-[-0.025em] sm:text-6xl lg:text-7xl"
                             >
-                                Transforme sua Transportadora em uma{" "}
-                                <span className="text-[#FA6007]">Operação de Alta Performance</span>
+                                Transforme sua Transportadora em uma Operação de
+                                <span className="relative mt-1 flex h-[1.18em] overflow-hidden text-[#FA6007]">
+                                    {HERO_ROTATING.map((w, i) => (
+                                        <motion.span
+                                            key={w}
+                                            aria-hidden={rotIndex !== i}
+                                            className="absolute left-0 whitespace-nowrap"
+                                            initial={{ opacity: 0, y: "-110%" }}
+                                            animate={
+                                                rotIndex === i
+                                                    ? { y: "0%", opacity: 1 }
+                                                    : { y: rotIndex > i ? "-110%" : "110%", opacity: 0 }
+                                            }
+                                            transition={{ type: "spring", stiffness: 70, damping: 16 }}
+                                        >
+                                            {w}
+                                        </motion.span>
+                                    ))}
+                                </span>
                             </motion.h1>
                             <p className="mt-5 max-w-[560px] text-pretty text-lg leading-relaxed text-[#B7C6D8] sm:text-xl">
                                 Deixe de ser apenas um fornecedor de ônibus. Torne-se um parceiro
