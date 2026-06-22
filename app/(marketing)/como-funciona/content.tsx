@@ -522,37 +522,6 @@ export function ComoFuncionaContent() {
                 </div>
             </section>
 
-            {/* Logos de Clientes */}
-            <section className="py-12 bg-white border-b border-gray-100">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-8">
-                        <p className="text-sm font-medium text-gray-500 uppercase tracking-wide">
-                            Empresas que confiam na GOLF FOX
-                        </p>
-                    </div>
-                    <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 max-w-4xl mx-auto">
-                        {[
-                            { name: "Indústria Farmacêutica", icon: Building2 },
-                            { name: "Varejista Nacional", icon: Building2 },
-                            { name: "Empresa de Logística", icon: Truck },
-                            { name: "Empresa de Grande Porte", icon: Building2 },
-                        ].map((client, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                                className="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-lg"
-                            >
-                                <client.icon className="w-5 h-5 text-gray-400" />
-                                <span className="text-sm font-medium text-gray-600">{client.name}</span>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
             {/* 3 Fases (design Golf Fox) */}
             <section className="font-archivo relative overflow-hidden bg-white px-5 py-20 sm:px-8 lg:py-24">
                 <div className="gf-aurora-light" aria-hidden="true" />
