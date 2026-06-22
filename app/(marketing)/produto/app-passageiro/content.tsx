@@ -1,181 +1,375 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
-import { motion } from "framer-motion";
-import { Clock, BellRing, MapPin, QrCode, MessageSquare, Coffee } from "lucide-react";
+import { MotionConfig, motion } from "framer-motion";
+import {
+    ArrowRight,
+    Clock,
+    BellRing,
+    QrCode,
+    MapPin,
+    MessageSquare,
+    Coffee,
+    Check,
+} from "lucide-react";
 
-import { HeroSection, FAQSection, FinalCTA } from "@/components/marketing";
+import { Eyebrow, RouteBackdrop } from "@/components/marketing/landing-ui";
 
-export function AppPassageiroContent() {
-    const benefits = [
-        {
-            icon: Clock,
-            title: "O fim da ansiedade no ponto",
-            description: "Chega de olhar para o relógio. Com rastreamento em tempo real, seu colaborador sabe exatamente onde o ônibus está e se vai chover ou fazer sol até lá.",
-        },
-        {
-            icon: BellRing,
-            title: "Durma mais 10 minutos",
-            description: "O 'Alarme de Proximidade' avisa quando o ônibus está a 500m de distância. É mais conforto e menos tempo esperando na rua.",
-        },
-        {
-            icon: QrCode,
-            title: "Embarque sem contato",
-            description: "Nada de crachás esquecidos. O embarque é 100% digital via QR Code, rápido e seguro, mesmo sem internet.",
-        }
-    ];
+// ============================================================
+// Copy (preservada do conteúdo original)
+// ============================================================
+const BENEFITS = [
+    {
+        icon: Clock,
+        title: "O fim da ansiedade no ponto",
+        description:
+            "Chega de olhar para o relógio. Com rastreamento em tempo real, seu colaborador sabe exatamente onde o ônibus está e se vai chover ou fazer sol até lá.",
+    },
+    {
+        icon: BellRing,
+        title: "Durma mais 10 minutos",
+        description:
+            "O 'Alarme de Proximidade' avisa quando o ônibus está a 500m de distância. É mais conforto e menos tempo esperando na rua.",
+    },
+    {
+        icon: QrCode,
+        title: "Embarque sem contato",
+        description:
+            "Nada de crachás esquecidos. O embarque é 100% digital via QR Code, rápido e seguro, mesmo sem internet.",
+    },
+];
 
-    const steps = [
-        {
-            icon: MapPin,
-            title: "Localização Viva",
-            description: "Visualize totos os ônibus da rota no mapa"
-        },
-        {
-            icon: MessageSquare,
-            title: "Canal Aberto",
-            description: "Avalie a limpeza, ar-condicionado e condução"
-        },
-        {
-            icon: Coffee,
-            title: "Mais Qualidade de Vida",
-            description: "Tempo de trajeto previsível e tranquilo"
-        }
-    ];
+const STEPS = [
+    {
+        icon: MapPin,
+        title: "Localização Viva",
+        description: "Visualize totos os ônibus da rota no mapa",
+    },
+    {
+        icon: MessageSquare,
+        title: "Canal Aberto",
+        description: "Avalie a limpeza, ar-condicionado e condução",
+    },
+    {
+        icon: Coffee,
+        title: "Mais Qualidade de Vida",
+        description: "Tempo de trajeto previsível e tranquilo",
+    },
+];
 
-    const faqs = [
-        {
-            question: "E se a internet do passageiro cair?",
-            answer: "Sem problemas. A Carteirinha Digital (QR Code) funciona 100% offline para garantir o embarque."
-        },
-        {
-            question: "O app avisa se houver atraso?",
-            answer: "Sim. Qualquer incidente reportado pelo motorista ou detectado pelo sistema dispara uma notificação push para todos os passageiros daquela rota."
-        },
-        {
-            question: "É possível reservar assento?",
-            answer: "Sim! Para linhas executivas ou sob demanda, o passageiro pode reservar seu lugar e garantir viagem sentada através do app."
-        }
-    ];
+const FAQS = [
+    {
+        question: "E se a internet do passageiro cair?",
+        answer: "Sem problemas. A Carteirinha Digital (QR Code) funciona 100% offline para garantir o embarque.",
+    },
+    {
+        question: "O app avisa se houver atraso?",
+        answer: "Sim. Qualquer incidente reportado pelo motorista ou detectado pelo sistema dispara uma notificação push para todos os passageiros daquela rota.",
+    },
+    {
+        question: "É possível reservar assento?",
+        answer: "Sim! Para linhas executivas ou sob demanda, o passageiro pode reservar seu lugar e garantir viagem sentada através do app.",
+    },
+];
 
+const fadeUp = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 },
+};
+
+// ============================================================
+// Mockup de celular (frame escuro arredondado)
+// ============================================================
+function PhoneMockup({ priority = false }: { priority?: boolean }) {
     return (
-        <>
-            {/* Hero Section */}
-            <HeroSection
-                badge="App do Passageiro"
-                title="Transforme o trajeto diário em momento de bem-estar"
-                subtitle="Dê ao seu colaborador o presente da previsibilidade. Um app bonito, fácil e que acaba com a ansiedade da espera."
-                variant="split"
-                image={{
-                    src: "/assets/product/app-passageiro.png",
-                    alt: "Interface do App Passageiro GOLF FOX"
-                }}
-            />
-
-            {/* Main Benefits */}
-            <section className="py-16 lg:py-24 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid lg:grid-cols-2 gap-16 items-center">
-                        {/* App Screenshot Visualization */}
-                        <div className="relative order-2 lg:order-1 mx-auto border-gray-800 dark:border-gray-800 bg-gray-900 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-2xl">
-                            <div className="w-[148px] h-[18px] bg-gray-800 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute"></div>
-                            <div className="h-[32px] w-[3px] bg-gray-800 absolute -start-[17px] top-[72px] rounded-s-lg"></div>
-                            <div className="h-[46px] w-[3px] bg-gray-800 absolute -start-[17px] top-[124px] rounded-s-lg"></div>
-                            <div className="h-[46px] w-[3px] bg-gray-800 absolute -start-[17px] top-[178px] rounded-s-lg"></div>
-                            <div className="h-[64px] w-[3px] bg-gray-800 absolute -end-[17px] top-[142px] rounded-e-lg"></div>
-                            <div className="rounded-[2rem] overflow-hidden w-full h-full bg-slate-50 relative">
-                                <Image
-                                    src="/assets/product/app-passageiro.png"
-                                    alt="App Passageiro em uso"
-                                    fill
-                                    className="object-cover"
-                                />
-                                {/* Overlay Card Example */}
-                                <div className="absolute top-20 left-4 right-4 bg-white p-4 rounded-xl shadow-lg border border-teal-100/50">
-                                    <div className="flex justify-between items-start mb-2">
-                                        <div>
-                                            <p className="text-xs text-gray-500 font-medium">Seu ônibus</p>
-                                            <p className="text-lg font-bold text-gray-900">Linha 402 • Executivo</p>
-                                        </div>
-                                        <div className="px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded">NO HORÁRIO</div>
-                                    </div>
-                                    <div className="flex items-center gap-2 text-sm text-gray-700">
-                                        <Clock className="w-4 h-4 text-teal-500" />
-                                        <span>Chegando em <strong>4 minutos</strong></span>
-                                    </div>
-                                </div>
+        <div className="relative mx-auto h-[600px] w-[300px]">
+            <div className="pointer-events-none absolute -right-6 -top-6 h-44 w-44 rounded-full bg-[radial-gradient(circle,rgba(250,96,7,0.28),transparent_70%)] blur-[12px]" aria-hidden="true" />
+            <div className="relative h-full w-full rounded-[2.5rem] border-[14px] border-[#0A1A2C] bg-[#0A1A2C] shadow-[0_40px_90px_rgba(0,0,0,0.5)]">
+                <div className="absolute left-1/2 top-0 z-10 h-[18px] w-[148px] -translate-x-1/2 rounded-b-[1rem] bg-[#0A1A2C]" aria-hidden="true" />
+                <div className="absolute -start-[17px] top-[72px] h-[32px] w-[3px] rounded-s-lg bg-[#0A1A2C]" aria-hidden="true" />
+                <div className="absolute -start-[17px] top-[124px] h-[46px] w-[3px] rounded-s-lg bg-[#0A1A2C]" aria-hidden="true" />
+                <div className="absolute -start-[17px] top-[178px] h-[46px] w-[3px] rounded-s-lg bg-[#0A1A2C]" aria-hidden="true" />
+                <div className="absolute -end-[17px] top-[142px] h-[64px] w-[3px] rounded-e-lg bg-[#0A1A2C]" aria-hidden="true" />
+                <div className="relative h-full w-full overflow-hidden rounded-[2rem] bg-[#EAF0F6]">
+                    <Image
+                        src="/assets/product/app-passageiro.png"
+                        alt="Interface do App do Passageiro Golf Fox"
+                        fill
+                        priority={priority}
+                        sizes="300px"
+                        className="object-cover"
+                    />
+                    {/* Card sobreposto: status do ônibus ao vivo */}
+                    <div className="absolute left-4 right-4 top-20 rounded-xl border border-[#EAEFF4] bg-white p-4 shadow-[0_18px_40px_rgba(11,36,64,0.2)]">
+                        <div className="mb-2 flex items-start justify-between gap-3">
+                            <div>
+                                <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#71859B]">Seu ônibus</p>
+                                <p className="text-lg font-extrabold text-[#0B2440]">Linha 402 • Executivo</p>
                             </div>
+                            <span className="inline-flex items-center gap-1.5 rounded-md bg-[#E6F7EE] px-2.5 py-1 text-[11px] font-bold text-[#1A8F52]">
+                                <span className="gf-live-dot h-[6px] w-[6px] rounded-full bg-[#34D17E]" aria-hidden="true" />
+                                NO HORÁRIO
+                            </span>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm font-semibold text-[#52647A]">
+                            <Clock className="h-4 w-4 text-[#FA6007]" aria-hidden="true" />
+                            <span>
+                                Chegando em <strong className="text-[#0B2440]">4 minutos</strong>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ============================================================
+// Página
+// ============================================================
+export function AppPassageiroContent() {
+    return (
+        <MotionConfig reducedMotion="user">
+            <div className="font-archivo text-[#122334]">
+                {/* ===================== HERO ===================== */}
+                <section className="relative overflow-hidden bg-[#0B2440] text-white">
+                    <Image
+                        src="/images/institucional/frota-estrada.jpg"
+                        alt=""
+                        aria-hidden="true"
+                        fill
+                        priority
+                        sizes="100vw"
+                        className="object-cover opacity-[0.16]"
+                    />
+                    <RouteBackdrop withGlow animated />
+                    <div className="relative mx-auto grid max-w-[1200px] items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-28">
+                        <div>
+                            <span className="mb-6 inline-flex text-xs font-bold uppercase tracking-[0.22em] text-[#FFB07A]">
+                                App do Passageiro
+                            </span>
+                            <motion.h1
+                                variants={fadeUp}
+                                initial="hidden"
+                                animate="show"
+                                transition={{ duration: 0.5 }}
+                                className="text-[2.75rem] font-extrabold leading-[1.02] tracking-[-0.025em] text-balance sm:text-6xl lg:text-7xl"
+                            >
+                                Transforme o trajeto diário em momento de{" "}
+                                <span className="text-[#FA6007]">bem-estar</span>.
+                            </motion.h1>
+                            <motion.p
+                                variants={fadeUp}
+                                initial="hidden"
+                                animate="show"
+                                transition={{ duration: 0.5, delay: 0.1 }}
+                                className="mt-6 max-w-[560px] text-pretty text-lg leading-relaxed text-[#B7C6D8] sm:text-xl"
+                            >
+                                Dê ao seu colaborador o presente da previsibilidade. Um app bonito, fácil e
+                                que acaba com a ansiedade da espera.
+                            </motion.p>
+                            <motion.div
+                                variants={fadeUp}
+                                initial="hidden"
+                                animate="show"
+                                transition={{ duration: 0.5, delay: 0.2 }}
+                                className="mt-9 flex flex-wrap gap-3.5"
+                            >
+                                <Link
+                                    href="/demo"
+                                    className="group inline-flex min-h-[44px] items-center gap-2.5 rounded-xl bg-[#D14600] px-7 py-4 text-base font-bold text-white shadow-[0_12px_30px_rgba(250,96,7,0.36)] transition-all duration-200 hover:bg-[#B03B00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                                >
+                                    Agendar demonstração
+                                    <ArrowRight className="h-[18px] w-[18px] transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+                                </Link>
+                                <Link
+                                    href="/produto"
+                                    className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-white/20 bg-white/[0.06] px-6 py-4 text-base font-semibold text-white transition-colors duration-200 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                                >
+                                    Ver a plataforma
+                                </Link>
+                            </motion.div>
                         </div>
 
-                        <div className="order-1 lg:order-2 space-y-12">
-                            <div className="max-w-lg">
-                                <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                                    Experiência premium para seu time
-                                </h2>
-                                <p className="text-gray-600 text-lg">
-                                    O transporte fretado é um dos benefícios mais valorizados. Eleve essa experiência com um aplicativo que seus colaboradores vão amar usar.
-                                </p>
-                            </div>
+                        {/* Mockup de celular */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 40 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            className="relative"
+                        >
+                            <PhoneMockup priority />
+                        </motion.div>
+                    </div>
+                    <svg viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true" className="block h-[54px] w-full">
+                        <path d="M0,70 L0,30 C360,70 1080,70 1440,30 L1440,70 Z" fill="#fff" />
+                    </svg>
+                </section>
 
-                            <div className="space-y-8">
-                                {benefits.map((benefit, index) => (
+                {/* ===================== EXPERIÊNCIA + BENEFÍCIOS ===================== */}
+                <section className="bg-white px-5 py-24 sm:px-8 lg:py-32">
+                    <div className="mx-auto grid max-w-[1140px] items-center gap-12 lg:grid-cols-2 lg:gap-16">
+                        {/* Mockup */}
+                        <motion.div
+                            variants={fadeUp}
+                            initial="hidden"
+                            whileInView="show"
+                            viewport={{ once: true, margin: "-80px" }}
+                            transition={{ duration: 0.5 }}
+                            className="order-2 lg:order-1"
+                        >
+                            <PhoneMockup />
+                        </motion.div>
+
+                        {/* Texto + benefícios */}
+                        <div className="order-1 lg:order-2">
+                            <Eyebrow>Experiência premium</Eyebrow>
+                            <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">
+                                Experiência premium para seu time
+                            </h2>
+                            <p className="mt-5 text-pretty text-lg leading-relaxed text-[#52647A]">
+                                O transporte fretado é um dos benefícios mais valorizados. Eleve essa
+                                experiência com um aplicativo que seus colaboradores vão amar usar.
+                            </p>
+
+                            <div className="mt-10 flex flex-col gap-8">
+                                {BENEFITS.map((benefit, index) => (
                                     <motion.div
-                                        key={index}
+                                        key={benefit.title}
                                         initial={{ opacity: 0, x: 20 }}
                                         whileInView={{ opacity: 1, x: 0 }}
                                         viewport={{ once: true }}
-                                        transition={{ delay: index * 0.2 }}
+                                        transition={{ delay: index * 0.12 }}
                                         className="flex gap-4"
                                     >
-                                        <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center shrink-0">
-                                            <benefit.icon className="w-6 h-6 text-teal-600" />
-                                        </div>
+                                        <span className="flex h-12 w-12 flex-none items-center justify-center rounded-[14px] bg-[#FFF0E6]">
+                                            <benefit.icon className="h-6 w-6 text-[#FA6007]" aria-hidden="true" />
+                                        </span>
                                         <div>
-                                            <h3 className="text-xl font-bold text-gray-900 mb-2">{benefit.title}</h3>
-                                            <p className="text-gray-600 leading-relaxed">
-                                                {benefit.description}
-                                            </p>
+                                            <h3 className="mb-2 text-xl font-extrabold text-[#0B2440]">{benefit.title}</h3>
+                                            <p className="text-[15.5px] leading-relaxed text-[#56697E]">{benefit.description}</p>
                                         </div>
                                     </motion.div>
                                 ))}
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            {/* 3 Pillars */}
-            <section className="py-16 lg:py-24 bg-teal-50">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {steps.map((step, i) => (
-                            <motion.div
-                                key={i}
-                                whileHover={{ y: -5 }}
-                                className="bg-white p-8 rounded-2xl shadow-sm border border-teal-100 text-center"
-                            >
-                                <div className="w-14 h-14 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center mx-auto mb-6">
-                                    <step.icon className="w-7 h-7" />
-                                </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-4">{step.title}</h3>
-                                <p className="text-gray-600">{step.description}</p>
-                            </motion.div>
-                        ))}
+                {/* ===================== 3 PILARES ===================== */}
+                <section className="border-t border-[#E8EDF3] bg-[#F4F7FA] px-5 py-24 sm:px-8 lg:py-32">
+                    <div className="mx-auto max-w-[1140px]">
+                        <div className="mx-auto mb-14 max-w-[680px] text-center">
+                            <Eyebrow>Na palma da mão</Eyebrow>
+                            <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">
+                                Tudo o que o colaborador precisa
+                            </h2>
+                        </div>
+                        <div className="grid gap-6 md:grid-cols-3">
+                            {STEPS.map((step, i) => (
+                                <motion.div
+                                    key={step.title}
+                                    variants={fadeUp}
+                                    initial="hidden"
+                                    whileInView="show"
+                                    viewport={{ once: true }}
+                                    transition={{ delay: i * 0.1 }}
+                                    className="rounded-[18px] border border-[#E7EDF3] bg-white p-8 text-center shadow-[0_1px_2px_rgba(11,36,64,0.04)] transition-shadow duration-200 hover:shadow-[0_18px_40px_rgba(11,36,64,0.10)]"
+                                >
+                                    <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-[14px] bg-[#FFF0E6]">
+                                        <step.icon className="h-7 w-7 text-[#FA6007]" aria-hidden="true" />
+                                    </div>
+                                    <h3 className="mb-3 text-xl font-extrabold text-[#0B2440]">{step.title}</h3>
+                                    <p className="text-[15.5px] leading-relaxed text-[#56697E]">{step.description}</p>
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
+                {/* ===================== DESTAQUE ESCURO + CHECKLIST ===================== */}
+                <section className="relative overflow-hidden bg-[#0B2440] px-5 py-24 text-white sm:px-8 lg:py-32">
+                    <RouteBackdrop />
+                    <div className="relative mx-auto grid max-w-[1140px] items-center gap-12 lg:grid-cols-2 lg:gap-16">
+                        <div>
+                            <span className="mb-5 inline-flex text-xs font-bold uppercase tracking-[0.22em] text-[#FFB07A]">
+                                Previsibilidade total
+                            </span>
+                            <h2 className="text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] sm:text-[2.6rem] lg:text-5xl">
+                                Menos espera na rua, mais qualidade de vida.
+                            </h2>
+                            <p className="mt-5 max-w-[560px] text-pretty text-lg leading-relaxed text-[#B7C6D8]">
+                                Do alerta de proximidade ao embarque digital, cada detalhe foi pensado para
+                                tirar a ansiedade do dia a dia do colaborador.
+                            </p>
+                        </div>
+                        <ul className="flex flex-col gap-4">
+                            {[
+                                "Localização do ônibus ao vivo no mapa",
+                                "Alarme de proximidade a 500m do ponto",
+                                "Carteirinha digital com QR Code, mesmo offline",
+                                "Notificações push de atraso e ocorrência",
+                            ].map((item) => (
+                                <li key={item} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-[16.5px] font-semibold text-white">
+                                    <span className="flex h-[26px] w-[26px] flex-none items-center justify-center rounded-full bg-[#E6F7EE]">
+                                        <Check className="h-[15px] w-[15px] text-[#1A8F52]" aria-hidden="true" />
+                                    </span>
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </section>
 
-            {/* FAQ */}
-            <FAQSection faqs={faqs} title="Perguntas frequentes" />
+                {/* ===================== FAQ ===================== */}
+                <section className="bg-white px-5 py-24 sm:px-8 lg:py-32">
+                    <div className="mx-auto max-w-[820px]">
+                        <div className="mb-12 text-center">
+                            <Eyebrow>Perguntas frequentes</Eyebrow>
+                            <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">
+                                Perguntas frequentes
+                            </h2>
+                        </div>
+                        <div className="flex flex-col gap-3.5">
+                            {FAQS.map((faq, i) => (
+                                <details key={faq.question} className="gf-faq rounded-[14px] border border-[#E7EDF3] bg-white px-6" open={i === 0}>
+                                    <summary className="flex cursor-pointer items-center justify-between gap-4 py-[22px] text-lg font-bold text-[#0B2440]">
+                                        {faq.question}
+                                        <span className="gf-chev flex-none text-2xl font-normal leading-none text-[#FA6007]" aria-hidden="true">+</span>
+                                    </summary>
+                                    <p className="mb-[22px] text-base leading-relaxed text-[#52647A]">{faq.answer}</p>
+                                </details>
+                            ))}
+                        </div>
+                    </div>
+                </section>
 
-            {/* CTA */}
-            <FinalCTA
-                title="Valorize seu benefício de transporte"
-                subtitle="Agende uma demonstração e veja como melhorar a satisfação do seu time."
-                variant="gradient"
-            />
-        </>
+                {/* ===================== CTA FINAL ===================== */}
+                <section className="relative overflow-hidden bg-gradient-to-br from-[#D14600] to-[#A83800] px-5 py-24 text-white sm:px-8 lg:py-28">
+                    <svg viewBox="0 0 1440 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true" className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.22]">
+                        <path d="M-40,260 C320,260 420,90 720,90 C1020,90 1140,260 1500,230" fill="none" stroke="#fff" strokeWidth="2" strokeDasharray="2 12" />
+                    </svg>
+                    <div className="relative mx-auto max-w-[820px] text-center">
+                        <h2 className="text-balance text-3xl font-black leading-[1.06] tracking-tight sm:text-5xl">
+                            Valorize seu benefício de transporte
+                        </h2>
+                        <p className="mx-auto mt-4 max-w-[620px] text-pretty text-lg leading-relaxed text-white/90 sm:text-xl">
+                            Agende uma demonstração e veja como melhorar a satisfação do seu time.
+                        </p>
+                        <div className="mt-8 flex justify-center">
+                            <Link
+                                href="/demo"
+                                className="inline-flex min-h-[44px] items-center gap-2.5 rounded-xl bg-[#0B2440] px-8 py-[18px] text-[17px] font-extrabold text-white shadow-[0_16px_40px_rgba(11,36,64,0.4)] transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                            >
+                                Agendar demonstração
+                                <ArrowRight className="h-5 w-5" aria-hidden="true" />
+                            </Link>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </MotionConfig>
     );
 }
