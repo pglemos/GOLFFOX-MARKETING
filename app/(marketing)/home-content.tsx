@@ -496,6 +496,31 @@ export function HomePage() {
                     </svg>
                 </section>
 
+                {/* ===================== PROVA SOCIAL (LOGOS) ===================== */}
+                <section className="border-b border-[#EEF2F6] bg-white px-5 py-12 sm:px-8">
+                    <div className="mx-auto max-w-[1100px] text-center">
+                        <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#8392A3]">
+                            Operações que já confiam na Golf Fox
+                        </p>
+                        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-16 gap-y-8">
+                            <Image
+                                src="/images/clientes/jbs.png"
+                                alt="JBS Foods"
+                                width={150}
+                                height={94}
+                                className="h-12 w-auto opacity-70 grayscale transition duration-200 hover:opacity-100 hover:grayscale-0"
+                            />
+                            <Image
+                                src="/images/clientes/minerva.png"
+                                alt="Minerva Foods"
+                                width={160}
+                                height={67}
+                                className="h-9 w-auto opacity-70 grayscale transition duration-200 hover:opacity-100 hover:grayscale-0"
+                            />
+                        </div>
+                    </div>
+                </section>
+
                 {/* ===================== A DOR ===================== */}
                 <section className="bg-white px-5 py-24 sm:px-8 lg:py-32">
                     <div className="mx-auto max-w-[1000px] text-center">
@@ -770,15 +795,15 @@ export function HomePage() {
                             </h2>
                             <p className="mt-4 text-lg text-[#52647A]">Módulos integrados para gestão completa.</p>
                         </div>
-                        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                            {MODULES.map((m, i) => (
+                        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                            {MODULES.slice(0, 4).map((m, i) => (
                                 <motion.div
                                     key={m.title}
                                     variants={fadeUp}
                                     initial="hidden"
                                     whileInView="show"
                                     viewport={{ once: true }}
-                                    transition={{ delay: (i % 3) * 0.06 }}
+                                    transition={{ delay: (i % 4) * 0.06 }}
                                     className="rounded-2xl border border-[#E7EDF3] bg-white p-7 shadow-[0_1px_2px_rgba(11,36,64,0.04)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#FFD9BF] hover:shadow-[0_18px_40px_rgba(11,36,64,0.10)]"
                                 >
                                     <div className="mb-5 flex h-[50px] w-[50px] items-center justify-center rounded-[13px] bg-[#FFF0E6]">
@@ -788,6 +813,15 @@ export function HomePage() {
                                     <p className="text-[14.5px] leading-relaxed text-[#56697E]">{m.desc}</p>
                                 </motion.div>
                             ))}
+                        </div>
+                        <div className="mt-12 text-center">
+                            <Link
+                                href="/recursos"
+                                className="group inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[#D8E0E8] bg-white px-7 py-4 text-base font-bold text-[#0B2440] transition-colors duration-200 hover:bg-[#F4F7FA] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B2440]"
+                            >
+                                Ver todos os recursos
+                                <ArrowRight className="h-[18px] w-[18px] transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+                            </Link>
                         </div>
                     </div>
                 </section>
