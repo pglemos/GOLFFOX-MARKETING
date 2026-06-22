@@ -266,7 +266,7 @@ export function AppPassageiroContent() {
                                             <div className="flex items-end justify-between">
                                                 <div>
                                                     <div className="text-[11px] text-[#8FA3B8]">Chega em</div>
-                                                    <div className="font-display text-3xl font-black leading-none tabular-nums text-[#FA6007]">4 min</div>
+                                                    <div className="font-display text-3xl font-black leading-none tabular-nums text-[#FA6007]">23 min</div>
                                                 </div>
                                                 <div className="text-right text-[11px] leading-snug text-[#A9BACD]">
                                                     Praça Central
@@ -279,7 +279,7 @@ export function AppPassageiroContent() {
                                         <div className="mx-4 mt-3 flex items-center gap-2.5 rounded-xl border border-[#FA6007]/30 bg-[#FA6007]/10 px-3.5 py-3">
                                             <BellRing className="h-4 w-4 flex-none text-[#FA6007]" aria-hidden="true" />
                                             <span className="text-[11.5px] leading-snug text-[#FFE1CC]">
-                                                Saia de casa em <strong className="font-bold text-white">4 min</strong> para chegar junto com o ônibus.
+                                                Saia de casa em <strong className="font-bold text-white">17 min</strong> para chegar junto com o ônibus.
                                             </span>
                                         </div>
                                         {/* botão */}
