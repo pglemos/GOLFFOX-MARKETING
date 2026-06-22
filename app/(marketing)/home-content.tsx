@@ -557,8 +557,9 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== A SOLUÇÃO ===================== */}
-                <section id="solucao" className="border-t border-[#E8EDF3] bg-[#F4F7FA] px-5 py-24 sm:px-8 lg:py-32">
-                    <div className="mx-auto grid max-w-[1200px] items-center gap-12 lg:grid-cols-2 lg:gap-16">
+                <section id="solucao" className="relative overflow-hidden border-t border-[#E8EDF3] bg-[#F4F7FA] px-5 py-24 sm:px-8 lg:py-32">
+                    <div className="gf-aurora-light" aria-hidden="true" />
+                    <div className="relative z-10 mx-auto grid max-w-[1200px] items-center gap-12 lg:grid-cols-2 lg:gap-16">
                         <motion.div
                             variants={fadeUp}
                             initial="hidden"
@@ -725,7 +726,6 @@ export function HomePage() {
 
                 {/* ===================== FRASE DE IMPACTO (palavra rotativa + aurora) ===================== */}
                 <section className="relative overflow-hidden bg-[#0B2440] px-5 py-24 text-white sm:px-8 lg:py-28">
-                    <div className="gf-aurora" aria-hidden="true" />
                     <RouteBackdrop />
                     <div className="relative mx-auto max-w-[1000px] text-center">
                         <h2 className="text-balance text-[2rem] font-extrabold leading-[1.1] tracking-[-0.02em] sm:text-[2.6rem] lg:text-5xl">
@@ -829,8 +829,9 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== RECURSOS / MÓDULOS ===================== */}
-                <section id="recursos" className="bg-white px-5 py-24 sm:px-8 lg:py-32">
-                    <div className="mx-auto max-w-[1200px]">
+                <section id="recursos" className="relative overflow-hidden bg-white px-5 py-24 sm:px-8 lg:py-32">
+                    <div className="gf-aurora-light" aria-hidden="true" />
+                    <div className="relative z-10 mx-auto max-w-[1200px]">
                         <div className="mx-auto mb-14 max-w-[680px] text-center">
                             <Eyebrow>Recursos</Eyebrow>
                             <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">
