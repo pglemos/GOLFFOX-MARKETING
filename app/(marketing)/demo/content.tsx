@@ -19,6 +19,16 @@ function buildWhatsAppLink(phoneNumber: string, text?: string) {
     return `${base}?text=${encodeURIComponent(text)}`;
 }
 
+// Máscara de telefone BR: (XX) XXXXX-XXXX — limita a 11 dígitos (DDD + 9).
+function formatPhone(value: string) {
+    const d = value.replace(/\D/g, "").slice(0, 11);
+    if (d.length === 0) return "";
+    if (d.length <= 2) return `(${d}`;
+    if (d.length <= 6) return `(${d.slice(0, 2)}) ${d.slice(2)}`;
+    if (d.length <= 10) return `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
+    return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
+}
+
 export function DemoContent() {
     const [formData, setFormData] = useState({
         name: "",
@@ -213,8 +223,10 @@ export function DemoContent() {
                                         </label>
                                         <input
                                             type="tel"
+                                            inputMode="tel"
+                                            maxLength={15}
                                             value={formData.phone}
-                                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                            onChange={(e) => setFormData({ ...formData, phone: formatPhone(e.target.value) })}
                                             className="w-full px-4 py-3 rounded-xl bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors"
                                             placeholder="(00) 00000-0000"
                                         />
