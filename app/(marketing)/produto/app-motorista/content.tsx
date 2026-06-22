@@ -6,6 +6,7 @@ import Link from "next/link";
 import { MotionConfig, motion } from "framer-motion";
 import { ClipboardCheck, ShieldAlert, Navigation, ArrowRight, Check } from "lucide-react";
 
+import { AppWindowCard } from "@/components/marketing/app-window-card";
 import { Eyebrow, RouteBackdrop } from "@/components/marketing/landing-ui";
 import { FaqTwoColumn } from "@/components/marketing/faq-two-column";
 
@@ -158,13 +159,14 @@ export function AppMotoristaContent() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true, margin: "-60px" }}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    className="rounded-[18px] border border-[#E7EDF3] bg-white p-8"
+                                    className="h-full"
                                 >
-                                    <span className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-[#FFF0E6]">
-                                        <benefit.icon className="h-6 w-6 text-[#FA6007]" aria-hidden="true" />
-                                    </span>
-                                    <h3 className="text-xl font-extrabold tracking-[-0.02em] text-[#0B2440]">{benefit.title}</h3>
-                                    <p className="mt-3 text-pretty leading-relaxed text-[#52647A]">{benefit.description}</p>
+                                    <AppWindowCard
+                                        icon={benefit.icon}
+                                        title={benefit.title}
+                                        description={benefit.description}
+                                        label={`${String(index + 1).padStart(2, "0")} · Golf Fox`}
+                                    />
                                 </motion.div>
                             ))}
                         </div>

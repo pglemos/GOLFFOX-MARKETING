@@ -16,6 +16,7 @@ import {
     Bus,
 } from "lucide-react";
 
+import { AppWindowCard } from "@/components/marketing/app-window-card";
 import { Eyebrow, RouteBackdrop } from "@/components/marketing/landing-ui";
 import { FaqTwoColumn } from "@/components/marketing/faq-two-column";
 
@@ -305,7 +306,7 @@ export function AppPassageiroContent() {
                                 experiência com um aplicativo que seus colaboradores vão amar usar.
                             </p>
 
-                            <div className="mt-10 flex flex-col gap-8">
+                            <div className="mt-10 flex flex-col gap-6">
                                 {BENEFITS.map((benefit, index) => (
                                     <motion.div
                                         key={benefit.title}
@@ -315,12 +316,12 @@ export function AppPassageiroContent() {
                                         transition={{ delay: index * 0.12 }}
                                         className="flex gap-4"
                                     >
-                                        <span className="flex h-12 w-12 flex-none items-center justify-center rounded-[14px] bg-[#FFF0E6]">
-                                            <benefit.icon className="h-6 w-6 text-[#FA6007]" aria-hidden="true" />
+                                        <span className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#FFF0E6] text-[#FA6007]">
+                                            <benefit.icon className="h-5 w-5" aria-hidden="true" />
                                         </span>
                                         <div>
-                                            <h3 className="mb-2 text-xl font-extrabold text-[#0B2440]">{benefit.title}</h3>
-                                            <p className="text-[15.5px] leading-relaxed text-[#56697E]">{benefit.description}</p>
+                                            <h3 className="text-lg font-extrabold text-[#0B2440]">{benefit.title}</h3>
+                                            <p className="mt-1 leading-relaxed text-[#52647A]">{benefit.description}</p>
                                         </div>
                                     </motion.div>
                                 ))}
@@ -347,13 +348,14 @@ export function AppPassageiroContent() {
                                     whileInView="show"
                                     viewport={{ once: true }}
                                     transition={{ delay: i * 0.1 }}
-                                    className="rounded-[18px] border border-[#E7EDF3] bg-white p-8 text-center shadow-[0_1px_2px_rgba(11,36,64,0.04)] transition-shadow duration-200 hover:shadow-[0_18px_40px_rgba(11,36,64,0.10)]"
+                                    className="h-full"
                                 >
-                                    <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-[14px] bg-[#FFF0E6]">
-                                        <step.icon className="h-7 w-7 text-[#FA6007]" aria-hidden="true" />
-                                    </div>
-                                    <h3 className="mb-3 text-xl font-extrabold text-[#0B2440]">{step.title}</h3>
-                                    <p className="text-[15.5px] leading-relaxed text-[#56697E]">{step.description}</p>
+                                    <AppWindowCard
+                                        icon={step.icon}
+                                        title={step.title}
+                                        description={step.description}
+                                        label={`${String(i + 1).padStart(2, "0")} · Golf Fox`}
+                                    />
                                 </motion.div>
                             ))}
                         </div>

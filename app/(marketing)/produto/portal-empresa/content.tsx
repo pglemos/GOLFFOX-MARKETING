@@ -6,6 +6,7 @@ import Link from "next/link";
 import { MotionConfig, motion } from "framer-motion";
 import { DollarSign, Smile, Eye, ShieldCheck, Check, ArrowRight } from "lucide-react";
 
+import { AppWindowCard } from "@/components/marketing/app-window-card";
 import { Eyebrow, RouteBackdrop } from "@/components/marketing/landing-ui";
 import { FaqTwoColumn } from "@/components/marketing/faq-two-column";
 
@@ -167,16 +168,15 @@ export function PortalEmpresaContent() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true, margin: "-80px" }}
                                     transition={{ delay: index * 0.1 }}
-                                    className="rounded-[18px] border border-[#E7EDF3] bg-white p-8 shadow-[0_1px_2px_rgba(11,36,64,0.04)] transition-shadow duration-200 hover:shadow-[0_18px_40px_rgba(11,36,64,0.10)]"
+                                    className="h-full"
                                 >
-                                    <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-[14px] bg-[#FFF0E6]">
-                                        <benefit.icon className="h-7 w-7 text-[#FA6007]" aria-hidden="true" />
-                                    </div>
-                                    <h3 className="mb-3 text-xl font-extrabold text-[#0B2440]">{benefit.title}</h3>
-                                    <p className="mb-6 text-[15.5px] leading-relaxed text-[#56697E]">{benefit.description}</p>
-                                    <span className="inline-flex rounded-full bg-[#FFF0E6] px-4 py-2 text-sm font-bold text-[#C2410C]">
-                                        {benefit.stat}
-                                    </span>
+                                    <AppWindowCard
+                                        icon={benefit.icon}
+                                        title={benefit.title}
+                                        description={benefit.description}
+                                        stat={benefit.stat}
+                                        label={`${String(index + 1).padStart(2, "0")} · Golf Fox`}
+                                    />
                                 </motion.div>
                             ))}
                         </div>

@@ -31,6 +31,7 @@ import {
     Mail,
 } from "lucide-react";
 
+import { AppWindowCard } from "@/components/marketing/app-window-card";
 import { FaqTwoColumn } from "@/components/marketing/faq-two-column";
 import { trackProfileTabSelect } from "@/lib/analytics/track-events";
 
@@ -698,13 +699,14 @@ export function HomePage() {
                                     whileInView="show"
                                     viewport={{ once: true }}
                                     transition={{ delay: i * 0.1 }}
-                                    className="rounded-[18px] border border-[#E7EDF3] bg-white p-8 shadow-[0_1px_2px_rgba(11,36,64,0.04)] transition-shadow duration-200 hover:shadow-[0_18px_40px_rgba(11,36,64,0.10)]"
+                                    className="h-full"
                                 >
-                                    <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-[14px] bg-[#FFF0E6]">
-                                        <p.icon className="h-7 w-7 text-[#FA6007]" aria-hidden="true" />
-                                    </div>
-                                    <h3 className="mb-3 text-xl font-extrabold text-[#0B2440]">{p.title}</h3>
-                                    <p className="text-[15.5px] leading-relaxed text-[#56697E]">{p.desc}</p>
+                                    <AppWindowCard
+                                        icon={p.icon}
+                                        title={p.title}
+                                        description={p.desc}
+                                        label={`${String(i + 1).padStart(2, "0")} · Golf Fox`}
+                                    />
                                 </motion.div>
                             ))}
                         </div>
@@ -834,13 +836,14 @@ export function HomePage() {
                                     whileInView="show"
                                     viewport={{ once: true }}
                                     transition={{ delay: (i % 4) * 0.06 }}
-                                    className="rounded-2xl border border-[#E7EDF3] bg-white p-7 shadow-[0_1px_2px_rgba(11,36,64,0.04)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#FFD9BF] hover:shadow-[0_18px_40px_rgba(11,36,64,0.10)]"
+                                    className="h-full"
                                 >
-                                    <div className="mb-5 flex h-[50px] w-[50px] items-center justify-center rounded-[13px] bg-[#FFF0E6]">
-                                        <m.icon className="h-6 w-6 text-[#FA6007]" aria-hidden="true" />
-                                    </div>
-                                    <h3 className="mb-2.5 text-[19px] font-extrabold text-[#0B2440]">{m.title}</h3>
-                                    <p className="text-[14.5px] leading-relaxed text-[#56697E]">{m.desc}</p>
+                                    <AppWindowCard
+                                        icon={m.icon}
+                                        title={m.title}
+                                        description={m.desc}
+                                        label={`${String(i + 1).padStart(2, "0")} · Golf Fox`}
+                                    />
                                 </motion.div>
                             ))}
                         </div>
