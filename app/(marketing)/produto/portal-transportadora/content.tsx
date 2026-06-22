@@ -323,6 +323,7 @@ export function PortalTransportadoraContent() {
                     title="Perguntas frequentes"
                     description="Tudo que você precisa saber antes de começar."
                     items={FAQS}
+                    initialCount={4}
                 />
 
                 {/* ===================== CTA FINAL ===================== */}

@@ -401,6 +401,7 @@ export function AppPassageiroContent() {
                     title="Perguntas frequentes"
                     description="Tudo que você precisa saber antes de começar."
                     items={FAQS.map((f) => ({ q: f.question, a: f.answer }))}
+                    initialCount={4}
                 />
 
                 {/* ===================== CTA FINAL ===================== */}

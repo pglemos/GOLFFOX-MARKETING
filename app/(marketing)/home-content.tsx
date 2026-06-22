@@ -987,6 +987,7 @@ export function HomePage() {
                     description="Tudo que você precisa saber antes de começar."
                     items={FAQS}
                     className="bg-transparent"
+                    initialCount={4}
                 />
 
                 {/* ===================== CTA FINAL ===================== */}

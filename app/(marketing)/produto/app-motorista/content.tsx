@@ -263,6 +263,7 @@ export function AppMotoristaContent() {
                     title="Perguntas frequentes"
                     description="Tudo que você precisa saber antes de começar."
                     items={faqs.map((f) => ({ q: f.question, a: f.answer }))}
+                    initialCount={4}
                 />
 
                 {/* ===================== CTA FINAL ===================== */}

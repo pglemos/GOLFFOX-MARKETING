@@ -235,6 +235,7 @@ export function PortalEmpresaContent() {
                     title="Dúvidas comuns de Gestores"
                     description="Tudo que você precisa saber antes de começar."
                     items={faqs.map((f) => ({ q: f.question, a: f.answer }))}
+                    initialCount={4}
                 />
 
                 {/* ===================== CTA FINAL ===================== */}

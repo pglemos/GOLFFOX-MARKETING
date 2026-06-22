@@ -858,6 +858,7 @@ export function ComoOperamosContent() {
                 title="Perguntas frequentes sobre nossa operação"
                 description="Tudo que você precisa saber sobre SLA, segurança e governança da nossa operação."
                 items={faqs.map((f) => ({ q: f.question, a: f.answer }))}
+                initialCount={4}
             />
 
             {/* Garantias de SLA */}
