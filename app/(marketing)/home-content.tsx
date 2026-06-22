@@ -81,13 +81,13 @@ const WITH_GOLFFOX = [
 
 const MODULES = [
     { icon: MapIcon, title: "Planejamento e Otimização", desc: "Algoritmos que desenham a melhor rota para economizar tempo e combustível." },
-    { icon: ScanLine, title: "Controle de Acesso", desc: "Embarque apenas quem está autorizado, via QR Code, NFC ou facial." },
+    { icon: ScanLine, title: "Controle de Acesso", desc: "Embarque validado em camadas: QR Code, NFC Digital Pass e confirmação por GPS." },
     { icon: Radar, title: "Monitoramento Ao Vivo", desc: "Torre de controle virtual com alertas preditivos de atraso." },
     { icon: Bus, title: "Gestão de Frotas", desc: "Controle total de pneus, combustível, manutenção e documentos." },
     { icon: Smartphone, title: "App do Colaborador", desc: "“Onde está meu ônibus? Vou conseguir embarcar?” — na palma da mão." },
     { icon: Wallet, title: "Gestão Financeira", desc: "Auditoria automática de faturas. Pague apenas pelo serviço realizado." },
     { icon: BarChart3, title: "Business Intelligence", desc: "Dashboards executivos para decisão baseada em dados reais." },
-    { icon: Bell, title: "Comunicação", desc: "Mural de avisos e notificações push para toda a operação." },
+    { icon: Bell, title: "Comunicação e Mural", desc: "Mural de avisos segregado por empresa, notificações push e carpooling entre colaboradores." },
     { icon: FileCheck, title: "Compliance", desc: "Garanta que fornecedores e motoristas estejam legais e aptos." },
 ];
 

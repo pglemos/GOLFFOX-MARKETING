@@ -34,11 +34,11 @@ export function AppMotoristaContent() {
         },
         {
             title: "Durante a Rota",
-            items: ["GPS com pontos embarque", "Lista de passageiros em tempo real", "Validação de presença via QR/NFC"],
+            items: ["GPS com pontos de embarque", "Lista de passageiros em tempo real", "Validação por QR Code, NFC Digital Pass e GPS"],
         },
         {
             title: "Pós-Viagem",
-            items: ["Registro automático de KM", "Apontamento de ocorrências", "Feedback da viagem"],
+            items: ["Registro automático de KM", "Apontamento de ocorrências", "Meus Ganhos: saldo, extratos e abastecimentos"],
         },
     ];
 

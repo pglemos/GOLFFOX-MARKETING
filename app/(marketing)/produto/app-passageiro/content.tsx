@@ -38,7 +38,7 @@ const BENEFITS = [
         icon: QrCode,
         title: "Embarque sem contato",
         description:
-            "Nada de crachás esquecidos. O embarque é 100% digital via QR Code, rápido e seguro, mesmo sem internet.",
+            "Nada de crachás esquecidos. O embarque é 100% digital via QR Code ou NFC Digital Pass, rápido e seguro, mesmo sem internet.",
     },
 ];
 
@@ -46,12 +46,12 @@ const STEPS = [
     {
         icon: MapPin,
         title: "Localização Viva",
-        description: "Visualize totos os ônibus da rota no mapa",
+        description: "Visualize todos os ônibus da rota no mapa",
     },
     {
         icon: MessageSquare,
-        title: "Canal Aberto",
-        description: "Avalie a limpeza, ar-condicionado e condução",
+        title: "Mural e Canal Aberto",
+        description: "Mural de avisos por empresa, avaliação da viagem e carpooling",
     },
     {
         icon: Coffee,
