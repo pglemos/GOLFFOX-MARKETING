@@ -31,6 +31,7 @@ import {
     Mail,
 } from "lucide-react";
 
+import { TestimonialsColumn, type GFTestimonial } from "@/components/marketing/testimonials-columns";
 import { trackProfileTabSelect } from "@/lib/analytics/track-events";
 
 // ============================================================
@@ -243,6 +244,20 @@ const FAQS = [
 
 // Palavras que giram na frase de impacto (adaptado do efeito 21st.dev à marca)
 const ROTATING = ["rotas", "motoristas", "câmeras", "documentos", "custos"];
+
+// ⚠️ DEPOIMENTOS PLACEHOLDER — fictícios, apenas para layout.
+// SUBSTITUIR por depoimentos reais (com autorização) antes de publicar.
+const TESTIMONIALS: GFTestimonial[] = [
+    { text: "Antes a gente descobria o atraso quando o colaborador ligava do ponto. Hoje vejo a rota saindo em tempo real e ajo antes de a reclamação chegar.", name: "Marina Alencar", role: "Coord. de Facilities", initials: "MA" },
+    { text: "Parei de pagar por viagem que não aconteceu. A auditoria automática das faturas se pagou já no primeiro mês.", name: "Rodrigo Tavares", role: "Gerente Financeiro", initials: "RT" },
+    { text: "A documentação das transportadoras vivia vencendo sem aviso. Agora o alerta chega antes e o risco trabalhista sumiu.", name: "Patrícia Lima", role: "RH Corporativo", initials: "PL" },
+    { text: "Implantar foi rápido porque não troquei de transportadora. Em uma semana já estava tudo no painel.", name: "Carlos Eduardo Nunes", role: "Diretor de Operações", initials: "CN" },
+    { text: "As câmeras deram segurança pra equipe do turno da noite — e hoje eu tenho registro de tudo para auditoria.", name: "Juliana Prado", role: "Supervisora de Transporte", initials: "JP" },
+    { text: "Reduzi assento vazio e hora extra só enxergando a ocupação real de cada rota e turno.", name: "Felipe Moraes", role: "Gerente de Logística", initials: "FM" },
+    { text: "Os relatórios viraram evidência no fechamento do mês. Acabou a discussão de 'foi feito ou não' com o fornecedor.", name: "Sandra Bezerra", role: "Controladoria", initials: "SB" },
+    { text: "O app acabou com a ansiedade do pessoal no ponto. As reclamações no RH despencaram.", name: "Thiago Ramos", role: "Gestão de Pessoas", initials: "TR" },
+    { text: "Tenho 6 transportadoras e agora vejo todas num lugar só. É um controle que eu não tinha em 10 anos de operação.", name: "Anderson Couto", role: "Diretor Industrial", initials: "AC" },
+];
 
 // Variantes de animação reaproveitáveis (sutis — respeitam reduced-motion via MotionConfig)
 const fadeUp = {
@@ -988,6 +1003,26 @@ export function HomePage() {
                                     </div>
                                 </div>
                             </motion.div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* ===================== DEPOIMENTOS ===================== */}
+                <section className="bg-[#F4F7FA] px-5 py-24 sm:px-8 lg:py-32">
+                    <div className="mx-auto max-w-[1140px]">
+                        <div className="mx-auto mb-12 max-w-[600px] text-center">
+                            <Eyebrow>Depoimentos</Eyebrow>
+                            <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">
+                                Quem ganhou controle, recomenda.
+                            </h2>
+                            <p className="mt-4 text-lg text-[#52647A]">
+                                O que dizem as operações que monitoram o transporte com a Golf Fox.
+                            </p>
+                        </div>
+                        <div className="flex max-h-[680px] justify-center gap-6 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,#000_18%,#000_82%,transparent)]">
+                            <TestimonialsColumn testimonials={TESTIMONIALS.slice(0, 3)} duration={20} />
+                            <TestimonialsColumn testimonials={TESTIMONIALS.slice(3, 6)} duration={26} className="hidden md:block" />
+                            <TestimonialsColumn testimonials={TESTIMONIALS.slice(6, 9)} duration={23} className="hidden lg:block" />
                         </div>
                     </div>
                 </section>
