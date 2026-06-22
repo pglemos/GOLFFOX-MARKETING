@@ -1,9 +1,26 @@
 "use client";
 
+import Image from "next/image";
+
 import { motion } from "framer-motion";
 import { Building2, Truck, TrendingUp, Clock, Users, CheckCircle } from "lucide-react";
 
 import { HeroSection, FinalCTA } from "@/components/marketing";
+import { TestimonialsColumn, type GFTestimonial } from "@/components/marketing/testimonials-columns";
+
+// ⚠️ DEPOIMENTOS PLACEHOLDER — fictícios, apenas para layout.
+// SUBSTITUIR por depoimentos reais (com autorização) antes de publicar.
+const TESTIMONIALS: GFTestimonial[] = [
+    { text: "Antes a gente descobria o atraso quando o colaborador ligava do ponto. Hoje vejo a rota saindo em tempo real e ajo antes de a reclamação chegar.", name: "Marina Alencar", role: "Coord. de Facilities", initials: "MA" },
+    { text: "Parei de pagar por viagem que não aconteceu. A auditoria automática das faturas se pagou já no primeiro mês.", name: "Rodrigo Tavares", role: "Gerente Financeiro", initials: "RT" },
+    { text: "A documentação das transportadoras vivia vencendo sem aviso. Agora o alerta chega antes e o risco trabalhista sumiu.", name: "Patrícia Lima", role: "RH Corporativo", initials: "PL" },
+    { text: "Implantar foi rápido porque não troquei de transportadora. Em uma semana já estava tudo no painel.", name: "Carlos Eduardo Nunes", role: "Diretor de Operações", initials: "CN" },
+    { text: "As câmeras deram segurança pra equipe do turno da noite — e hoje eu tenho registro de tudo para auditoria.", name: "Juliana Prado", role: "Supervisora de Transporte", initials: "JP" },
+    { text: "Reduzi assento vazio e hora extra só enxergando a ocupação real de cada rota e turno.", name: "Felipe Moraes", role: "Gerente de Logística", initials: "FM" },
+    { text: "Os relatórios viraram evidência no fechamento do mês. Acabou a discussão de 'foi feito ou não' com o fornecedor.", name: "Sandra Bezerra", role: "Controladoria", initials: "SB" },
+    { text: "O app acabou com a ansiedade do pessoal no ponto. As reclamações no RH despencaram.", name: "Thiago Ramos", role: "Gestão de Pessoas", initials: "TR" },
+    { text: "Tenho 6 transportadoras e agora vejo todas num lugar só. É um controle que eu não tinha em 10 anos de operação.", name: "Anderson Couto", role: "Diretor Industrial", initials: "AC" },
+];
 
 export function CasesContent() {
     const cases = [
@@ -63,6 +80,31 @@ export function CasesContent() {
                 subtitle="Veja como empresas e transportadoras transformaram sua operação de fretamento com o GOLF FOX."
                 variant="centered"
             />
+
+            {/* Logos de clientes */}
+            <section className="font-archivo border-b border-[#EEF2F6] bg-white px-5 py-14 sm:px-8">
+                <div className="mx-auto max-w-[1100px] text-center">
+                    <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#8392A3]">
+                        Operações que já confiam na Golf Fox
+                    </p>
+                    <div className="mt-8 flex flex-wrap items-center justify-center gap-x-16 gap-y-8">
+                        <Image
+                            src="/images/clientes/jbs.png"
+                            alt="JBS Foods"
+                            width={150}
+                            height={94}
+                            className="h-12 w-auto opacity-70 grayscale transition duration-200 hover:opacity-100 hover:grayscale-0"
+                        />
+                        <Image
+                            src="/images/clientes/minerva.png"
+                            alt="Minerva Foods"
+                            width={160}
+                            height={67}
+                            className="h-9 w-auto opacity-70 grayscale transition duration-200 hover:opacity-100 hover:grayscale-0"
+                        />
+                    </div>
+                </div>
+            </section>
 
             {/* Cases */}
             <section className="py-16 lg:py-24 bg-gray-50">
@@ -193,6 +235,23 @@ export function CasesContent() {
                                 </motion.div>
                             );
                         })}
+                    </div>
+                </div>
+            </section>
+
+            {/* Depoimentos */}
+            <section className="font-archivo bg-[#F4F7FA] px-5 py-20 sm:px-8 lg:py-28">
+                <div className="mx-auto max-w-[1140px]">
+                    <div className="mx-auto mb-12 max-w-[600px] text-center">
+                        <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#01557E]">Depoimentos</span>
+                        <h2 className="mt-5 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.4rem]">
+                            Quem ganhou controle, recomenda.
+                        </h2>
+                    </div>
+                    <div className="flex max-h-[680px] justify-center gap-6 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,#000_18%,#000_82%,transparent)]">
+                        <TestimonialsColumn testimonials={TESTIMONIALS.slice(0, 3)} duration={20} />
+                        <TestimonialsColumn testimonials={TESTIMONIALS.slice(3, 6)} duration={26} className="hidden md:block" />
+                        <TestimonialsColumn testimonials={TESTIMONIALS.slice(6, 9)} duration={23} className="hidden lg:block" />
                     </div>
                 </div>
             </section>
