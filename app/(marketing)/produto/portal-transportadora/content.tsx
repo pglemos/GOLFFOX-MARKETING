@@ -217,20 +217,32 @@ export function PortalTransportadoraContent() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true, margin: "-60px" }}
                                     transition={{ duration: 0.5, delay: index * 0.12 }}
-                                    className="rounded-[18px] border border-[#E7EDF3] bg-white p-8"
+                                    className="group flex flex-col overflow-hidden rounded-[20px] bg-white shadow-[0_18px_50px_rgba(11,36,64,0.10)] ring-1 ring-[#E7EDF3] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_30px_70px_rgba(11,36,64,0.16)] hover:ring-[#FFD9BF]"
                                 >
-                                    <span className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#FFF0E6] text-[#FA6007]">
-                                        <benefit.icon className="h-6 w-6" aria-hidden="true" />
-                                    </span>
-                                    <h3 className="text-xl font-extrabold tracking-[-0.02em] text-[#0B2440]">
-                                        {benefit.title}
-                                    </h3>
-                                    <p className="mt-4 leading-relaxed text-[#52647A]">
-                                        {benefit.description}
-                                    </p>
-                                    <span className="mt-6 inline-flex rounded-full bg-[#FFF0E6] px-4 py-2 text-sm font-bold text-[#C2410C]">
-                                        {benefit.stat}
-                                    </span>
+                                    {/* barra de janela */}
+                                    <div className="flex items-center gap-1.5 border-b border-[#EEF2F6] bg-[#F8FAFC] px-4 py-3">
+                                        <span className="h-2.5 w-2.5 rounded-full bg-[#D7DEE7]" aria-hidden="true" />
+                                        <span className="h-2.5 w-2.5 rounded-full bg-[#D7DEE7]" aria-hidden="true" />
+                                        <span className="h-2.5 w-2.5 rounded-full bg-[#D7DEE7]" aria-hidden="true" />
+                                        <span className="ml-auto text-[10px] font-bold uppercase tracking-[0.16em] text-[#A6B2C0]">
+                                            {String(index + 1).padStart(2, "0")} · Golf Fox
+                                        </span>
+                                    </div>
+                                    {/* corpo */}
+                                    <div className="flex flex-1 flex-col p-7">
+                                        <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#FFF0E6] text-[#FA6007] transition-transform duration-300 group-hover:scale-110">
+                                            <benefit.icon className="h-6 w-6" aria-hidden="true" />
+                                        </span>
+                                        <h3 className="text-xl font-extrabold tracking-[-0.02em] text-[#0B2440]">
+                                            {benefit.title}
+                                        </h3>
+                                        <p className="mt-3 leading-relaxed text-[#52647A]">
+                                            {benefit.description}
+                                        </p>
+                                        <span className="mt-6 inline-flex w-fit rounded-full bg-[#FFF0E6] px-4 py-2 text-sm font-bold text-[#C2410C]">
+                                            {benefit.stat}
+                                        </span>
+                                    </div>
                                 </motion.div>
                             ))}
                         </div>
