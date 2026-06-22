@@ -365,6 +365,15 @@ export function HomePage() {
             <div className="font-archivo text-[#122334]">
                 {/* ===================== HERO ===================== */}
                 <section id="top" className="relative overflow-hidden bg-[#0B2440] text-white">
+                    <Image
+                        src="/images/institucional/frota-estrada.jpg"
+                        alt=""
+                        aria-hidden="true"
+                        fill
+                        priority
+                        sizes="100vw"
+                        className="object-cover opacity-[0.16]"
+                    />
                     <RouteBackdrop withGlow animated />
                     <div className="relative mx-auto grid max-w-[1200px] items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-28">
                         <div>
@@ -784,7 +793,15 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== AUTORIDADE (31 ANOS) ===================== */}
-                <section className="relative overflow-hidden bg-[#0B2440] px-5 py-20 text-white sm:px-8">
+                <section className="relative overflow-hidden bg-[#0B2440] px-5 py-24 text-white sm:px-8 lg:py-32">
+                    <Image
+                        src="/images/institucional/equipe-onibus.jpg"
+                        alt="Equipe Golf Fox em frente ao ônibus da operação"
+                        fill
+                        sizes="100vw"
+                        className="object-cover object-center"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#0B2440]/96 via-[#0B2440]/90 to-[#0B2440]/70" aria-hidden="true" />
                     <RouteBackdrop />
                     <div className="relative mx-auto grid max-w-[1100px] items-center gap-10 sm:grid-cols-[auto_1fr] sm:gap-14">
                         <div className="text-center">
@@ -795,7 +812,7 @@ export function HomePage() {
                             <div className="text-sm text-[#8FA3B8]">em transporte</div>
                         </div>
                         <div className="border-t border-white/15 pt-8 sm:border-l sm:border-t-0 sm:pl-12 sm:pt-0">
-                            <h2 className="text-balance text-3xl font-extrabold leading-[1.12] tracking-tight sm:text-4xl">
+                            <h2 className="text-balance text-[2rem] font-extrabold leading-[1.1] tracking-[-0.02em] sm:text-[2.6rem] lg:text-5xl">
                                 Feita por quem vive o transporte há 31 anos.
                             </h2>
                             <p className="mt-4 max-w-[620px] text-pretty text-lg leading-relaxed text-[#BBCADB]">
@@ -875,8 +892,15 @@ export function HomePage() {
                                         </Link>
                                     </div>
                                 </div>
-                                <div className="relative flex min-h-[420px] flex-col justify-end overflow-hidden rounded-2xl bg-gradient-to-b from-[#0B2440] via-[#0a1f3a] to-[#06101e]">
-                                    <RouteBackdrop />
+                                <div className="relative flex min-h-[420px] flex-col justify-end overflow-hidden rounded-2xl bg-[#0B2440]">
+                                    <Image
+                                        src="/images/institucional/frota-estrada.jpg"
+                                        alt="Frota de transporte monitorada pela Golf Fox"
+                                        fill
+                                        sizes="(max-width: 1024px) 100vw, 50vw"
+                                        className="object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#06101e] via-[#0B2440]/85 to-[#0B2440]/35" aria-hidden="true" />
                                     <div className="relative p-8">
                                         <div className="font-display text-5xl font-black leading-[0.92] tracking-tight text-white sm:text-6xl lg:text-[78px]">
                                             {sector.metric}

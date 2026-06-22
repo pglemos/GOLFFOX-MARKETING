@@ -450,6 +450,15 @@ export function ComoFuncionaContent() {
         <>
             {/* Hero (design Golf Fox) */}
             <section className="font-archivo relative overflow-hidden bg-[#0B2440] text-white">
+                <Image
+                    src="/images/institucional/coach-rodovia.jpg"
+                    alt=""
+                    aria-hidden="true"
+                    fill
+                    priority
+                    sizes="100vw"
+                    className="object-cover opacity-[0.16]"
+                />
                 <RouteBackdrop withGlow animated />
                 <div className="relative mx-auto max-w-[900px] px-5 py-20 text-center sm:px-8 lg:py-28">
                     <span className="mb-6 inline-flex text-xs font-bold uppercase tracking-[0.22em] text-[#FFB07A]">
