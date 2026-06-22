@@ -87,9 +87,29 @@
   animation: gfAurora 70s linear infinite;
 }
 
+/* Aurora único de página: camada fixa atrás de tudo. Aparece nas áreas
+   transparentes/brancas; seções escuras (opacas) a cobrem naturalmente. */
+.gf-aurora-fixed {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  filter: blur(72px);
+  background-image:
+    repeating-linear-gradient(100deg, #ffffff 0%, #ffffff 9%, transparent 12%, transparent 15%, #ffffff 19%),
+    repeating-linear-gradient(100deg, #ffd9bf 8%, #fa6007 15%, #e5eff5 22%, #cfe0f0 28%, #ffe1cc 35%);
+  background-size: 300%, 200%;
+  background-position: 50% 50%, 50% 50%;
+  -webkit-mask-image: radial-gradient(ellipse at 78% 0%, #000 5%, transparent 78%);
+  mask-image: radial-gradient(ellipse at 78% 0%, #000 5%, transparent 78%);
+  animation: gfAurora 70s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .gf-aurora,
-  .gf-aurora-light {
+  .gf-aurora-light,
+  .gf-aurora-fixed {
     animation: none;
   }
 }

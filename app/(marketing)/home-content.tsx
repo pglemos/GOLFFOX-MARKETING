@@ -373,7 +373,10 @@ export function HomePage() {
 
     return (
         <MotionConfig reducedMotion="user">
-            <div className="font-archivo text-[#122334]">
+            <div className="relative bg-white font-archivo text-[#122334]">
+                {/* Aurora único — camada fixa atrás de tudo (aparece nas áreas brancas) */}
+                <div className="gf-aurora-fixed" aria-hidden="true" />
+                <div className="relative z-10">
                 {/* ===================== HERO ===================== */}
                 <section id="top" className="relative overflow-hidden bg-[#0B2440] text-white">
                     <Image
@@ -508,7 +511,7 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== A DOR ===================== */}
-                <section className="bg-white px-5 py-24 sm:px-8 lg:py-32">
+                <section className="px-5 py-24 sm:px-8 lg:py-32">
                     <div className="mx-auto max-w-[1000px] text-center">
                         <Eyebrow tone="orange">
                             <AlertTriangle className="h-[15px] w-[15px]" aria-hidden="true" />
@@ -532,9 +535,8 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== A SOLUÇÃO ===================== */}
-                <section id="solucao" className="relative overflow-hidden border-t border-[#E8EDF3] bg-[#F4F7FA] px-5 py-24 sm:px-8 lg:py-32">
-                    <div className="gf-aurora-light" aria-hidden="true" />
-                    <div className="relative z-10 mx-auto grid max-w-[1200px] items-center gap-12 lg:grid-cols-2 lg:gap-16">
+                <section id="solucao" className="border-t border-[#E8EDF3] bg-[#F4F7FA] px-5 py-24 sm:px-8 lg:py-32">
+                    <div className="mx-auto grid max-w-[1200px] items-center gap-12 lg:grid-cols-2 lg:gap-16">
                         <motion.div
                             variants={fadeUp}
                             initial="hidden"
@@ -597,7 +599,7 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== ANTES / DEPOIS ===================== */}
-                <section className="bg-white px-5 py-24 sm:px-8 lg:py-32">
+                <section className="px-5 py-24 sm:px-8 lg:py-32">
                     <div className="mx-auto max-w-[1100px]">
                         <div className="mx-auto mb-12 max-w-[680px] text-center">
                             <Eyebrow>Antes e depois</Eyebrow>
@@ -669,7 +671,7 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== COMO FUNCIONA (3 PILARES) ===================== */}
-                <section id="como" className="bg-white px-5 py-24 sm:px-8 lg:py-32">
+                <section id="como" className="px-5 py-24 sm:px-8 lg:py-32">
                     <div className="mx-auto max-w-[1200px]">
                         <div className="mx-auto mb-14 max-w-[680px] text-center">
                             <Eyebrow>Como funciona</Eyebrow>
@@ -804,9 +806,8 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== RECURSOS / MÓDULOS ===================== */}
-                <section id="recursos" className="relative overflow-hidden bg-white px-5 py-24 sm:px-8 lg:py-32">
-                    <div className="gf-aurora-light" aria-hidden="true" />
-                    <div className="relative z-10 mx-auto max-w-[1200px]">
+                <section id="recursos" className="px-5 py-24 sm:px-8 lg:py-32">
+                    <div className="mx-auto max-w-[1200px]">
                         <div className="mx-auto mb-14 max-w-[680px] text-center">
                             <Eyebrow>Recursos</Eyebrow>
                             <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">
@@ -878,7 +879,7 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== RESULTADOS POR SETOR ===================== */}
-                <section id="segmentos" className="bg-white px-5 py-24 sm:px-8 lg:py-32">
+                <section id="segmentos" className="px-5 py-24 sm:px-8 lg:py-32">
                     <div className="mx-auto max-w-[1140px]">
                         <div className="mx-auto mb-9 max-w-[680px] text-center">
                             <Eyebrow>Resultados por setor</Eyebrow>
@@ -968,7 +969,7 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== FAQ ===================== */}
-                <section id="faq" className="bg-white px-5 py-24 sm:px-8 lg:py-32">
+                <section id="faq" className="px-5 py-24 sm:px-8 lg:py-32">
                     <div className="mx-auto max-w-[820px]">
                         <div className="mb-12 text-center">
                             <Eyebrow>Perguntas frequentes</Eyebrow>
@@ -1027,6 +1028,7 @@ export function HomePage() {
                         </div>
                     </div>
                 </section>
+                </div>
             </div>
         </MotionConfig>
     );
