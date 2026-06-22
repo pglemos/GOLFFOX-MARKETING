@@ -535,7 +535,7 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== A SOLUÇÃO ===================== */}
-                <section id="solucao" className="border-t border-[#E8EDF3] bg-[#F4F7FA] px-5 py-24 sm:px-8 lg:py-32">
+                <section id="solucao" className="gf-glass border-y border-white/70 px-5 py-24 sm:px-8 lg:py-32">
                     <div className="mx-auto grid max-w-[1200px] items-center gap-12 lg:grid-cols-2 lg:gap-16">
                         <motion.div
                             variants={fadeUp}

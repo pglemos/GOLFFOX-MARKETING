@@ -114,6 +114,13 @@
   }
 }
 
+/* "Liquid glass": superfície translúcida que deixa o aurora passar embaçado. */
+.gf-glass {
+  background-color: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(22px) saturate(150%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+}
+
 /* FAQ acordeão usando <details> nativo (sem JS) */
 details.gf-faq summary {
   list-style: none;
