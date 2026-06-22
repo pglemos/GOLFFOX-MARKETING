@@ -23,10 +23,7 @@ import {
     Clock,
     Zap,
     ArrowRight,
-    BookOpen,
-    FileSpreadsheet,
     Video,
-    FileText,
     Play,
 } from "lucide-react";
 
@@ -860,96 +857,6 @@ export function RecursosContent() {
                 </div>
             </section>
 
-            {/* Recursos Extras */}
-            <section className="bg-[#F4F7FA] px-5 py-24 sm:px-8 lg:py-32">
-                <div className="mx-auto max-w-[1140px]">
-                    <div className="mx-auto mb-14 max-w-[680px] text-center">
-                        <Eyebrow>Materiais</Eyebrow>
-                        <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">
-                            Recursos para você
-                        </h2>
-                        <p className="mt-5 text-pretty text-lg leading-relaxed text-[#52647A]">
-                            Materiais gratuitos para aprofundar seu conhecimento sobre a plataforma
-                        </p>
-                    </div>
-
-                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                        {[
-                            {
-                                icon: BookOpen,
-                                title: "Documentação completa",
-                                description: "Guia detalhado de todos os recursos com exemplos práticos",
-                                type: "Link",
-                                link: "/docs",
-                            },
-                            {
-                                icon: Video,
-                                title: "Vídeos tutoriais",
-                                description: "Aprenda a usar cada recurso com vídeos passo a passo",
-                                type: "Link",
-                                link: "/videos",
-                            },
-                            {
-                                icon: FileSpreadsheet,
-                                title: "Checklist de implementação",
-                                description: "Planilha para acompanhar a implementação dos recursos",
-                                type: "Excel",
-                                link: "#",
-                            },
-                            {
-                                icon: FileText,
-                                title: "Guia por perfil",
-                                description: "Guias específicos para Empresa, Transportadora, Motorista e Passageiro",
-                                type: "PDF",
-                                link: "/guias",
-                            },
-                        ].map((resource, index) => {
-                            const Icon = resource.icon;
-                            return (
-                                <motion.div
-                                    key={resource.title}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1 }}
-                                    className="group flex h-full flex-col overflow-hidden rounded-[20px] bg-white shadow-[0_18px_50px_rgba(11,36,64,0.10)] ring-1 ring-[#E7EDF3] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_30px_70px_rgba(11,36,64,0.16)] hover:ring-[#FFD9BF]"
-                                >
-                                    {/* barra de janela */}
-                                    <div className="flex items-center gap-1.5 border-b border-[#EEF2F6] bg-[#F8FAFC] px-4 py-3">
-                                        <span className="h-2.5 w-2.5 rounded-full bg-[#D7DEE7]" aria-hidden="true" />
-                                        <span className="h-2.5 w-2.5 rounded-full bg-[#D7DEE7]" aria-hidden="true" />
-                                        <span className="h-2.5 w-2.5 rounded-full bg-[#D7DEE7]" aria-hidden="true" />
-                                        <span className="ml-auto text-[10px] font-bold uppercase tracking-[0.16em] text-[#A6B2C0]">
-                                            {`${String(index + 1).padStart(2, "0")} · Golf Fox`}
-                                        </span>
-                                    </div>
-                                    {/* corpo */}
-                                    <div className="flex flex-1 flex-col p-7">
-                                        <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#FFF0E6] text-[#FA6007] transition-transform duration-300 group-hover:scale-110">
-                                            <Icon size={24} aria-hidden="true" />
-                                        </span>
-                                        <div className="mb-2 flex flex-wrap items-center gap-2">
-                                            <h3 className="text-xl font-extrabold tracking-[-0.02em] text-[#0B2440]">{resource.title}</h3>
-                                            <span className="rounded-full bg-[#F4F7FA] px-2.5 py-1 text-xs font-semibold text-[#52647A]">
-                                                {resource.type}
-                                            </span>
-                                        </div>
-                                        <p className="leading-relaxed text-[#52647A]">{resource.description}</p>
-                                        <a
-                                            href={resource.link}
-                                            className="mt-6 inline-flex items-center gap-1.5 text-sm font-bold text-[#D14600] transition-all hover:text-[#B03B00] group-hover:gap-2.5"
-                                        >
-                                            Acessar agora
-                                            <ArrowRight size={16} />
-                                        </a>
-                                    </div>
-                                </motion.div>
-                            );
-                        })}
-                    </div>
-                </div>
-            </section>
-
             {/* Jornadas do Usuário */}
             {selectedProfile !== "all" && (() => {
                 const profileResources = resources
@@ -1061,6 +968,7 @@ export function RecursosContent() {
             <FaqTwoColumn
                 title="Perguntas frequentes sobre recursos"
                 description="Tudo que você precisa saber sobre os recursos."
+                initialCount={4}
                 items={[
                     {
                         q: "Quais recursos são mais usados pelos clientes?",

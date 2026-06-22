@@ -7,6 +7,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Calendar, Clock, CheckCircle, ArrowRight } from "lucide-react";
 
+import { Eyebrow } from "@/components/marketing/landing-ui";
+import { SchedulingCalendar } from "@/components/marketing/scheduling-calendar";
 import { trackFormSubmit } from "@/lib/analytics/track-events";
 import { COMPANY_INFO } from "@/lib/constants/company-info";
 
@@ -109,6 +111,7 @@ export function DemoContent() {
     }
 
     return (
+        <>
         <section className="min-h-[70vh] bg-gray-950 pt-24 pb-16">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
@@ -277,5 +280,21 @@ export function DemoContent() {
                 </div>
             </div>
         </section>
+
+        {/* Seção da agenda — calendário de marca Golf Fox */}
+        <section className="font-archivo bg-[#F4F7FA] px-5 py-24 sm:px-8 lg:py-32">
+            <div className="mx-auto mb-12 max-w-[680px] text-center">
+                <Eyebrow tone="orange">Agenda</Eyebrow>
+                <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.02em] text-[#0B2440] sm:text-4xl">
+                    Escolha o melhor horário
+                </h2>
+                <p className="mx-auto mt-4 max-w-[560px] text-pretty text-lg leading-relaxed text-[#52647A]">
+                    Selecione um dia e horário disponível para sua demonstração de
+                    30 minutos. Sem compromisso.
+                </p>
+            </div>
+            <SchedulingCalendar />
+        </section>
+        </>
     );
 }

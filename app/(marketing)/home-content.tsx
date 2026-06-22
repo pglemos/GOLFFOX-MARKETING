@@ -745,7 +745,7 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== RESULTADOS POR PERFIL ===================== */}
-                <section id="resultados" className="border-t border-[#E8EDF3] bg-[#F4F7FA] px-5 py-24 sm:px-8 lg:py-32">
+                <section id="resultados" className="gf-glass border-y border-white/60 px-5 py-24 sm:px-8 lg:py-32">
                     <div className="mx-auto max-w-[1100px]">
                         <div className="mx-auto mb-10 max-w-[680px] text-center">
                             <Eyebrow>A transformação</Eyebrow>

@@ -1,13 +1,17 @@
+"use client";
+
+import { useState } from "react";
+
 import Link from "next/link";
 
-import { PhoneCall } from "lucide-react";
+import { PhoneCall, Plus } from "lucide-react";
 
 export type FaqItem = { q: string; a: string };
 
 /**
  * FAQ em 2 colunas (modelo 21st.dev adaptado à marca):
  * esquerda = badge "FAQ" + título + descrição + botão de contato;
- * direita = accordion nativo (gf-faq), sem dependência shadcn.
+ * direita = accordion nativo (gf-faq). Com `initialCount`, mostra N e um "ver mais".
  */
 export function FaqTwoColumn({
     title,
@@ -16,6 +20,7 @@ export function FaqTwoColumn({
     contactHref = "https://wa.me/5511939337163",
     contactLabel = "Ainda com dúvidas? Fale com a Golf Fox",
     className = "bg-white",
+    initialCount,
 }: {
     title: string;
     description?: string;
@@ -23,7 +28,12 @@ export function FaqTwoColumn({
     contactHref?: string;
     contactLabel?: string;
     className?: string;
+    initialCount?: number;
 }) {
+    const [expanded, setExpanded] = useState(false);
+    const collapsible = initialCount != null && items.length > initialCount;
+    const visible = collapsible && !expanded ? items.slice(0, initialCount) : items;
+
     return (
         <section className={`font-archivo px-5 py-24 sm:px-8 lg:py-32 ${className}`}>
             <div className="mx-auto grid max-w-[1140px] gap-12 lg:grid-cols-2 lg:gap-16">
@@ -51,7 +61,7 @@ export function FaqTwoColumn({
 
                 {/* Accordion */}
                 <div className="flex flex-col gap-3.5">
-                    {items.map((it, i) => (
+                    {visible.map((it, i) => (
                         <details key={it.q} className="gf-faq rounded-[14px] border border-[#E7EDF3] bg-white px-6" open={i === 0}>
                             <summary className="flex cursor-pointer items-center justify-between gap-4 py-[22px] text-lg font-bold text-[#0B2440]">
                                 {it.q}
@@ -62,6 +72,17 @@ export function FaqTwoColumn({
                             <p className="mb-[22px] text-base leading-relaxed text-[#52647A]">{it.a}</p>
                         </details>
                     ))}
+
+                    {collapsible && !expanded ? (
+                        <button
+                            type="button"
+                            onClick={() => setExpanded(true)}
+                            className="mt-1 inline-flex items-center justify-center gap-2 rounded-xl border border-[#D8E0E8] bg-white px-5 py-3.5 text-[15px] font-bold text-[#0B2440] transition-colors duration-200 hover:bg-[#F4F7FA] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B2440]"
+                        >
+                            Ver mais {items.length - initialCount!} perguntas
+                            <Plus className="h-4 w-4" aria-hidden="true" />
+                        </button>
+                    ) : null}
                 </div>
             </div>
         </section>
