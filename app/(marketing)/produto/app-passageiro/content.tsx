@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 
 import { Eyebrow, RouteBackdrop } from "@/components/marketing/landing-ui";
+import { FaqTwoColumn } from "@/components/marketing/faq-two-column";
 
 // ============================================================
 // Copy (preservada do conteúdo original)
@@ -394,27 +395,11 @@ export function AppPassageiroContent() {
                 </section>
 
                 {/* ===================== FAQ ===================== */}
-                <section className="bg-white px-5 py-24 sm:px-8 lg:py-32">
-                    <div className="mx-auto max-w-[820px]">
-                        <div className="mb-12 text-center">
-                            <Eyebrow>Perguntas frequentes</Eyebrow>
-                            <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">
-                                Perguntas frequentes
-                            </h2>
-                        </div>
-                        <div className="flex flex-col gap-3.5">
-                            {FAQS.map((faq, i) => (
-                                <details key={faq.question} className="gf-faq rounded-[14px] border border-[#E7EDF3] bg-white px-6" open={i === 0}>
-                                    <summary className="flex cursor-pointer items-center justify-between gap-4 py-[22px] text-lg font-bold text-[#0B2440]">
-                                        {faq.question}
-                                        <span className="gf-chev flex-none text-2xl font-normal leading-none text-[#FA6007]" aria-hidden="true">+</span>
-                                    </summary>
-                                    <p className="mb-[22px] text-base leading-relaxed text-[#52647A]">{faq.answer}</p>
-                                </details>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+                <FaqTwoColumn
+                    title="Perguntas frequentes"
+                    description="Tudo que você precisa saber antes de começar."
+                    items={FAQS.map((f) => ({ q: f.question, a: f.answer }))}
+                />
 
                 {/* ===================== CTA FINAL ===================== */}
                 <section className="relative overflow-hidden bg-gradient-to-br from-[#D14600] to-[#A83800] px-5 py-24 text-white sm:px-8 lg:py-28">
