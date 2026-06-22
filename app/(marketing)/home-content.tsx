@@ -258,12 +258,12 @@ function Eyebrow({
     tone?: "blue" | "orange";
 }) {
     const tones = {
-        blue: "text-[#01557E] bg-[#E5EFF5]",
-        orange: "text-[#C24A00] bg-[#FFF0E6] border border-[#FFD9BF]",
+        blue: "text-[#01557E]",
+        orange: "text-[#C2410C]",
     } as const;
     return (
         <span
-            className={`inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] ${tones[tone]}`}
+            className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.22em] ${tones[tone]}`}
         >
             {children}
         </span>
@@ -366,14 +366,14 @@ export function HomePage() {
                 {/* ===================== HERO ===================== */}
                 <section id="top" className="relative overflow-hidden bg-[#0B2440] text-white">
                     <RouteBackdrop withGlow animated />
-                    <div className="relative mx-auto grid max-w-[1200px] items-center gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:py-24">
+                    <div className="relative mx-auto grid max-w-[1200px] items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-28">
                         <div>
                             <motion.h1
                                 variants={fadeUp}
                                 initial="hidden"
                                 animate="show"
                                 transition={{ duration: 0.5 }}
-                                className="text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
+                                className="text-[2.75rem] font-extrabold leading-[1.02] tracking-[-0.025em] sm:text-6xl lg:text-7xl"
                             >
                                 Você contrata o transporte.
                                 <br />
@@ -488,7 +488,7 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== A DOR ===================== */}
-                <section className="bg-white px-5 py-20 sm:px-8 lg:py-24">
+                <section className="bg-white px-5 py-24 sm:px-8 lg:py-32">
                     <div className="mx-auto max-w-[1000px] text-center">
                         <Eyebrow tone="orange">
                             <AlertTriangle className="h-[15px] w-[15px]" aria-hidden="true" />
@@ -512,7 +512,7 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== A SOLUÇÃO ===================== */}
-                <section id="solucao" className="border-t border-[#E8EDF3] bg-[#F4F7FA] px-5 py-20 sm:px-8 lg:py-24">
+                <section id="solucao" className="border-t border-[#E8EDF3] bg-[#F4F7FA] px-5 py-24 sm:px-8 lg:py-32">
                     <div className="mx-auto grid max-w-[1200px] items-center gap-12 lg:grid-cols-2 lg:gap-16">
                         <motion.div
                             variants={fadeUp}
@@ -549,7 +549,7 @@ export function HomePage() {
                         </motion.div>
                         <div className="order-1 lg:order-2">
                             <Eyebrow>A virada</Eyebrow>
-                            <h2 className="mt-5 text-balance text-3xl font-extrabold leading-[1.1] tracking-tight text-[#0B2440] sm:text-4xl">
+                            <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">
                                 Todas as suas transportadoras, sob um único controle.
                             </h2>
                             <p className="mt-5 text-pretty text-lg leading-relaxed text-[#52647A]">
@@ -576,11 +576,11 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== ANTES / DEPOIS ===================== */}
-                <section className="bg-white px-5 py-20 sm:px-8 lg:py-24">
+                <section className="bg-white px-5 py-24 sm:px-8 lg:py-32">
                     <div className="mx-auto max-w-[1100px]">
                         <div className="mx-auto mb-12 max-w-[680px] text-center">
                             <Eyebrow>Antes e depois</Eyebrow>
-                            <h2 className="mt-5 text-balance text-3xl font-extrabold leading-[1.1] tracking-tight text-[#0B2440] sm:text-4xl">
+                            <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">
                                 O que muda quando você passa a ver.
                             </h2>
                         </div>
@@ -648,11 +648,11 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== COMO FUNCIONA (3 PILARES) ===================== */}
-                <section id="como" className="bg-white px-5 py-20 sm:px-8 lg:py-24">
+                <section id="como" className="bg-white px-5 py-24 sm:px-8 lg:py-32">
                     <div className="mx-auto max-w-[1200px]">
                         <div className="mx-auto mb-14 max-w-[680px] text-center">
                             <Eyebrow>Como funciona</Eyebrow>
-                            <h2 className="mt-5 text-balance text-3xl font-extrabold leading-[1.1] tracking-tight text-[#0B2440] sm:text-4xl">
+                            <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">
                                 Três formas de ter o controle de volta.
                             </h2>
                         </div>
@@ -679,11 +679,11 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== RESULTADOS POR PERFIL ===================== */}
-                <section id="resultados" className="border-t border-[#E8EDF3] bg-[#F4F7FA] px-5 py-20 sm:px-8 lg:py-24">
+                <section id="resultados" className="border-t border-[#E8EDF3] bg-[#F4F7FA] px-5 py-24 sm:px-8 lg:py-32">
                     <div className="mx-auto max-w-[1100px]">
                         <div className="mx-auto mb-10 max-w-[680px] text-center">
                             <Eyebrow>A transformação</Eyebrow>
-                            <h2 className="mt-5 text-balance text-3xl font-extrabold leading-[1.1] tracking-tight text-[#0B2440] sm:text-4xl">
+                            <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">
                                 Resultados para cada perfil
                             </h2>
                             <p className="mt-4 text-lg text-[#52647A]">Veja o que muda quando você tem controle real.</p>
@@ -752,11 +752,11 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== RECURSOS / MÓDULOS ===================== */}
-                <section id="recursos" className="bg-white px-5 py-20 sm:px-8 lg:py-24">
+                <section id="recursos" className="bg-white px-5 py-24 sm:px-8 lg:py-32">
                     <div className="mx-auto max-w-[1200px]">
                         <div className="mx-auto mb-14 max-w-[680px] text-center">
                             <Eyebrow>Recursos</Eyebrow>
-                            <h2 className="mt-5 text-balance text-3xl font-extrabold leading-[1.1] tracking-tight text-[#0B2440] sm:text-4xl">
+                            <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">
                                 Tudo que você precisa
                             </h2>
                             <p className="mt-4 text-lg text-[#52647A]">Módulos integrados para gestão completa.</p>
@@ -808,11 +808,11 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== RESULTADOS POR SETOR ===================== */}
-                <section id="segmentos" className="bg-white px-5 py-20 sm:px-8 lg:py-24">
+                <section id="segmentos" className="bg-white px-5 py-24 sm:px-8 lg:py-32">
                     <div className="mx-auto max-w-[1140px]">
                         <div className="mx-auto mb-9 max-w-[680px] text-center">
                             <Eyebrow>Resultados por setor</Eyebrow>
-                            <h2 className="mt-5 text-balance text-3xl font-extrabold leading-[1.1] tracking-tight text-[#0B2440] sm:text-4xl">
+                            <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">
                                 O controle, traduzido para o seu setor.
                             </h2>
                         </div>
@@ -891,11 +891,11 @@ export function HomePage() {
                 </section>
 
                 {/* ===================== FAQ ===================== */}
-                <section id="faq" className="bg-white px-5 py-20 sm:px-8 lg:py-24">
+                <section id="faq" className="bg-white px-5 py-24 sm:px-8 lg:py-32">
                     <div className="mx-auto max-w-[820px]">
                         <div className="mb-12 text-center">
                             <Eyebrow>Perguntas frequentes</Eyebrow>
-                            <h2 className="mt-5 text-balance text-3xl font-extrabold leading-[1.1] tracking-tight text-[#0B2440] sm:text-4xl">
+                            <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">
                                 Tire suas dúvidas sobre o controle.
                             </h2>
                         </div>

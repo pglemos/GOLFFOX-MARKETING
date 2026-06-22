@@ -452,14 +452,14 @@ export function ComoFuncionaContent() {
             <section className="font-archivo relative overflow-hidden bg-[#0B2440] text-white">
                 <RouteBackdrop withGlow animated />
                 <div className="relative mx-auto max-w-[900px] px-5 py-20 text-center sm:px-8 lg:py-28">
-                    <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#FA6007]/40 bg-[#FA6007]/15 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#FFB07A]">
+                    <span className="mb-6 inline-flex text-xs font-bold uppercase tracking-[0.22em] text-[#FFB07A]">
                         Como funciona
                     </span>
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
+                        className="text-[2.75rem] font-extrabold leading-[1.02] tracking-[-0.025em] text-balance sm:text-6xl lg:text-7xl"
                     >
                         Do diagnóstico à operação, <span className="text-[#FA6007]">em 3 fases.</span>
                     </motion.h1>
@@ -553,7 +553,7 @@ export function ComoFuncionaContent() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="mt-5 text-balance text-3xl font-extrabold leading-[1.1] tracking-tight text-[#0B2440] sm:text-4xl"
+                            className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl"
                         >
                             Da análise à operação contínua, em 3 fases.
                         </motion.h2>

@@ -14,12 +14,12 @@ export function Eyebrow({
     tone?: "blue" | "orange";
 }) {
     const tones = {
-        blue: "text-[#01557E] bg-[#E5EFF5]",
-        orange: "text-[#C24A00] bg-[#FFF0E6] border border-[#FFD9BF]",
+        blue: "text-[#01557E]",
+        orange: "text-[#C2410C]",
     } as const;
     return (
         <span
-            className={`inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] ${tones[tone]}`}
+            className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.22em] ${tones[tone]}`}
         >
             {children}
         </span>
