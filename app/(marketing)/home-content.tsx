@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -241,6 +241,9 @@ const FAQS = [
     },
 ];
 
+// Palavras que giram na frase de impacto (adaptado do efeito 21st.dev à marca)
+const ROTATING = ["rotas", "motoristas", "câmeras", "documentos", "custos"];
+
 // Variantes de animação reaproveitáveis (sutis — respeitam reduced-motion via MotionConfig)
 const fadeUp = {
     hidden: { opacity: 0, y: 20 },
@@ -351,6 +354,14 @@ function RouteMap({ className = "" }: { className?: string }) {
 export function HomePage() {
     const [activeProfile, setActiveProfile] = useState(0);
     const [activeSector, setActiveSector] = useState(0);
+    const [rotIndex, setRotIndex] = useState(0);
+
+    useEffect(() => {
+        const id = setInterval(() => {
+            setRotIndex((prev) => (prev + 1) % ROTATING.length);
+        }, 2200);
+        return () => clearInterval(id);
+    }, []);
 
     const handleProfileSelect = (index: number, profile: string) => {
         setActiveProfile(index);
@@ -709,6 +720,38 @@ export function HomePage() {
                                 </motion.div>
                             ))}
                         </div>
+                    </div>
+                </section>
+
+                {/* ===================== FRASE DE IMPACTO (palavra rotativa + aurora) ===================== */}
+                <section className="relative overflow-hidden bg-[#0B2440] px-5 py-24 text-white sm:px-8 lg:py-28">
+                    <div className="gf-aurora" aria-hidden="true" />
+                    <RouteBackdrop />
+                    <div className="relative mx-auto max-w-[1000px] text-center">
+                        <h2 className="text-balance text-[2rem] font-extrabold leading-[1.1] tracking-[-0.02em] sm:text-[2.6rem] lg:text-5xl">
+                            Você no controle de
+                        </h2>
+                        <div className="relative mx-auto mt-2 flex h-[1.25em] w-full items-center justify-center overflow-hidden">
+                            {ROTATING.map((w, i) => (
+                                <motion.span
+                                    key={w}
+                                    aria-hidden={rotIndex !== i}
+                                    className="absolute font-display text-[2.5rem] font-black text-[#FA6007] sm:text-6xl lg:text-7xl"
+                                    initial={{ opacity: 0, y: "-120%" }}
+                                    animate={
+                                        rotIndex === i
+                                            ? { y: "0%", opacity: 1 }
+                                            : { y: rotIndex > i ? "-120%" : "120%", opacity: 0 }
+                                    }
+                                    transition={{ type: "spring", stiffness: 70, damping: 16 }}
+                                >
+                                    {w}
+                                </motion.span>
+                            ))}
+                        </div>
+                        <p className="mx-auto mt-6 max-w-[560px] text-pretty text-lg leading-relaxed text-[#B7C6D8]">
+                            Rotas, motoristas, documentação e câmeras — numa plataforma só, em tempo real.
+                        </p>
                     </div>
                 </section>
 
