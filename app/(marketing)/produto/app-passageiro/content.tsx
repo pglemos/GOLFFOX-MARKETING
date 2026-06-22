@@ -221,7 +221,15 @@ export function AppPassageiroContent() {
                             transition={{ duration: 0.5 }}
                             className="order-2 lg:order-1"
                         >
-                            <PhoneMockup />
+                            <div className="overflow-hidden rounded-[20px] border border-[#E7EDF3] shadow-[0_24px_60px_rgba(11,36,64,0.18)]">
+                                <Image
+                                    src="/images/institucional/equipe-onibus.jpg"
+                                    alt="Colaboradores no transporte fretado da operação"
+                                    width={760}
+                                    height={560}
+                                    className="h-full w-full object-cover"
+                                />
+                            </div>
                         </motion.div>
 
                         {/* Texto + benefícios */}
