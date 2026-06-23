@@ -44,13 +44,24 @@ npm run build
 
 ## 🔌 Pontos de integração com o back-end
 
-O front-end está pronto. Tudo que depende de back-end está marcado no código com `// TODO(backend)`
-(rode `grep -rn "TODO(backend)" .` para listar). Resumo para facilitar a integração:
+A captação de leads já foi integrada via `POST /api/leads`, que chama a função limitada
+`public.create_golffox_marketing_lead` e grava em `public.leads_golf_fox` no Supabase.
+Não use `service_role` neste projeto de marketing.
+
+Variáveis obrigatórias no ambiente do servidor:
+
+```bash
+SUPABASE_URL=https://vmoxzesvjcfmrebagcwo.supabase.co
+SUPABASE_PUBLISHABLE_KEY=...
+```
+
+O que ainda depende de back-end/serviço externo está marcado no código com `// TODO(backend)`
+(rode `grep -rn "TODO(backend)" .` para listar). Resumo:
 
 | # | Onde | Hoje | Precisa | Endpoint sugerido |
 |---|------|------|---------|-------------------|
-| 1 | `app/(marketing)/demo/content.tsx` (`handleSubmit`) | Monta link de WhatsApp e revela o calendário; **não persiste** o lead | Salvar lead no CRM/DB | `POST /api/leads` |
-| 2 | `components/marketing/final-cta.tsx` (`handleSubmit`) | Simula envio com `setTimeout` (fake) | Persistir lead | `POST /api/leads` |
+| 1 | `app/(marketing)/demo/content.tsx` (`handleSubmit`) | Envia para `POST /api/leads` e mantém fallback WhatsApp | Configurar envs no servidor | Implementado |
+| 2 | `components/marketing/final-cta.tsx` (`handleSubmit`) | Envia para `POST /api/leads` | Configurar envs no servidor | Implementado |
 | 3 | `components/marketing/scheduling-calendar.tsx` | Datas disponíveis **mock** | Datas livres da agenda | `GET /api/agenda/disponibilidade?mes=YYYY-MM` |
 | 4 | `components/marketing/scheduling-calendar.tsx` | Horários **mock** | Horários livres da data | `GET /api/agenda/horarios?data=YYYY-MM-DD` |
 | 5 | `components/marketing/scheduling-calendar.tsx` (submit) | Só mostra confirmação no client | Criar agendamento | `POST /api/agenda` |

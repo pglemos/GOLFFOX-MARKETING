@@ -25,8 +25,9 @@ export function FinalCTA({
     showForm = false,
     className,
     variant = 'default',
-}: FinalCTAProps) {
+    }: FinalCTAProps) {
     const [formState, setFormState] = useState<'idle' | 'loading' | 'success'>('idle');
+    const [formError, setFormError] = useState('');
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -37,13 +38,37 @@ export function FinalCTA({
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setFormState('loading');
+        setFormError('');
 
-        // TODO(backend): enviar lead para o CRM/DB — POST /api/leads { name, email, company, phone, origem: "final-cta" }
-        // Substituir o setTimeout abaixo (simulação) pela chamada real e tratar erro/sucesso.
-        // Simular envio
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        let response: Response;
 
-        trackFormSubmit('demo');
+        try {
+            response = await fetch('/api/leads', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ...formData,
+                    origem: 'final-cta',
+                    metadata: {
+                        component: 'FinalCTA',
+                    },
+                }),
+            });
+        } catch {
+            setFormError('Não foi possível enviar seus dados agora. Tente novamente em instantes.');
+            setFormState('idle');
+            return;
+        }
+
+        if (!response.ok) {
+            setFormError('Não foi possível enviar seus dados agora. Tente novamente em instantes.');
+            setFormState('idle');
+            return;
+        }
+
+        trackFormSubmit('final-cta');
         setFormState('success');
     };
 
@@ -150,6 +175,17 @@ export function FinalCTA({
                                         variant === 'gradient' ? 'bg-white/10 backdrop-blur' : 'bg-white shadow-xl'
                                     )}
                                 >
+                                    {formError ? (
+                                        <p className={cn(
+                                            "rounded-xl px-4 py-3 text-sm",
+                                            variant === 'gradient'
+                                                ? 'bg-white/10 text-white'
+                                                : 'bg-red-50 text-red-700'
+                                        )}>
+                                            {formError}
+                                        </p>
+                                    ) : null}
+
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         <input
                                             type="text"

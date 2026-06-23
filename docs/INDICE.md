@@ -1,6 +1,6 @@
 # Índice do Site GOLF FOX
 
-Site institucional e de marketing da **GOLF FOX** (gestão de fretamento corporativo), construído em **Next.js (App Router)** com **Tailwind CSS v4**. As páginas ficam sob o route group `app/(marketing)/`, cada rota com um `page.tsx` (metadados/SEO) que renderiza um `content.tsx` (a UI da página, geralmente um Client Component). Os componentes compartilhados (header, footer, hero, FAQ, calendário de agendamento etc.) vivem em `components/marketing/` e `components/ui/`. É um site majoritariamente estático/client-side; os poucos pontos que dependem de backend estão mockados e marcados com `// TODO(backend)` (ver seção de hand-off abaixo).
+Site institucional e de marketing da **GOLF FOX** (gestão de fretamento corporativo), construído em **Next.js (App Router)** com **Tailwind CSS v4**. As páginas ficam sob o route group `app/(marketing)/`, cada rota com um `page.tsx` (metadados/SEO) que renderiza um `content.tsx` (a UI da página, geralmente um Client Component). Os componentes compartilhados (header, footer, hero, FAQ, calendário de agendamento etc.) vivem em `components/marketing/` e `components/ui/`. É um site majoritariamente estático/client-side; leads já usam `POST /api/leads`, enquanto agenda e downloads ainda têm mocks marcados com `// TODO(backend)` (ver seção de hand-off abaixo).
 
 ## Páginas
 
@@ -56,14 +56,17 @@ Compartilhados em `components/ui/`:
 - **StackedCards** (`stacked-cards.tsx`) / **CardStack** (`card-stack.tsx`) — cards empilhados com animação.
 - **ContainerScroll** (`container-scroll.tsx`) — efeito de scroll/parallax para container.
 
-## Back-end — pontos de integração (TODO)
+## Back-end — pontos de integração
 
-Checklist consolidada de todos os `// TODO(backend)` presentes no código. Esta é a entrega para o desenvolvedor de backend — basta dar `grep -rn "TODO(backend)"`.
+Leads já estão integrados via `POST /api/leads`, que chama
+`public.create_golffox_marketing_lead` e grava em `public.leads_golf_fox` no Supabase.
+O endpoint aceita os campos em inglês usados pelo front:
 
-- **`app/(marketing)/demo/content.tsx`** (`handleSubmit`) — persistir o lead da demonstração no CRM/DB. Mantém o fallback de WhatsApp já existente.
-  - Endpoint sugerido: `POST /api/leads { name, email, company, phone, employees, message, origem: "demo" }`
-- **`components/marketing/final-cta.tsx`** (`handleSubmit`) — substituir o envio simulado (`setTimeout`) pelo envio real do lead do CTA final.
-  - Endpoint sugerido: `POST /api/leads { name, email, company, phone, origem: "final-cta" }`
+```jsonc
+{ "name": "", "email": "", "company": "", "phone": "", "employees": "", "message": "", "origem": "demo" }
+```
+
+Pendências que ainda aparecem no código com `// TODO(backend)`:
 - **`components/marketing/scheduling-calendar.tsx`** — datas disponíveis (hoje `buildMockAvailableDates`, mock).
   - Endpoint sugerido: `GET /api/agenda/disponibilidade?mes=YYYY-MM -> { availableDates: string[] }`
 - **`components/marketing/scheduling-calendar.tsx`** — horários disponíveis da data selecionada (hoje `MOCK_TIME_SLOTS`).

@@ -41,10 +41,12 @@ export function DemoContent() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [whatsAppHref, setWhatsAppHref] = useState<string>("");
+    const [submitError, setSubmitError] = useState<string>("");
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setSubmitError("");
 
         const messageLines = [
             "Olá! Gostaria de agendar uma demonstração da GOLF FOX.",
@@ -66,8 +68,37 @@ export function DemoContent() {
 
         setWhatsAppHref(href);
 
-        // TODO(backend): enviar lead para o CRM/DB — POST /api/leads { name, email, company, phone, employees, message, origem: "demo" }
-        // Mantém o fallback de WhatsApp acima; persistir o lead aqui antes (ou em paralelo).
+        let response: Response;
+
+        try {
+            response = await fetch("/api/leads", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    ...formData,
+                    origem: "demo",
+                    metadata: {
+                        page: "/demo",
+                    },
+                }),
+            });
+        } catch {
+            setSubmitError(
+                "Não conseguimos registrar seus dados agora. Você ainda pode falar com a equipe pelo WhatsApp.",
+            );
+            setIsSubmitting(false);
+            return;
+        }
+
+        if (!response.ok) {
+            setSubmitError(
+                "Não conseguimos registrar seus dados agora. Você ainda pode falar com a equipe pelo WhatsApp.",
+            );
+            setIsSubmitting(false);
+            return;
+        }
 
         trackFormSubmit("demo");
         setIsSubmitted(true);
@@ -271,6 +302,20 @@ export function DemoContent() {
                             >
                                 {isSubmitting ? "Enviando..." : "Agendar demonstração"}
                             </button>
+
+                            {submitError ? (
+                                <p className="mt-4 text-center text-sm text-red-300">
+                                    {submitError}{" "}
+                                    <a
+                                        href={whatsAppHref || COMPANY_INFO.whatsapp.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="font-semibold text-orange-400 hover:underline"
+                                    >
+                                        Abrir WhatsApp
+                                    </a>
+                                </p>
+                            ) : null}
 
                             <p className="text-xs text-gray-500 text-center mt-4">
                                 Ao enviar, você concorda com nossa{" "}
