@@ -898,7 +898,6 @@ export function ComoFuncionaContent() {
             <ROICalculator
                 title="Calcule seu ROI"
                 subtitle="Veja quanto você pode economizar com a GOLF FOX"
-                dark={false}
             />
 
             {/* Requisitos de Infraestrutura */}
@@ -924,56 +923,48 @@ export function ComoFuncionaContent() {
                         </motion.p>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                        <motion.div
-                            whileHover={{ y: -5 }}
-                            className="text-center p-6 border-2 border-gray-100 rounded-2xl bg-gray-50"
-                        >
-                            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
-                                <Smartphone className="w-8 h-8 text-blue-500" />
-                            </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-3">Passageiros</h3>
-                            <p className="text-gray-600 mb-4 text-sm px-4">
-                                Qualquer smartphone Android (8+) ou iOS (12+) para o app.
-                            </p>
-                            <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
-                                Opcional: Crachá NFC
-                            </span>
-                        </motion.div>
-
-                        <motion.div
-                            whileHover={{ y: -5 }}
-                            className="text-center p-6 border-2 border-orange-100 rounded-2xl bg-orange-50"
-                        >
-                            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
-                                <Truck className="w-8 h-8 text-orange-500" />
-                            </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-3">Motoristas</h3>
-                            <p className="text-gray-600 mb-4 text-sm px-4">
-                                Smartphone Android básico (R$ 800+) com GPS e pacote de dados.
-                            </p>
-                            <div className="flex flex-col gap-2 items-center">
-                                <span className="text-xs font-semibold text-green-600 bg-green-50 px-3 py-1 rounded-full border border-green-100">
-                                    Funciona Offline
-                                </span>
-                            </div>
-                        </motion.div>
-
-                        <motion.div
-                            whileHover={{ y: -5 }}
-                            className="text-center p-6 border-2 border-gray-100 rounded-2xl bg-gray-50"
-                        >
-                            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
-                                <Zap className="w-8 h-8 text-teal-500" />
-                            </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-3">Conectividade</h3>
-                            <p className="text-gray-600 mb-4 text-sm px-4">
-                                Sincronização automática quando houver sinal 4G/WiFi.
-                            </p>
-                            <span className="text-xs font-semibold text-teal-600 bg-teal-50 px-3 py-1 rounded-full border border-teal-100">
-                                Consumo baixo de dados
-                            </span>
-                        </motion.div>
+                    <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                        {[
+                            {
+                                icon: Smartphone,
+                                title: "Passageiros",
+                                desc: "Qualquer smartphone Android (8+) ou iOS (12+) para o app.",
+                                tag: "Opcional: Crachá NFC",
+                            },
+                            {
+                                icon: Truck,
+                                title: "Motoristas",
+                                desc: "Smartphone Android básico (R$ 800+) com GPS e pacote de dados.",
+                                tag: "Funciona offline",
+                            },
+                            {
+                                icon: Zap,
+                                title: "Conectividade",
+                                desc: "Sincronização automática quando houver sinal 4G/WiFi.",
+                                tag: "Consumo baixo de dados",
+                            },
+                        ].map((item, index) => {
+                            const Icon = item.icon;
+                            return (
+                                <motion.div
+                                    key={item.title}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.08 }}
+                                    className="group flex h-full flex-col rounded-2xl border border-[#E7EDF3] bg-white p-7 shadow-[0_10px_30px_rgba(11,36,64,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-[#FFD9BF] hover:shadow-[0_20px_50px_rgba(11,36,64,0.12)]"
+                                >
+                                    <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#FFF0E6] text-brand transition-transform duration-300 group-hover:scale-110">
+                                        <Icon className="h-6 w-6" aria-hidden="true" />
+                                    </span>
+                                    <h3 className="mb-2 text-xl font-bold text-[#0B2440]">{item.title}</h3>
+                                    <p className="text-sm leading-relaxed text-[#52647A]">{item.desc}</p>
+                                    <span className="mt-5 inline-flex w-fit items-center rounded-full border border-[#D5E3EE] bg-[#EAF1F7] px-3 py-1 text-xs font-semibold text-[#01557E]">
+                                        {item.tag}
+                                    </span>
+                                </motion.div>
+                            );
+                        })}
                     </div>
                 </div>
             </section>
