@@ -2,32 +2,27 @@
 
 import { useEffect, useMemo, useState } from "react";
 
+import Image from "next/image";
 import Link from "next/link";
 
 import { motion } from "framer-motion";
-import { FileText, Settings, Play, CheckCircle, Upload, Download, Shield, Clock, Heart, FileCheck, FileSpreadsheet, BookOpen, Video, ArrowRight, Building2, Truck, Users, Zap, Award, Headphones, X, TrendingUp, ShieldCheck, Smartphone } from "lucide-react";
+import { FileText, Settings, Play, CheckCircle, Upload, Download, Shield, Clock, Heart, FileCheck, FileSpreadsheet, BookOpen, Video, ArrowRight, Truck, Users, Zap, Award, Headphones, X, Smartphone } from "lucide-react";
 
-import { HeroSection, FAQSection, FinalCTA, TestimonialsSection, TimelineSection, ScreenshotSection, ProcessDiagram, ROICalculator } from "@/components/marketing";
+import { TimelineSection, ScreenshotSection, ProcessDiagram, ROICalculator } from "@/components/marketing";
+import { Eyebrow, RouteBackdrop } from "@/components/marketing/landing-ui";
+import { FaqTwoColumn } from "@/components/marketing/faq-two-column";
+import { StackedCards } from "@/components/ui/stacked-cards";
 import { comoFunciona } from "@/content/marketing";
 import { trackEvent, trackDemoClick, createScrollTracker } from "@/lib/analytics/track-events";
 import { cn } from "@/lib/utils";
 
 export function ComoFuncionaContent() {
     // Estado para controlar FAQs visíveis
-    const [showAllFaqs, setShowAllFaqs] = useState(false);
 
     // Estado para controle do sticky CTA mobile
     const [showStickyCTA, setShowStickyCTA] = useState(false);
 
     // Função para obter o próximo mês dinamicamente
-    const getNextMonth = () => {
-        const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-            "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-        const nextMonth = new Date();
-        nextMonth.setMonth(nextMonth.getMonth() + 1);
-        return months[nextMonth.getMonth()];
-    };
-
     // Scroll tracking para analytics
     useEffect(() => {
         const handleScroll = createScrollTracker([50, 75, 90]);
@@ -446,16 +441,43 @@ export function ComoFuncionaContent() {
 
     return (
         <>
-            <HeroSection
-                badge="Implantação em 4 semanas"
-                title="Economia de 30% comprovada, sem mudar de transportadora"
-                subtitle="Da análise à operação completa em 4 semanas. Descubra como empresas reduziram custos e eliminaram reclamações no RH com check-in digital e rotas otimizadas."
-                variant="split"
-                image={{
-                    src: "/images/dashboard-preview.png",
-                    alt: "Dashboard GOLF FOX - Gestão de fretamento em tempo real"
-                }}
-            />
+            {/* Hero (design Golf Fox) */}
+            <section className="font-archivo relative overflow-hidden bg-[#0B2440] text-white">
+                <Image
+                    src="/images/institucional/coach-rodovia.jpg"
+                    alt=""
+                    aria-hidden="true"
+                    fill
+                    priority
+                    sizes="100vw"
+                    className="object-cover opacity-[0.16]"
+                />
+                <RouteBackdrop withGlow animated />
+                <div className="relative mx-auto max-w-[900px] px-5 py-20 text-center sm:px-8 lg:py-28">
+                    <span className="mb-6 inline-flex text-xs font-bold uppercase tracking-[0.22em] text-[#FFB07A]">
+                        Como funciona
+                    </span>
+                    <motion.h1
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="text-[2.75rem] font-extrabold leading-[1.02] tracking-[-0.025em] text-balance sm:text-6xl lg:text-7xl"
+                    >
+                        Do diagnóstico à operação, <span className="text-[#FA6007]">em 3 fases.</span>
+                    </motion.h1>
+                    <p className="mx-auto mt-5 max-w-[620px] text-pretty text-lg leading-relaxed text-[#B7C6D8] sm:text-xl">
+                        Você não troca de transportadora. A Golf Fox entra como a camada de controle sobre os
+                        fornecedores que você já tem — e a implantação é rápida justamente por isso.
+                    </p>
+                    <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#8FA3B8]">
+                        <span className="gf-live-dot h-[7px] w-[7px] rounded-full bg-[#34D17E]" aria-hidden="true" />
+                        Sem trocar quem já transporta para você
+                    </div>
+                </div>
+                <svg viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true" className="block h-[54px] w-full">
+                    <path d="M0,70 L0,30 C360,70 1080,70 1440,30 L1440,70 Z" fill="#fff" />
+                </svg>
+            </section>
 
             {/* Métricas de Impacto */}
             <section className="py-12 bg-gray-50 border-b border-gray-100">
@@ -493,194 +515,105 @@ export function ComoFuncionaContent() {
                 </div>
             </section>
 
-            {/* Logos de Clientes */}
-            <section className="py-12 bg-white border-b border-gray-100">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-8">
-                        <p className="text-sm font-medium text-gray-500 uppercase tracking-wide">
-                            Empresas que confiam na GOLF FOX
-                        </p>
-                    </div>
-                    <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 max-w-4xl mx-auto">
-                        {[
-                            { name: "Indústria Farmacêutica", icon: Building2 },
-                            { name: "Varejista Nacional", icon: Building2 },
-                            { name: "Empresa de Logística", icon: Truck },
-                            { name: "Empresa de Grande Porte", icon: Building2 },
-                        ].map((client, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                                className="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-lg"
-                            >
-                                <client.icon className="w-5 h-5 text-gray-400" />
-                                <span className="text-sm font-medium text-gray-600">{client.name}</span>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* 3 Passos */}
-            <section className="py-16 lg:py-24 bg-white">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    {/* Título da seção */}
-                    <div className="text-center max-w-3xl mx-auto mb-16">
+            {/* 3 Fases (design Golf Fox) — stacked cards */}
+            <section className="font-archivo bg-[#F4F7FA] px-5 pt-20 sm:px-8 lg:pt-24">
+                <div className="mx-auto max-w-[1080px]">
+                    <div className="mx-auto max-w-[680px] text-center">
+                        <Eyebrow>O processo</Eyebrow>
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4"
+                            className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl"
                         >
-                            3 etapas para transformar seu fretamento
+                            Da análise à operação contínua, em 3 fases.
                         </motion.h2>
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
-                            className="text-lg text-gray-600"
-                        >
-                            Processo completo em 4 semanas, sem interromper sua operação
-                        </motion.p>
+                        <p className="mt-4 text-lg text-[#52647A]">
+                            Sem interromper sua operação — role para ver cada fase.
+                        </p>
                     </div>
 
-                    <div className="max-w-5xl mx-auto">
-                        {steps.map((step, index) => {
-                            const Icon = step.icon;
-                            return (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.15 }}
-                                    className="relative mb-16 last:mb-0"
-                                >
-                                    <div className="flex flex-col md:flex-row gap-8 items-start p-6 rounded-2xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                                        <div className="shrink-0">
-                                            <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-lg shadow-orange-500/25">
-                                                <span className="text-3xl font-bold text-white">{step.step}</span>
-                                            </div>
-                                        </div>
-                                        <div className="flex-1">
-                                            <div className="flex flex-wrap items-center gap-3 mb-3">
-                                                <Icon className="w-6 h-6 text-orange-500" />
-                                                <h3 className="text-2xl font-bold text-gray-900">{step.title}</h3>
-                                                {step.duration && (
-                                                    <span className="px-3 py-1 text-xs font-semibold bg-orange-100 text-orange-700 rounded-full">
-                                                        {step.duration}
-                                                    </span>
-                                                )}
-                                            </div>
-                                            <p className="text-lg text-gray-600 mb-6">{step.description}</p>
-
-                                            {/* Detalhes principais */}
-                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-                                                {step.details.map((detail, i) => (
-                                                    <div key={i} className="flex items-center gap-2 text-gray-700">
-                                                        <CheckCircle className="w-4 h-4 text-green-500 shrink-0" />
-                                                        {detail}
-                                                    </div>
-                                                ))}
-                                            </div>
-
-                                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                                                {/* Entregas */}
-                                                {step.deliverables && step.deliverables.length > 0 && (
-                                                    <div className="p-4 bg-white rounded-lg border border-gray-200">
-                                                        <h4 className="text-sm font-semibold text-gray-900 mb-2 uppercase tracking-wide flex items-center gap-2">
-                                                            <FileCheck className="w-4 h-4 text-orange-500" />
-                                                            Entregas
-                                                        </h4>
-                                                        <ul className="space-y-1">
-                                                            {step.deliverables.map((deliverable, i) => (
-                                                                <li key={i} className="text-sm text-gray-600 flex items-start gap-2">
-                                                                    <span className="text-orange-500 mt-1">•</span>
-                                                                    {deliverable}
-                                                                </li>
-                                                            ))}
-                                                        </ul>
-                                                    </div>
-                                                )}
-
-                                                {/* Tools utilizadas */}
-                                                {step.tools && step.tools.length > 0 && (
-                                                    <div className="p-4 bg-blue-50 rounded-lg border border-blue-100">
-                                                        <h4 className="text-sm font-semibold text-blue-900 mb-2 uppercase tracking-wide flex items-center gap-2">
-                                                            <Settings className="w-4 h-4 text-blue-500" />
-                                                            Tecnologias
-                                                        </h4>
-                                                        <ul className="space-y-1">
-                                                            {step.tools.map((tool, i) => (
-                                                                <li key={i} className="text-sm text-blue-700 flex items-start gap-2">
-                                                                    <span className="text-blue-500 mt-1">→</span>
-                                                                    {tool}
-                                                                </li>
-                                                            ))}
-                                                        </ul>
-                                                    </div>
-                                                )}
-                                            </div>
-
-                                            {/* Métricas */}
-                                            {step.metrics && step.metrics.length > 0 && (
-                                                <div className="mt-4 p-4 bg-orange-50 rounded-lg border border-orange-100">
-                                                    <h4 className="text-sm font-semibold text-orange-900 mb-2 uppercase tracking-wide">
-                                                        Resultados Esperados
-                                                    </h4>
-                                                    <ul className="space-y-1">
-                                                        {step.metrics.map((metric, i) => (
-                                                            <li key={i} className="text-sm text-orange-800 flex items-start gap-2">
-                                                                <span className="text-orange-600 mt-1">✓</span>
-                                                                {metric}
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                            )}
-                                        </div>
+                    <StackedCards
+                        items={steps.map((s) => ({ ...s, id: s.step }))}
+                        renderCard={(step) => (
+                            <div className="mx-auto max-w-4xl rounded-[28px] border border-[#1c3a5e] bg-[#0B2440] p-8 text-white shadow-[0_40px_90px_rgba(0,0,0,0.35)] sm:p-10">
+                                <div className="flex items-center gap-5">
+                                    <span className="font-display text-5xl font-black leading-none text-[#FA6007] sm:text-6xl">
+                                        {String(step.step).padStart(2, "0")}
+                                    </span>
+                                    <div>
+                                        <span className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#FFB07A]">
+                                            Fase {step.step}
+                                            {step.duration ? ` · ${step.duration}` : ""}
+                                        </span>
+                                        <h3 className="mt-1 text-2xl font-extrabold tracking-[-0.01em] sm:text-3xl">{step.title}</h3>
                                     </div>
-                                    {index < steps.length - 1 && (
-                                        <div className="hidden md:block absolute left-10 top-24 h-16 w-0.5 bg-gradient-to-b from-orange-300 to-transparent" />
+                                </div>
+                                <p className="mt-4 max-w-2xl text-[15.5px] leading-relaxed text-[#B7C6D8]">{step.description}</p>
+                                <div className="mt-7 grid gap-4 sm:grid-cols-3">
+                                    {step.deliverables && step.deliverables.length > 0 && (
+                                        <div className="rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                                            <h4 className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#FFB07A]">Entregas</h4>
+                                            <ul className="space-y-1.5">
+                                                {step.deliverables.map((d) => (
+                                                    <li key={d} className="flex items-start gap-2 text-[13px] leading-snug text-[#A9BACD]">
+                                                        <span className="mt-0.5 text-[#FA6007]" aria-hidden="true">•</span>
+                                                        {d}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
                                     )}
-                                </motion.div>
-                            );
-                        })}
-                    </div>
+                                    {step.tools && step.tools.length > 0 && (
+                                        <div className="rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                                            <h4 className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#7FB2D9]">Tecnologias</h4>
+                                            <ul className="space-y-1.5">
+                                                {step.tools.map((t) => (
+                                                    <li key={t} className="flex items-start gap-2 text-[13px] leading-snug text-[#A9BACD]">
+                                                        <span className="mt-0.5 text-[#7FB2D9]" aria-hidden="true">→</span>
+                                                        {t}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                    {step.metrics && step.metrics.length > 0 && (
+                                        <div className="rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                                            <h4 className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#7FE1A6]">Resultados</h4>
+                                            <ul className="space-y-1.5">
+                                                {step.metrics.map((m) => (
+                                                    <li key={m} className="flex items-start gap-2 text-[13px] leading-snug text-[#A9BACD]">
+                                                        <span className="mt-0.5 font-bold text-[#7FE1A6]" aria-hidden="true">✓</span>
+                                                        {m}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+                    />
 
                     {/* CTA Intermediário */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-center mt-16"
+                        className="mt-14 text-center"
                     >
-                        <p className="text-gray-600 mb-4">
-                            Quer ver uma demonstração do processo completo?
-                        </p>
+                        <p className="mb-4 text-[#52647A]">Quer ver uma demonstração do processo completo?</p>
                         <Link
                             href="/demo"
                             onClick={() => trackDemoClick('section')}
-                            className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-xl text-base font-semibold transition-all shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40"
+                            className="group inline-flex items-center gap-2 rounded-xl bg-[#D14600] px-8 py-4 text-base font-bold text-white shadow-[0_12px_30px_rgba(250,96,7,0.3)] transition-all duration-200 hover:bg-[#B03B00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B2440]"
                         >
                             Ver demonstração gratuita
-                            <ArrowRight size={18} className="group-hover:translate-x-0.5 transition-transform" />
+                            <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-0.5" />
                         </Link>
                     </motion.div>
                 </div>
             </section>
-
-            {/* Testimonials e Métricas */}
-            <TestimonialsSection
-                testimonials={comoFunciona.testimonials}
-                title="Resultados reais de clientes"
-                subtitle="Veja o que empresas como a sua conseguiram com a GOLF FOX"
-                variant="default"
-            />
 
             {/* Screenshots */}
             {screenshots.length > 0 && (
@@ -693,110 +626,42 @@ export function ComoFuncionaContent() {
                 />
             )}
 
-            {/* Métricas Agregadas */}
-            <section className="py-16 lg:py-24 bg-orange-600">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center max-w-3xl mx-auto mb-12">
+            {/* Impacto consolidado */}
+            <section className="font-archivo relative overflow-hidden bg-[#0B2440] px-5 py-20 text-white sm:px-8 lg:py-24">
+                <RouteBackdrop />
+                <div className="relative mx-auto max-w-[1100px]">
+                    <div className="mx-auto mb-14 max-w-[640px] text-center">
+                        <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#FFB07A]">
+                            Impacto consolidado
+                        </span>
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-3xl lg:text-4xl font-bold text-white mb-4"
+                            className="mt-5 text-balance text-[2rem] font-extrabold leading-[1.1] tracking-[-0.02em] sm:text-[2.6rem] lg:text-5xl"
                         >
-                            Impacto consolidado
+                            Resultados agregados dos clientes
                         </motion.h2>
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
-                            className="text-lg text-orange-100"
-                        >
-                            Resultados agregados de nossos clientes
-                        </motion.p>
                     </div>
-
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                    <div className="grid grid-cols-2 gap-y-12 lg:grid-cols-4">
                         {comoFunciona.metrics.map((metric, index) => (
                             <motion.div
                                 key={index}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                                className="text-center"
+                                transition={{ delay: index * 0.08 }}
+                                className="flex flex-col items-center px-4 text-center sm:px-6 lg:border-l lg:border-white/10 lg:first:border-l-0"
                             >
-                                <div className="text-4xl lg:text-5xl font-bold text-white mb-2">
+                                <div className="font-display text-[3.25rem] font-black leading-none tabular-nums text-[#FA6007] lg:text-6xl">
                                     {metric.value}
                                 </div>
-                                <div className="text-sm font-medium text-orange-100">
+                                <div className="mt-4 h-px w-8 bg-[#FA6007]/40" aria-hidden="true" />
+                                <div className="mt-4 max-w-[180px] text-sm leading-snug text-[#A9BACD] sm:text-[14.5px]">
                                     {metric.label}
                                 </div>
                             </motion.div>
                         ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Resultados Reais (Mini-Cases) */}
-            <section className="py-16 lg:py-24 bg-white border-b border-gray-100">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4"
-                        >
-                            Resultados Reais
-                        </motion.h2>
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
-                            className="text-lg text-gray-600"
-                        >
-                            Veja o impacto financeiro e operacional em operações reais
-                        </motion.p>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                        <motion.div
-                            whileHover={{ y: -5 }}
-                            className="p-8 rounded-2xl bg-white border border-gray-200 shadow-sm"
-                        >
-                            <div className="flex items-center gap-2 mb-4">
-                                <Building2 className="w-5 h-5 text-gray-400" />
-                                <span className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Indústria Farmacêutica</span>
-                            </div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-4">Redução de 22% no budget</h3>
-                            <p className="text-gray-600 mb-6 leading-relaxed">
-                                Em apenas 4 meses de operação, a otimização de rotas e ajuste de ocupação gerou uma economia direta de R$ 1.2M anual no contrato de fretamento de uma fábrica com 2.000 colaboradores.
-                            </p>
-                            <div className="flex items-center gap-2 text-green-600 font-bold bg-green-50 px-4 py-2 rounded-lg w-fit">
-                                <TrendingUp className="w-4 h-4" />
-                                <span>ROI em 3 meses</span>
-                            </div>
-                        </motion.div>
-
-                        <motion.div
-                            whileHover={{ y: -5 }}
-                            className="p-8 rounded-2xl bg-white border border-gray-200 shadow-sm"
-                        >
-                            <div className="flex items-center gap-2 mb-4">
-                                <Truck className="w-5 h-5 text-gray-400" />
-                                <span className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Varejo Logístico</span>
-                            </div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-4">Zero reclamações trabalhistas</h3>
-                            <p className="text-gray-600 mb-6 leading-relaxed">
-                                A implementação do registro de ponto via geofence eliminou as disputas sobre horas *in itinere*. O índice de pontualidade dos turnos subiu de 82% para 98% no primeiro mês.
-                            </p>
-                            <div className="flex items-center gap-2 text-blue-600 font-bold bg-blue-50 px-4 py-2 rounded-lg w-fit">
-                                <ShieldCheck className="w-4 h-4" />
-                                <span>Compliance 100%</span>
-                            </div>
-                        </motion.div>
                     </div>
                 </div>
             </section>
@@ -883,90 +748,82 @@ export function ComoFuncionaContent() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="max-w-4xl mx-auto"
+                        className="mx-auto mt-16 max-w-5xl"
                     >
-                        <div className="text-center mb-8">
-                            <h3 className="text-2xl font-bold text-gray-900 mb-2">Antes vs Depois</h3>
-                            <p className="text-gray-600">Veja a transformação na sua operação</p>
+                        <div className="mb-10 text-center">
+                            <Eyebrow>Transformação</Eyebrow>
+                            <h3 className="mt-5 text-[1.8rem] font-extrabold tracking-[-0.02em] text-[#0B2440] sm:text-4xl">
+                                Antes e depois da Golf Fox
+                            </h3>
+                            <p className="mt-3 text-lg text-[#52647A]">A diferença no dia a dia da sua operação.</p>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {/* Antes */}
-                            <div className="p-6 rounded-2xl bg-red-50 border-2 border-red-200">
-                                <h4 className="text-lg font-bold text-red-900 mb-4 flex items-center gap-2">
-                                    <span className="text-2xl">❌</span> Antes da GOLF FOX
+                        <div className="grid gap-6 md:grid-cols-2">
+                            {/* Sem a Golf Fox */}
+                            <div className="rounded-2xl border border-[#E2E6EC] bg-[#F1F3F6] p-7">
+                                <h4 className="mb-5 flex items-center gap-2.5 text-lg font-extrabold text-[#515C6B]">
+                                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#E2E6EC] text-[#8A93A0]">
+                                        <X className="h-4 w-4" aria-hidden="true" />
+                                    </span>
+                                    Sem a Golf Fox
                                 </h4>
-                                <ul className="space-y-2 text-sm text-red-800">
-                                    <li className="flex items-start gap-2">
-                                        <span>•</span>
-                                        <span>Planilhas Excel manuais (15-20 horas/semana)</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <span>•</span>
-                                        <span>Sem visibilidade em tempo real</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <span>•</span>
-                                        <span>Reclamações constantes no RH</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <span>•</span>
-                                        <span>Custos ocultos e sem controle</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <span>•</span>
-                                        <span>Risco trabalhista por falta de auditoria</span>
-                                    </li>
+                                <ul className="space-y-3.5">
+                                    {[
+                                        "Planilhas Excel manuais (15-20 horas/semana)",
+                                        "Sem visibilidade em tempo real",
+                                        "Reclamações constantes no RH",
+                                        "Custos ocultos e sem controle",
+                                        "Risco trabalhista por falta de auditoria",
+                                    ].map((t) => (
+                                        <li key={t} className="flex items-start gap-3 text-[15px] leading-snug text-[#515C6B]">
+                                            <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-[#E2E6EC]">
+                                                <X className="h-3 w-3 text-[#8A93A0]" aria-hidden="true" />
+                                            </span>
+                                            {t}
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
 
-                            {/* Depois */}
-                            <div className="p-6 rounded-2xl bg-green-50 border-2 border-green-200">
-                                <h4 className="text-lg font-bold text-green-900 mb-4 flex items-center gap-2">
-                                    <span className="text-2xl">✅</span> Depois da GOLF FOX
+                            {/* Com a Golf Fox */}
+                            <div className="rounded-2xl border border-[#FFD9BF] bg-white p-7 shadow-[0_18px_44px_rgba(11,36,64,0.12)]">
+                                <h4 className="mb-5 flex items-center gap-2.5 text-lg font-extrabold text-[#0B2440]">
+                                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#E6F7EE] text-[#1A8F52]">
+                                        <CheckCircle className="h-4 w-4" aria-hidden="true" />
+                                    </span>
+                                    Com a Golf Fox
                                 </h4>
-                                <ul className="space-y-2 text-sm text-green-800">
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
-                                        <span>Automação completa (0 horas manuais)</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
-                                        <span>Monitoramento em tempo real 24/7</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
-                                        <span>Redução de 40% em reclamações</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
-                                        <span>Economia de 30% em custos operacionais</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
-                                        <span>Auditoria completa e compliance total</span>
-                                    </li>
+                                <ul className="space-y-3.5">
+                                    {[
+                                        "Automação completa (0 horas manuais)",
+                                        "Monitoramento em tempo real 24/7",
+                                        "Redução de 40% em reclamações",
+                                        "Economia de 30% em custos operacionais",
+                                        "Auditoria completa e compliance total",
+                                    ].map((t) => (
+                                        <li key={t} className="flex items-start gap-3 text-[15px] font-medium leading-snug text-[#1F3147]">
+                                            <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-[#E6F7EE]">
+                                                <CheckCircle className="h-3 w-3 text-[#1A8F52]" aria-hidden="true" />
+                                            </span>
+                                            {t}
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
                         </div>
 
-                        {/* ROI Summary */}
-                        <div className="mt-8 p-6 rounded-2xl bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200">
-                            <div className="text-center">
-                                <h4 className="text-xl font-bold text-orange-900 mb-2">ROI Médio</h4>
-                                <div className="grid grid-cols-3 gap-4 mt-4">
-                                    <div>
-                                        <div className="text-3xl font-bold text-orange-600">30%</div>
-                                        <div className="text-sm text-orange-800">Redução de custos</div>
-                                    </div>
-                                    <div>
-                                        <div className="text-3xl font-bold text-orange-600">15h</div>
-                                        <div className="text-sm text-orange-800">Economia/semana</div>
-                                    </div>
-                                    <div>
-                                        <div className="text-3xl font-bold text-orange-600">3-6</div>
-                                        <div className="text-sm text-orange-800">Meses para ROI</div>
-                                    </div>
-                                </div>
+                        {/* ROI band */}
+                        <div className="mt-6 grid grid-cols-3 gap-4 rounded-2xl bg-[#0B2440] px-6 py-8 text-center text-white">
+                            <div>
+                                <div className="font-display text-4xl font-black tabular-nums text-[#FA6007] lg:text-5xl">30%</div>
+                                <div className="mt-2 text-[13px] text-[#A9BACD]">Redução de custos</div>
+                            </div>
+                            <div>
+                                <div className="font-display text-4xl font-black tabular-nums text-[#FA6007] lg:text-5xl">15h</div>
+                                <div className="mt-2 text-[13px] text-[#A9BACD]">Economia/semana</div>
+                            </div>
+                            <div>
+                                <div className="font-display text-4xl font-black tabular-nums text-[#FA6007] lg:text-5xl">3-6</div>
+                                <div className="mt-2 text-[13px] text-[#A9BACD]">Meses para ROI</div>
                             </div>
                         </div>
                     </motion.div>
@@ -1122,36 +979,12 @@ export function ComoFuncionaContent() {
             </section>
 
             {/* FAQ */}
-            <section className="py-16 lg:py-24 bg-gray-50">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <FAQSection
-                        faqs={showAllFaqs ? faqs : faqs.slice(0, 7)}
-                        title="Perguntas frequentes"
-                        subtitle="Tire suas dúvidas sobre implantação e funcionamento"
-                    />
-                    {faqs.length > 7 && !showAllFaqs && (
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            className="text-center mt-8"
-                        >
-                            <button
-                                onClick={() => {
-                                    setShowAllFaqs(true);
-                                    trackEvent({
-                                        event: 'faq_expand',
-                                        properties: { action: 'show_all' },
-                                    });
-                                }}
-                                className="text-orange-600 font-medium hover:text-orange-700 hover:underline"
-                            >
-                                Ver todas as {faqs.length} perguntas
-                            </button>
-                        </motion.div>
-                    )}
-                </div>
-            </section>
+            <FaqTwoColumn
+                title="Perguntas frequentes"
+                description="Tire suas dúvidas sobre implantação e funcionamento."
+                items={faqs.map((f) => ({ q: f.question, a: f.answer }))}
+                initialCount={4}
+            />
 
             {/* Garantias - com 3 principais destacadas */}
             <section className="py-16 lg:py-24 bg-white">
@@ -1516,61 +1349,6 @@ export function ComoFuncionaContent() {
                 </div>
             </section>
 
-            {/* CTA com badge de urgência e formulário */}
-            <section className="py-20 lg:py-24 relative overflow-hidden bg-gradient-to-br from-orange-500 via-orange-600 to-red-600">
-                {/* Decorative elements */}
-                <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-                <div className="absolute bottom-0 right-0 w-96 h-96 bg-black/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
-
-                <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="max-w-4xl mx-auto text-center">
-                        {/* Badge de urgência - dinâmico */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="mb-6"
-                        >
-                            <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-white/20 text-white border border-white/30 backdrop-blur-sm">
-                                <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse" />
-                                Vagas limitadas para implantação em {getNextMonth()}
-                            </span>
-                        </motion.div>
-                    </div>
-                </div>
-
-                {/* Formulário usando FinalCTA */}
-                <FinalCTA
-                    title="Pronto para transformar seu fretamento?"
-                    subtitle="Preencha o formulário e receba uma proposta personalizada em até 24 horas. Demonstração gratuita, sem compromisso."
-                    showForm={true}
-                    variant="gradient"
-                    className="py-0! bg-transparent!"
-                />
-
-                {/* Mini proof points */}
-                <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 mt-8">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="flex flex-wrap justify-center gap-6 text-white/70 text-sm"
-                    >
-                        <span className="flex items-center gap-2">
-                            <CheckCircle size={16} className="text-green-400" />
-                            Demonstração gratuita
-                        </span>
-                        <span className="flex items-center gap-2">
-                            <CheckCircle size={16} className="text-green-400" />
-                            Sem compromisso
-                        </span>
-                        <span className="flex items-center gap-2">
-                            <CheckCircle size={16} className="text-green-400" />
-                            Proposta em 24h
-                        </span>
-                    </motion.div>
-                </div>
-            </section>
 
             {/* Contador de empresas atendidas */}
             <section className="py-8 bg-gray-100 border-t border-gray-200 mb-16 md:mb-0">

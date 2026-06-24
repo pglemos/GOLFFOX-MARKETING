@@ -1,0 +1,152 @@
+/* ============================================================
+   GOLF FOX — Landing (home) animations & helpers
+   CSS separado do markup (antes era inline no export de design)
+   ============================================================ */
+
+/* Fontes da marca (carregadas via next/font no app/layout.tsx) */
+.font-archivo {
+  font-family: var(--font-archivo), system-ui, -apple-system, sans-serif;
+}
+
+/* Display = Archivo Black (par tipográfico com a Archivo do corpo). */
+.font-display {
+  font-family: var(--font-archivo-black), var(--font-archivo), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Linha de rota "viva" que percorre o traçado no mapa/hero */
+@keyframes gfDash {
+  to {
+    stroke-dashoffset: -240;
+  }
+}
+
+/* Pulso do indicador "AO VIVO" */
+@keyframes gfPulseDot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.7);
+  }
+}
+
+.gf-route-dash {
+  animation: gfDash 4s linear infinite;
+}
+
+.gf-live-dot {
+  animation: gfPulseDot 1.6s ease-in-out infinite;
+}
+
+/* Aurora de marca (navy + laranja + azul) — adaptado do efeito 21st.dev,
+   SEM os tons violeta/azul-IA. Camada decorativa, atrás de bandas escuras. */
+@keyframes gfAurora {
+  from {
+    background-position: 50% 50%, 50% 50%;
+  }
+  to {
+    background-position: 350% 50%, 350% 50%;
+  }
+}
+
+.gf-aurora {
+  position: absolute;
+  inset: -10%;
+  pointer-events: none;
+  opacity: 0.4;
+  filter: blur(44px);
+  background-image:
+    repeating-linear-gradient(100deg, #0b2440 0%, #0b2440 7%, transparent 10%, transparent 12%, #0b2440 16%),
+    repeating-linear-gradient(100deg, #fa6007 10%, #01557e 16%, #2e5a8f 22%, #fa8a4e 28%, #fa6007 34%);
+  background-size: 300%, 200%;
+  background-position: 50% 50%, 50% 50%;
+  -webkit-mask-image: radial-gradient(ellipse at 100% 0%, #000 10%, transparent 70%);
+  mask-image: radial-gradient(ellipse at 100% 0%, #000 10%, transparent 70%);
+  animation: gfAurora 60s linear infinite;
+}
+
+/* Versão "light": glow pastel (laranja/azul) sutil para seções brancas/claras. */
+.gf-aurora-light {
+  position: absolute;
+  inset: -15%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  filter: blur(64px);
+  background-image:
+    repeating-linear-gradient(100deg, #ffffff 0%, #ffffff 9%, transparent 12%, transparent 15%, #ffffff 19%),
+    repeating-linear-gradient(100deg, #ffd9bf 8%, #fa6007 15%, #e5eff5 22%, #cfe0f0 28%, #ffe1cc 35%);
+  background-size: 300%, 200%;
+  background-position: 50% 50%, 50% 50%;
+  -webkit-mask-image: radial-gradient(ellipse at 85% -10%, #000 5%, transparent 62%);
+  mask-image: radial-gradient(ellipse at 85% -10%, #000 5%, transparent 62%);
+  animation: gfAurora 70s linear infinite;
+}
+
+/* Aurora único de página: camada fixa atrás de tudo. Aparece nas áreas
+   transparentes/brancas; seções escuras (opacas) a cobrem naturalmente. */
+.gf-aurora-fixed {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  filter: blur(72px);
+  background-image:
+    repeating-linear-gradient(100deg, #ffffff 0%, #ffffff 9%, transparent 12%, transparent 15%, #ffffff 19%),
+    repeating-linear-gradient(100deg, #ffd9bf 8%, #fa6007 15%, #e5eff5 22%, #cfe0f0 28%, #ffe1cc 35%);
+  background-size: 300%, 200%;
+  background-position: 50% 50%, 50% 50%;
+  -webkit-mask-image: radial-gradient(ellipse at 78% 0%, #000 5%, transparent 78%);
+  mask-image: radial-gradient(ellipse at 78% 0%, #000 5%, transparent 78%);
+  animation: gfAurora 70s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gf-aurora,
+  .gf-aurora-light,
+  .gf-aurora-fixed {
+    animation: none;
+  }
+}
+
+/* "Liquid glass": superfície translúcida que deixa o aurora passar embaçado. */
+.gf-glass {
+  background-color: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(22px) saturate(150%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+}
+
+/* FAQ acordeão usando <details> nativo (sem JS) */
+details.gf-faq summary {
+  list-style: none;
+}
+
+details.gf-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+details.gf-faq .gf-chev {
+  transition: transform 0.22s ease;
+}
+
+details.gf-faq[open] .gf-chev {
+  transform: rotate(135deg);
+}
+
+details.gf-faq[open] {
+  border-color: #ffd9bf;
+  box-shadow: 0 10px 30px rgba(11, 36, 64, 0.08);
+}
+
+/* Respeita usuários que preferem menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  .gf-route-dash,
+  .gf-live-dot {
+    animation: none;
+  }
+}

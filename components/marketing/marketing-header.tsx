@@ -169,18 +169,6 @@ export function MarketingHeader() {
                     {/* Desktop CTAs */}
                     <div className="hidden lg:flex items-center gap-4">
                         <Link
-                            href="/login"
-                            className={cn(
-                                "text-sm font-medium transition-colors focus:outline-none focus:underline",
-                                headerIsLight
-                                    ? "text-gray-600 hover:text-gray-900"
-                                    : "text-white/80 hover:text-white"
-                            )}
-                        >
-                            Entrar
-                        </Link>
-
-                        <Link
                             href={ctas.primary.href}
                             onClick={handleDemoClick}
                             className="group relative inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
@@ -264,12 +252,6 @@ export function MarketingHeader() {
 
                             {/* CTAs Mobile */}
                             <div className="space-y-3 pt-4 border-t border-gray-100">
-                                <Link
-                                    href="/login"
-                                    className="block text-center px-4 py-3 text-sm font-medium text-gray-700 rounded-xl border border-gray-200 hover:bg-gray-50 transition-colors"
-                                >
-                                    Entrar
-                                </Link>
                                 <Link
                                     href={ctas.primary.href}
                                     onClick={handleDemoClick}

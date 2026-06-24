@@ -5,8 +5,10 @@ import { useState } from "react";
 import Link from "next/link";
 
 import { motion } from "framer-motion";
-import { Calendar, Clock, CheckCircle, ArrowRight } from "lucide-react";
+import { Calendar, Clock, CheckCircle } from "lucide-react";
 
+import { Eyebrow } from "@/components/marketing/landing-ui";
+import { SchedulingCalendar } from "@/components/marketing/scheduling-calendar";
 import { trackFormSubmit } from "@/lib/analytics/track-events";
 import { COMPANY_INFO } from "@/lib/constants/company-info";
 
@@ -15,6 +17,16 @@ function buildWhatsAppLink(phoneNumber: string, text?: string) {
     const base = `https://wa.me/${cleaned}`;
     if (!text) return base;
     return `${base}?text=${encodeURIComponent(text)}`;
+}
+
+// Máscara de telefone BR: (XX) XXXXX-XXXX — limita a 11 dígitos (DDD + 9).
+function formatPhone(value: string) {
+    const d = value.replace(/\D/g, "").slice(0, 11);
+    if (d.length === 0) return "";
+    if (d.length <= 2) return `(${d}`;
+    if (d.length <= 6) return `(${d.slice(0, 2)}) ${d.slice(2)}`;
+    if (d.length <= 10) return `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
+    return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
 }
 
 export function DemoContent() {
@@ -29,10 +41,12 @@ export function DemoContent() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [whatsAppHref, setWhatsAppHref] = useState<string>("");
+    const [submitError, setSubmitError] = useState<string>("");
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setSubmitError("");
 
         const messageLines = [
             "Olá! Gostaria de agendar uma demonstração da GOLF FOX.",
@@ -54,9 +68,37 @@ export function DemoContent() {
 
         setWhatsAppHref(href);
 
-        // Prefer new tab, but fall back to same tab if popups are blocked.
-        const opened = window.open(href, "_blank", "noopener,noreferrer");
-        if (!opened) window.location.href = href;
+        let response: Response;
+
+        try {
+            response = await fetch("/api/leads", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    ...formData,
+                    origem: "demo",
+                    metadata: {
+                        page: "/demo",
+                    },
+                }),
+            });
+        } catch {
+            setSubmitError(
+                "Não conseguimos registrar seus dados agora. Você ainda pode falar com a equipe pelo WhatsApp.",
+            );
+            setIsSubmitting(false);
+            return;
+        }
+
+        if (!response.ok) {
+            setSubmitError(
+                "Não conseguimos registrar seus dados agora. Você ainda pode falar com a equipe pelo WhatsApp.",
+            );
+            setIsSubmitting(false);
+            return;
+        }
 
         trackFormSubmit("demo");
         setIsSubmitted(true);
@@ -73,37 +115,30 @@ export function DemoContent() {
 
     if (isSubmitted) {
         return (
-            <section className="min-h-[70vh] flex items-center justify-center bg-gray-950 px-4">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="text-center max-w-md"
-                >
-                    <div className="w-20 h-20 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-6">
-                        <CheckCircle className="w-10 h-10 text-green-500" />
+            <section className="font-archivo bg-[#F4F7FA] px-5 py-24 sm:px-8 lg:py-32">
+                <div className="mx-auto max-w-[920px]">
+                    <div className="mx-auto mb-12 max-w-[680px] text-center">
+                        <Eyebrow tone="orange">Agenda</Eyebrow>
+                        <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.02em] text-[#0B2440] sm:text-4xl">
+                            {formData.name ? `Quase lá, ${formData.name.split(" ")[0]}!` : "Quase lá!"} Escolha o melhor horário
+                        </h2>
+                        <p className="mx-auto mt-4 max-w-[560px] text-pretty text-lg leading-relaxed text-[#52647A]">
+                            Selecione um dia e horário disponível para sua demonstração de 30 minutos. Sem compromisso.
+                        </p>
                     </div>
-                    <h2 className="text-3xl font-bold text-white mb-4">
-                        Quase pronto
-                    </h2>
-                    <p className="text-gray-400 mb-8">
-                        Abrimos o WhatsApp com sua solicitação preenchida. Se não abriu automaticamente, clique no botão abaixo.
+                    <SchedulingCalendar />
+                    <p className="mt-8 text-center text-sm text-[#52647A]">
+                        Prefere falar agora?{" "}
+                        <a
+                            href={whatsAppHref || COMPANY_INFO.whatsapp.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-bold text-[#D14600] hover:underline"
+                        >
+                            Abrir no WhatsApp
+                        </a>
                     </p>
-                    <a
-                        href={whatsAppHref || COMPANY_INFO.whatsapp.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center w-full px-6 py-4 rounded-xl bg-whatsapp text-white font-semibold hover:bg-whatsapp-hover transition-colors mb-6"
-                    >
-                        Abrir WhatsApp
-                    </a>
-                    <Link
-                        href="/"
-                        className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 font-medium"
-                    >
-                        Voltar para o site
-                        <ArrowRight className="w-4 h-4" />
-                    </Link>
-                </motion.div>
+                </div>
             </section>
         );
     }
@@ -219,8 +254,10 @@ export function DemoContent() {
                                         </label>
                                         <input
                                             type="tel"
+                                            inputMode="tel"
+                                            maxLength={15}
                                             value={formData.phone}
-                                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                            onChange={(e) => setFormData({ ...formData, phone: formatPhone(e.target.value) })}
                                             className="w-full px-4 py-3 rounded-xl bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors"
                                             placeholder="(00) 00000-0000"
                                         />
@@ -265,6 +302,20 @@ export function DemoContent() {
                             >
                                 {isSubmitting ? "Enviando..." : "Agendar demonstração"}
                             </button>
+
+                            {submitError ? (
+                                <p className="mt-4 text-center text-sm text-red-300">
+                                    {submitError}{" "}
+                                    <a
+                                        href={whatsAppHref || COMPANY_INFO.whatsapp.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="font-semibold text-orange-400 hover:underline"
+                                    >
+                                        Abrir WhatsApp
+                                    </a>
+                                </p>
+                            ) : null}
 
                             <p className="text-xs text-gray-500 text-center mt-4">
                                 Ao enviar, você concorda com nossa{" "}
