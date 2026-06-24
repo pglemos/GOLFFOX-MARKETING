@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  images: {
+    reactStrictMode: true,
+    assetPrefix: "/marketing-static",
+    images: {
     remotePatterns: [
       {
         protocol: "https",
