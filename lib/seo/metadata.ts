@@ -11,28 +11,12 @@ const SITE_URL = 'https://golffox.com.br';
 const SITE_NAME = 'GOLF FOX';
 const DEFAULT_DESCRIPTION = 'GOLF FOX é a Torre de Controle do Fretamento Corporativo: planejamento, operação em tempo real, controle de embarque, custos, auditoria, relatórios e governança.';
 const IS_PRODUCTION = process.env.VERCEL_ENV === 'production' || process.env.NODE_ENV === 'production';
-const OG_IMAGE_MAP: Record<string, string> = {
-    '/': '/og/home.png',
-    '/produto': '/og/produto.png',
-    '/produto/portal-empresa': '/og/produto-portal-empresa.png',
-    '/produto/portal-transportadora': '/og/produto-portal-transportadora.png',
-    '/produto/app-motorista': '/og/produto-app-motorista.png',
-    '/produto/app-passageiro': '/og/produto-app-passageiro.png',
-    '/como-funciona': '/og/como-funciona.png',
-    '/como-operamos': '/og/como-operamos.png',
-    '/recursos': '/og/recursos.png',
-    '/planos': '/og/planos.png',
-    '/cases': '/og/cases.png',
-    '/demo': '/og/demo.png',
-    '/seguranca-lgpd': '/og/seguranca-lgpd.png',
-    '/integracoes': '/og/integracoes.png',
-    '/faq': '/og/faq.png',
-    '/status': '/og/status.png',
-    '/documentacao': '/og/documentacao.png',
-    '/privacidade': '/og/privacidade.png',
-    '/terms': '/og/termos.png',
-    '/sobre': '/og/sobre.png',
-};
+
+/** OG dinâmica: gera a miniatura no padrão da marca com o título/descrição da página. */
+function buildOgImage(title: string, description: string) {
+    const params = new URLSearchParams({ title, subtitle: description });
+    return `/api/og?${params.toString()}`;
+}
 
 export interface PageSEOConfig {
     title: string;
@@ -58,7 +42,7 @@ export function generatePageMetadata(config: PageSEOConfig): Metadata {
 
     const fullTitle = `${title} | ${SITE_NAME}`;
     const url = `${SITE_URL}${path}`;
-    const resolvedOgImage = ogImage ?? OG_IMAGE_MAP[path] ?? '/og-image.png';
+    const resolvedOgImage = ogImage ?? buildOgImage(title, description);
     const robotsValue = !IS_PRODUCTION || noIndex ? 'noindex, nofollow' : 'index, follow';
 
     const defaultKeywords = [

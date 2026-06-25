@@ -50,6 +50,21 @@ const iconMap: Record<string, LucideIcon> = {
     relatorios: BarChart3,
 };
 
+// Entrada blur-in em mola (mesmo padrão de segurança/planos), só para a animação de aparição.
+const blurIn = {
+    hidden: { opacity: 0, filter: "blur(12px)", y: 12 },
+    visible: {
+        opacity: 1,
+        filter: "blur(0px)",
+        y: 0,
+        transition: { type: "spring" as const, bounce: 0.3, duration: 1.2 },
+    },
+};
+
+const blurStagger = {
+    visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+};
+
 export function RecursosContent() {
     const [selectedCategory, setSelectedCategory] = useState("all");
     const [selectedProfile, setSelectedProfile] = useState("all");
@@ -284,18 +299,23 @@ export function RecursosContent() {
             {/* Hero (design Golf Fox) */}
             <section className="font-archivo relative overflow-hidden bg-[#0B2440] text-white">
                 <RouteBackdrop withGlow animated />
-                <div className="relative mx-auto max-w-[900px] px-5 pt-20 text-center sm:px-8 lg:pt-28">
-                    <span className="mb-6 inline-flex text-xs font-bold uppercase tracking-[0.22em] text-[#FFB07A]">
+                <motion.div
+                    initial="hidden"
+                    animate="visible"
+                    variants={blurStagger}
+                    className="relative mx-auto max-w-[900px] px-5 pt-20 text-center sm:px-8 lg:pt-28"
+                >
+                    <motion.span variants={blurIn} className="mb-6 inline-flex text-xs font-bold uppercase tracking-[0.22em] text-[#FFB07A]">
                         Recursos
-                    </span>
-                    <h1 className="text-balance text-[2.75rem] font-extrabold leading-[1.02] tracking-[-0.025em] sm:text-6xl lg:text-7xl">
+                    </motion.span>
+                    <motion.h1 variants={blurIn} className="text-balance text-[2.75rem] font-extrabold leading-[1.02] tracking-[-0.025em] sm:text-6xl lg:text-7xl">
                         Tudo que sua operação precisa, <span className="text-[#FA6007]">num lugar só</span>.
-                    </h1>
-                    <p className="mx-auto mt-5 max-w-[620px] text-pretty text-lg leading-relaxed text-[#B7C6D8] sm:text-xl">
+                    </motion.h1>
+                    <motion.p variants={blurIn} className="mx-auto mt-5 max-w-[620px] text-pretty text-lg leading-relaxed text-[#B7C6D8] sm:text-xl">
                         Inteligência para planejar, precisão para executar e governança para escalar — a
                         biblioteca completa de ferramentas da Golf Fox.
-                    </p>
-                    <div className="mt-9 flex justify-center">
+                    </motion.p>
+                    <motion.div variants={blurIn} className="mt-9 flex justify-center">
                         <Link
                             href="/demo"
                             className="group inline-flex min-h-[44px] items-center gap-2.5 rounded-xl bg-[#D14600] px-7 py-4 text-base font-bold text-white shadow-[0_12px_30px_rgba(250,96,7,0.36)] transition-all duration-200 hover:bg-[#B03B00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
@@ -303,10 +323,15 @@ export function RecursosContent() {
                             Agendar demonstração
                             <ArrowRight className="h-[18px] w-[18px] transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
                         </Link>
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
                 {/* Screenshot inclinado em 3D */}
-                <div className="relative mx-auto mt-14 max-w-7xl px-6 [mask-image:linear-gradient(to_bottom,#000_55%,transparent_100%)]">
+                <motion.div
+                    initial={{ opacity: 0, filter: "blur(12px)", y: 12 }}
+                    animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                    transition={{ type: "spring", bounce: 0.3, duration: 1.2, delay: 0.5 }}
+                    className="relative mx-auto mt-14 max-w-7xl px-6 [mask-image:linear-gradient(to_bottom,#000_55%,transparent_100%)]"
+                >
                     <div className="[perspective:1200px]">
                         <div className="mx-auto max-w-5xl [transform:rotateX(22deg)]">
                             <div className="overflow-hidden rounded-t-2xl border border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.5)]">
@@ -321,7 +346,7 @@ export function RecursosContent() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </section>
 
             {/* Navegue por Impacto - Nova Seção de Hierarquia */}
