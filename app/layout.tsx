@@ -63,8 +63,16 @@ export default function RootLayout({
         {children}
         {isVercelRuntime ? (
           <>
-            <Analytics />
-            <SpeedInsights />
+            <Analytics
+              scriptSrc="/_vercel/insights/script.js"
+              viewEndpoint="/_vercel/insights/view"
+              eventEndpoint="/_vercel/insights/event"
+              sessionEndpoint="/_vercel/insights/session"
+            />
+            <SpeedInsights
+              scriptSrc="/_vercel/speed-insights/script.js"
+              endpoint="/_vercel/speed-insights/vitals"
+            />
           </>
         ) : null}
       </body>
