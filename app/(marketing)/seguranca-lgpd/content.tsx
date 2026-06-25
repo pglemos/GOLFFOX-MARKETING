@@ -1,11 +1,8 @@
 "use client";
 
-import Link from "next/link";
-
-import { motion } from "framer-motion";
+import { MotionConfig, motion } from "framer-motion";
 import {
     CheckCircle,
-    ExternalLink,
     Award,
     FileLock,
     Shield,
@@ -14,7 +11,11 @@ import {
     Server,
 } from "lucide-react";
 
-import { HeroSection, FAQSection, FinalCTA } from "@/components/marketing";
+import { AppWindowCard } from "@/components/marketing/app-window-card";
+import { FaqTwoColumn } from "@/components/marketing/faq-two-column";
+import { FinalCTA } from "@/components/marketing";
+
+import { SegurancaHero } from "./seguranca-hero";
 
 export function SegurancaContent() {
     const pillars = [
@@ -69,36 +70,32 @@ export function SegurancaContent() {
 
     const faqs = [
         {
-            question: "A GOLF FOX atende à LGPD?",
-            answer: "Sim. Implementamos todos os controles exigidos pela Lei Geral de Proteção de Dados, garantindo o ciclo completo de vida do dado com segurança e transparência.",
+            q: "A GOLF FOX atende à LGPD?",
+            a: "Sim. Implementamos todos os controles exigidos pela Lei Geral de Proteção de Dados, garantindo o ciclo completo de vida do dado com segurança e transparência.",
         },
         {
-            question: "Onde os dados são armazenados?",
-            answer: "Utilizamos infraestrutura AWS (Amazon Web Services) no Brasil. Isso garante menor latência e total conformidade com a soberania de dados nacional.",
+            q: "Onde os dados são armazenados?",
+            a: "Utilizamos infraestrutura AWS (Amazon Web Services) no Brasil. Isso garante menor latência e total conformidade com a soberania de dados nacional.",
         },
         {
-            question: "Como funciona o audit log?",
-            answer: "Cada clique ou alteração gera uma evidência digital imutável. Registramos o ID do usuário, o IP, o timestamp preciso e o estado anterior/posterior do dado.",
+            q: "Como funciona o audit log?",
+            a: "Cada clique ou alteração gera uma evidência digital imutável. Registramos o ID do usuário, o IP, o timestamp preciso e o estado anterior/posterior do dado.",
         },
         {
-            question: "Qual o nível de disponibilidade (SLA)?",
-            answer: "Garantimos 99.9% de uptime contratual, suportado por uma arquitetura multizona com auto-scaling e failover automático.",
+            q: "Qual o nível de disponibilidade (SLA)?",
+            a: "Garantimos 99.9% de uptime contratual, suportado por uma arquitetura multizona com auto-scaling e failover automático.",
         },
     ];
 
     return (
-        <>
+        <MotionConfig reducedMotion="user">
             {/* Hero */}
-            <HeroSection
-                badge="Segurança & Governança"
-                title="Seus dados protegidos"
-                subtitle="Segurança em camadas, conformidade LGPD, audit log completo e transparência total na operação."
-                variant="centered"
-            />
+            <SegurancaHero />
 
             {/* Pillars */}
-            <section className="py-16 lg:py-24 bg-white">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <section className="relative overflow-hidden py-16 lg:py-24 bg-white">
+                <div className="gf-aurora-light" aria-hidden="true" />
+                <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
@@ -120,27 +117,23 @@ export function SegurancaContent() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {pillars.map((pillar, index) => {
-                            const Icon = pillar.icon;
-                            return (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1 }}
-                                    className="p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:border-blue-200 hover:shadow-lg transition-all group"
-                                >
-                                    <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 group-hover:bg-blue-100 transition-colors">
-                                        <Icon size={24} />
-                                    </div>
-                                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                                        {pillar.title}
-                                    </h3>
-                                    <p className="text-sm text-gray-600">{pillar.description}</p>
-                                </motion.div>
-                            );
-                        })}
+                        {pillars.map((pillar, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1 }}
+                                className="h-full"
+                            >
+                                <AppWindowCard
+                                    icon={pillar.icon}
+                                    title={pillar.title}
+                                    description={pillar.description}
+                                    label={`0${index + 1} · Segurança`}
+                                />
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
             </section>
@@ -161,31 +154,29 @@ export function SegurancaContent() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                        {certifications.map((cert, index) => {
-                            const Icon = cert.icon;
-                            return (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1 }}
-                                    className="p-8 rounded-2xl bg-white border border-gray-200 shadow-sm text-center"
-                                >
-                                    <div className="w-14 h-14 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-6">
-                                        <Icon size={28} />
-                                    </div>
-                                    <h3 className="text-xl font-bold text-gray-900 mb-3">{cert.title}</h3>
-                                    <p className="text-sm text-gray-600 mb-6">{cert.description}</p>
-                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-50 text-green-700 border border-green-100">
-                                        {cert.status}
-                                    </span>
-                                </motion.div>
-                            );
-                        })}
+                        {certifications.map((cert, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1 }}
+                                className="h-full"
+                            >
+                                <AppWindowCard
+                                    icon={cert.icon}
+                                    title={cert.title}
+                                    description={cert.description}
+                                    stat={cert.status}
+                                    label="Compliance"
+                                />
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
             </section>
+
+            {/* LGPD */}
             <section className="py-16 lg:py-24 bg-gray-950">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -213,69 +204,42 @@ export function SegurancaContent() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.1 }}
-                                className="text-lg text-gray-400 mb-8"
+                                className="text-lg text-gray-400"
                             >
                                 A GOLF FOX implementa todos os controles exigidos pela LGPD para garantir a proteção dos dados pessoais dos seus colaboradores e parceiros.
                             </motion.p>
-
-                            <Link
-                                href="/trust-center"
-                                className="inline-flex items-center gap-2 text-orange-400 hover:text-orange-300 font-semibold transition-colors"
-                            >
-                                Acesse o Trust Center
-                                <ExternalLink size={16} />
-                            </Link>
                         </div>
 
-                        <motion.div
+                        <motion.ul
+                            role="list"
                             initial={{ opacity: 0, x: 20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             className="grid grid-cols-1 sm:grid-cols-2 gap-4"
                         >
                             {lgpdItems.map((item, index) => (
-                                <div
+                                <li
                                     key={index}
                                     className="flex items-start gap-3 p-4 rounded-xl bg-gray-900 border border-gray-800"
                                 >
-                                    <CheckCircle size={18} className="text-green-500 mt-0.5 flex-shrink-0" />
+                                    <CheckCircle size={18} aria-hidden="true" className="text-green-500 mt-0.5 flex-shrink-0" />
                                     <span className="text-sm text-gray-300">{item}</span>
-                                </div>
+                                </li>
                             ))}
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Trust Center CTA */}
-            <section className="py-16 bg-blue-600">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                        <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
-                                <Shield className="w-6 h-6 text-white" />
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-semibold text-white">Trust Center</h3>
-                                <p className="text-blue-100">Documentação completa de segurança e compliance</p>
-                            </div>
-                        </div>
-                        <Link
-                            href="/trust-center"
-                            className="inline-flex items-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-colors"
-                        >
-                            Acessar Trust Center
-                            <ExternalLink size={16} />
-                        </Link>
+                        </motion.ul>
                     </div>
                 </div>
             </section>
 
             {/* FAQ */}
-            <FAQSection faqs={faqs} />
+            <FaqTwoColumn
+                title="Perguntas frequentes"
+                description="Tire suas dúvidas sobre segurança, privacidade e conformidade da plataforma."
+                items={faqs}
+            />
 
             {/* Final CTA */}
             <FinalCTA variant="dark" />
-        </>
+        </MotionConfig>
     );
 }
