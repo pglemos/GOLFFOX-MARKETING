@@ -7,82 +7,94 @@ import Link from "next/link";
 
 import { MotionConfig, motion } from "framer-motion";
 import {
-    TrendingUp,
-    Truck,
     Headphones,
-    Handshake,
     FileCheck,
     Award,
     ArrowRight,
     Check,
+    AlertTriangle,
+    BarChart3,
+    Wallet,
 } from "lucide-react";
 
 import { Eyebrow, RouteBackdrop } from "@/components/marketing/landing-ui";
 import { FaqTwoColumn } from "@/components/marketing/faq-two-column";
 import { CardStack } from "@/components/ui/card-stack";
 
-const BENEFITS = [
+// Predicado que troca depois de "A Golf Fox ___" — frase inteira animada.
+const HERO_ROTATING = [
+    "acende a luz.",
+    "mostra a rota.",
+    "controla a frota.",
+    "revela a margem.",
+];
+
+const PAINS = [
+    "O ônibus atrasou e você foi o último a saber. O cliente, o primeiro.",
+    "A CNH do motorista venceu e virou risco trabalhista dentro do seu contrato.",
+    "O contratante pediu relatório de pontualidade e você não tinha nenhum pra mostrar.",
+];
+
+// SEÇÃO VIRADA — os 3 cards de prova.
+const TURN_CARDS = [
     {
-        icon: TrendingUp,
-        title: "Blindagem de Margem",
+        icon: FileCheck,
+        title: "Documentação que não vira multa.",
         description:
-            "Chega de rodar no prejuízo. Visualize o DRE de cada contrato em tempo real. Identifique rotas deficitárias e veículos ociosos antes que eles queimem seu caixa.",
-        stat: "+15% lucratividade",
+            "Alerta de CNH, licença e seguro antes de vencer. Você não perde mais contrato por papel atrasado.",
     },
     {
-        icon: Handshake,
-        title: "Venda Mais",
+        icon: BarChart3,
+        title: "Relatório que renova contrato.",
         description:
-            "Empresas grandes exigem compliance. Com o selo GOLF FOX, você prova auditoria e segurança, vencendo concorrências contra amadores.",
-        stat: "Diferencial Competitivo",
+            "Pontualidade, ocupação e histórico de cada rota, prontos pra mostrar pro contratante. A prova de que você entrega.",
     },
     {
-        icon: Truck,
-        title: "Inteligência de Frota",
+        icon: Wallet,
+        title: "Margem que você enxerga.",
         description:
-            "Manutenção preditiva que funciona. O sistema avisa quando peças precisam de troca baseado na KM real, evitando quebras inesperadas em rota.",
-        stat: "-20% corretivas",
+            "Veja rota ociosa, assento vazio e hora extra antes de virar prejuízo. Onde tem desperdício, tem lucro parado.",
     },
 ];
 
 const SUPPORT_FEATURES = [
     {
         icon: Headphones,
-        title: "Suporte Operacional Dedicado",
-        description:
-            "Não somos apenas um software. Temos um time de especialistas em tráfego para ajudar a otimizar suas rotas.",
+        title: "Suporte que conhece transporte.",
+        description: "Time que veio da operação, não de TI. A gente fala a sua língua.",
     },
     {
         icon: FileCheck,
-        title: "Consultoria Jurídica e Fiscal",
+        title: "Apoio com documentação e contrato.",
         description:
-            "Modelos de contrato e apoio na regularização de documentos para você blindar sua operação.",
+            "Modelos e orientação pra profissionalizar sua relação com o contratante.",
     },
     {
         icon: Award,
-        title: "Clube de Vantagens",
+        title: "Rede de vantagens.",
         description:
-            "Descontos exclusivos em pneus, combustível e peças através da nossa rede de parceiros homologados.",
+            "Condição em pneu, combustível e peças através da nossa rede de parceiros.",
     },
 ];
 
 const FAQS = [
     {
-        q: "Como o sistema me ajuda a conseguir novos clientes?",
-        a: "A GOLF FOX cria um perfil verificado da sua transportadora que é visível para grandes empresas contratantes na nossa plataforma, funcionando como um canal de vendas passivo.",
+        q: "Quanto custa?",
+        a: "O plano é montado pra realidade da sua operação: número de veículos, rotas e o que você precisa monitorar. Por isso o valor é definido numa conversa rápida, sem pacote engessado. Agende uma demonstração e a gente monta a proposta certa pra sua transportadora.",
     },
     {
-        q: "Consigo controlar motoristas terceiros?",
-        a: "Sim. O App do Motorista funciona para agregados e terceiros, garantindo que você tenha a mesma visibilidade e controle de qualidade da frota própria.",
+        q: "Preciso trocar meu sistema atual?",
+        a: "Não. A Golf Fox entra por cima do que você já usa, sem parar sua operação.",
     },
     {
-        q: "O sistema emite alertas de manutenção?",
-        a: "Sim. Você configura os planos de manutenção (óleo, pneus, filtros) e o sistema dispara alertas automáticos baseados na telemetria e KM rodados.",
+        q: "Meus motoristas vão resistir ao app?",
+        a: "O check-in é por QR Code, sem treino longo. Em uma semana vira rotina.",
+    },
+    {
+        q: "Isso me ajuda a fechar e manter contrato?",
+        a: "Sim. Você passa a oferecer pro contratante a visibilidade que a concorrência não tem, e profissionaliza sua proposta comercial. É o que decide quando você não é o mais barato.",
     },
 ];
-
-// Mantidas curtas (<= 14 caracteres com espaço) para não cortar no text-7xl.
-const HERO_ROTATING = ["Performance", "Margem Real", "Controle", "Dados Reais"];
 
 export function PortalTransportadoraContent() {
     const [rotIndex, setRotIndex] = useState(0);
@@ -112,22 +124,23 @@ export function PortalTransportadoraContent() {
                     <div className="relative mx-auto grid max-w-[1140px] items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-2 lg:gap-16 lg:py-28">
                         <div>
                             <span className="mb-6 inline-flex text-xs font-bold uppercase tracking-[0.22em] text-[#FFB07A]">
-                                Para Operadores Logísticos
+                                Para transportadoras de fretamento
                             </span>
                             <motion.h1
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5 }}
-                                className="text-balance text-[2.75rem] font-extrabold leading-[1.02] tracking-[-0.025em] sm:text-6xl lg:text-7xl"
+                                className="text-balance text-[2.5rem] font-extrabold leading-[1.04] tracking-[-0.025em] sm:text-5xl lg:text-6xl"
                             >
-                                Transforme sua Transportadora em uma Operação de
-                                <span className="relative mt-1 flex h-[1.18em] overflow-hidden text-[#FA6007]">
+                                Sua transportadora roda no escuro.{" "}
+                                <span className="text-[#FA6007]">A Golf Fox</span>
+                                <span className="relative mt-1 block h-[1.2em] overflow-hidden text-[#FA6007]">
                                     {HERO_ROTATING.map((w, i) => (
                                         <motion.span
                                             key={w}
                                             aria-hidden={rotIndex !== i}
-                                            className="absolute left-0 whitespace-nowrap"
-                                            initial={{ opacity: 0, y: "-110%" }}
+                                            className="absolute left-0 top-0 whitespace-nowrap"
+                                            initial={false}
                                             animate={
                                                 rotIndex === i
                                                     ? { y: "0%", opacity: 1 }
@@ -140,16 +153,18 @@ export function PortalTransportadoraContent() {
                                     ))}
                                 </span>
                             </motion.h1>
-                            <p className="mt-5 max-w-[560px] text-pretty text-lg leading-relaxed text-[#B7C6D8] sm:text-xl">
-                                Deixe de ser apenas um fornecedor de ônibus. Torne-se um parceiro
-                                estratégico com dados, auditoria e margem garantida.
+                            <p className="mt-6 max-w-[580px] text-pretty text-lg leading-relaxed text-[#B7C6D8] sm:text-xl">
+                                Monitore cada rota, controle a documentação dos motoristas e mostre pro
+                                seu cliente, em tempo real, que o serviço está sendo entregue como
+                                prometido. A plataforma que transforma sua transportadora no fornecedor
+                                que o contratante não quer perder.
                             </p>
                             <div className="mt-9 flex flex-wrap gap-3.5">
                                 <Link
                                     href="/demo"
                                     className="group inline-flex min-h-[44px] items-center gap-2.5 rounded-xl bg-[#D14600] px-7 py-4 text-base font-bold text-white shadow-[0_12px_30px_rgba(250,96,7,0.36)] transition-all duration-200 hover:bg-[#B03B00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                                 >
-                                    Agendar demonstração
+                                    Quero monitorar minha frota
                                     <ArrowRight
                                         className="h-[18px] w-[18px] transition-transform duration-200 group-hover:translate-x-0.5"
                                         aria-hidden="true"
@@ -168,8 +183,18 @@ export function PortalTransportadoraContent() {
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
-                            className="w-full"
+                            className="relative w-full"
                         >
+                            {/* selo "Ao vivo" pulsando */}
+                            <div className="absolute right-4 top-4 z-10 inline-flex items-center gap-2 rounded-full bg-[#0B2440]/85 px-3 py-1.5 text-xs font-bold text-white shadow-lg backdrop-blur-md">
+                                <motion.span
+                                    className="h-2 w-2 rounded-full bg-[#3FD17B]"
+                                    animate={{ opacity: [1, 0.3, 1], scale: [1, 0.85, 1] }}
+                                    transition={{ duration: 1.6, repeat: Infinity }}
+                                    aria-hidden="true"
+                                />
+                                Ao vivo
+                            </div>
                             <div className="overflow-hidden rounded-[20px] border border-white/10 bg-[#0E2C4D] shadow-[0_24px_60px_rgba(0,0,0,0.4)]">
                                 <div className="flex items-center gap-1.5 px-4 py-3">
                                     <span className="h-2.5 w-2.5 rounded-full bg-white/25" aria-hidden="true" />
@@ -196,31 +221,80 @@ export function PortalTransportadoraContent() {
                     </svg>
                 </section>
 
-                {/* ===================== BENEFÍCIOS ===================== */}
-                <section className="relative overflow-hidden bg-white px-5 py-16 sm:px-8 lg:py-20">
+                {/* ===================== DOR ===================== */}
+                <section className="bg-white px-5 py-16 sm:px-8 lg:py-24">
+                    <div className="mx-auto max-w-[1140px]">
+                        <div className="mx-auto mb-12 max-w-[720px] text-center">
+                            <Eyebrow>O que tira seu sono</Eyebrow>
+                            <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">
+                                Você só descobre o problema quando o cliente liga.
+                            </h2>
+                        </div>
+
+                        <div className="grid gap-6 md:grid-cols-3">
+                            {PAINS.map((pain, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.08 }}
+                                    className="flex h-full flex-col gap-4 rounded-2xl border border-[#F0D9CC] bg-[#FFF7F2] p-7"
+                                >
+                                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#FCE3D6] text-[#D14600]">
+                                        <AlertTriangle className="h-6 w-6" aria-hidden="true" />
+                                    </span>
+                                    <p className="text-[17px] font-semibold leading-relaxed text-[#2A3D52]">
+                                        {pain}
+                                    </p>
+                                </motion.div>
+                            ))}
+                        </div>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="mx-auto mt-10 max-w-[860px] rounded-2xl bg-[#0B2440] px-8 py-7 text-center"
+                        >
+                            <p className="text-balance text-lg font-semibold leading-relaxed text-white sm:text-xl">
+                                Cada uma dessas é um contrato em risco. Monitoramento parou de ser
+                                diferencial.{" "}
+                                <span className="text-[#FFB07A]">
+                                    Virou exigência de quem contrata.
+                                </span>
+                            </p>
+                        </motion.div>
+                    </div>
+                </section>
+
+                {/* ===================== VIRADA ===================== */}
+                <section className="relative overflow-hidden bg-[#F4F7FA] px-5 py-16 sm:px-8 lg:py-24">
                     <div className="gf-aurora-light" aria-hidden="true" />
                     <div className="pointer-events-none absolute inset-0 opacity-60">
                         <RouteBackdrop />
                     </div>
                     <div className="relative z-10 mx-auto max-w-[1140px]">
-                        <div className="mx-auto mb-10 max-w-[680px] text-center">
-                            <Eyebrow>Cresça com rentabilidade</Eyebrow>
+                        <div className="mx-auto mb-10 max-w-[760px] text-center">
+                            <Eyebrow>A virada</Eyebrow>
                             <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">
-                                Cresça com rentabilidade
+                                O que faz o cliente escolher você mesmo sem ser o mais barato.
                             </h2>
                             <p className="mt-4 text-pretty text-lg leading-relaxed text-[#52647A]">
-                                Ferramentas desenhadas não apenas para controlar, mas para alavancar o
-                                seu negócio.
+                                A maioria das transportadoras compete só no preço, porque o contratante
+                                não enxerga diferença entre elas. A Golf Fox te dá a prova que mostra a
+                                diferença: rota ao vivo, documentação em dia e relatório com o nome do
+                                seu cliente. O motivo pra ele escolher você mesmo quando aparece alguém
+                                mais barato.
                             </p>
                         </div>
 
                         <div className="-mx-5 px-5 sm:-mx-8 sm:px-8">
                             <CardStack
-                                items={BENEFITS.map((b, i) => ({
+                                items={TURN_CARDS.map((b, i) => ({
                                     id: i,
                                     title: b.title,
                                     description: b.description,
-                                    tag: b.stat,
                                     icon: b.icon,
                                 }))}
                                 cardWidth={400}
@@ -231,7 +305,7 @@ export function PortalTransportadoraContent() {
                                 tiltXDeg={8}
                                 activeLiftPx={16}
                                 renderCard={(item) => (
-                                    <div className="relative flex h-full w-full flex-col justify-between overflow-hidden bg-[#0B2440] p-8 text-white">
+                                    <div className="relative flex h-full w-full flex-col overflow-hidden bg-[#0B2440] p-8 text-white">
                                         <div className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(250,96,7,0.25),transparent_70%)] blur-[10px]" aria-hidden="true" />
                                         <div className="relative">
                                             <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#FA6007]/15 text-[#FA6007]">
@@ -240,9 +314,6 @@ export function PortalTransportadoraContent() {
                                             <h3 className="text-2xl font-extrabold tracking-[-0.02em]">{item.title}</h3>
                                             <p className="mt-3 text-[15px] leading-relaxed text-[#B7C6D8]">{item.description}</p>
                                         </div>
-                                        <span className="relative mt-6 inline-flex w-fit rounded-full bg-[#FA6007]/15 px-4 py-2 text-sm font-bold text-[#FFB07A]">
-                                            {item.tag}
-                                        </span>
                                     </div>
                                 )}
                             />
@@ -270,9 +341,9 @@ export function PortalTransportadoraContent() {
                                             GF
                                         </div>
                                         <div>
-                                            <p className="text-lg font-bold">Parceiro Homologado</p>
+                                            <p className="text-lg font-bold">Parceiro homologado</p>
                                             <p className="text-sm font-semibold text-[#FFB07A]">
-                                                Validado em Compliance e Segurança
+                                                Validado em compliance e segurança
                                             </p>
                                         </div>
                                     </div>
@@ -291,11 +362,11 @@ export function PortalTransportadoraContent() {
                                 Parceria de verdade
                             </span>
                             <h2 className="text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] sm:text-[2.6rem] lg:text-5xl">
-                                Muito além do software. Uma parceria de verdade.
+                                Não vendemos software. Ajudamos sua transportadora a crescer.
                             </h2>
                             <p className="mt-4 text-pretty text-lg leading-relaxed text-[#B7C6D8]">
-                                Sabemos que tecnologia sozinha não roda pneu. Por isso, oferecemos uma
-                                estrutura completa de apoio para sua transportadora decolar.
+                                Tecnologia sozinha não renova contrato. Por isso a Golf Fox entra junto
+                                com a sua operação.
                             </p>
                             <ul className="mt-9 flex flex-col gap-7">
                                 {SUPPORT_FEATURES.map((feature) => (
@@ -344,11 +415,12 @@ export function PortalTransportadoraContent() {
                     </svg>
                     <div className="relative mx-auto max-w-[820px] text-center">
                         <h2 className="text-balance text-3xl font-black leading-[1.06] tracking-tight sm:text-5xl">
-                            Quer blindar sua operação?
+                            A próxima licitação vai pedir monitoramento. Saia na frente.
                         </h2>
-                        <p className="mx-auto mt-4 max-w-[620px] text-pretty text-lg leading-relaxed text-white/90 sm:text-xl">
-                            Agende uma demonstração e veja como transformamos transportadoras em
-                            potências logísticas.
+                        <p className="mx-auto mt-4 max-w-[640px] text-pretty text-lg leading-relaxed text-white/90 sm:text-xl">
+                            Agende uma demonstração e veja como se posicionar na frente das
+                            transportadoras que ainda rodam no escuro. Sem compromisso, com proposta sob
+                            medida pra sua operação.
                         </p>
                         <div className="mt-8 flex justify-center">
                             <Link
