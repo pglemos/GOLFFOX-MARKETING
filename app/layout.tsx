@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Archivo, Archivo_Black } from "next/font/google";
+import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
@@ -29,6 +30,11 @@ const archivoBlack = Archivo_Black({
 });
 
 const isVercelRuntime = process.env.VERCEL === "1";
+
+// Google Tag Manager — container da GOLF FOX. As tags (ex.: conversão do Google Ads)
+// são gerenciadas dentro do próprio GTM. Só carrega em deploys da Vercel para não
+// poluir os dados com tráfego de desenvolvimento local.
+const GTM_ID = "GTM-MWGM5D63";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://golffox.com.br"),
@@ -60,6 +66,28 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${inter.variable} ${archivo.variable} ${archivoBlack.variable}`}>
       <body className={`${inter.className} antialiased`}>
+        {isVercelRuntime ? (
+          <>
+            {/* Google Tag Manager */}
+            <Script id="gtm-base" strategy="afterInteractive">
+              {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${GTM_ID}');`}
+            </Script>
+            {/* Google Tag Manager (noscript) */}
+            <noscript>
+              <iframe
+                src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+                height="0"
+                width="0"
+                style={{ display: "none", visibility: "hidden" }}
+                title="Google Tag Manager"
+              />
+            </noscript>
+          </>
+        ) : null}
         {children}
         {isVercelRuntime ? (
           <>
