@@ -3,82 +3,16 @@
 import Link from "next/link";
 
 import { MotionConfig, motion } from "framer-motion";
-import {
-    ArrowRight,
-    MapPin,
-    Camera,
-    QrCode,
-    AlertTriangle,
-    FileCheck,
-    Users,
-    Check,
-    ClipboardCheck,
-    Eye,
-    BellRing,
-    Video,
-} from "lucide-react";
+import { ArrowRight, Check, ClipboardCheck } from "lucide-react";
 
-import { AppWindowCard } from "@/components/marketing/app-window-card";
 import { FaqTwoColumn } from "@/components/marketing/faq-two-column";
-import { Eyebrow, RouteBackdrop } from "@/components/marketing/landing-ui";
+import { MonitoramentoFeatures } from "@/components/marketing/monitoramento-features";
+import { RouteBackdrop } from "@/components/marketing/landing-ui";
 
 const STATS = [
     { value: "Tempo real", label: "posição atualizada a cada 30s" },
     { value: "100%", label: "das viagens registradas e auditadas" },
     { value: "IA", label: "que detecta risco de condução na hora" },
-];
-
-// "O que você vê" — parâmetros monitorados (inspirado no formato do vídeo).
-const PARAMS = [
-    {
-        icon: MapPin,
-        title: "Posição ao vivo",
-        description: "O GPS de cada veículo no mapa, atualizado a cada 30 segundos.",
-    },
-    {
-        icon: Camera,
-        title: "Câmera a bordo",
-        description: "Acompanhe a viagem ao vivo — e a IA vigia o risco que você não vê.",
-    },
-    {
-        icon: QrCode,
-        title: "Embarque e desembarque",
-        description: "Check-in por QR Code: quem subiu, onde e a que horas. Funciona offline.",
-    },
-    {
-        icon: AlertTriangle,
-        title: "Atrasos e desvios",
-        description: "Alerta automático no instante em que a rota foge do previsto.",
-    },
-    {
-        icon: FileCheck,
-        title: "Documentação",
-        description: "CNH, licença e seguro dos motoristas em dia — com aviso antes de vencer.",
-    },
-    {
-        icon: Users,
-        title: "Ocupação",
-        description: "Assentos ocupados e ociosos, rota a rota, pra você cortar desperdício.",
-    },
-];
-
-// Câmera com IA (baseado no ângulo de videotelemetria).
-const CAMERA_AI = [
-    {
-        icon: Eye,
-        title: "Detecta o risco na hora",
-        description: "Uso de celular, sono e distração identificados em tempo real pela câmera com IA.",
-    },
-    {
-        icon: BellRing,
-        title: "Alerta no momento certo",
-        description: "Você é avisado quando algo dá errado — não horas depois, quando já virou acidente.",
-    },
-    {
-        icon: Video,
-        title: "Contexto completo",
-        description: "O vídeo de antes e depois da ocorrência, pra entender o que realmente aconteceu.",
-    },
 ];
 
 // "A cada viagem, um registro" — o que fica gravado ao final do trajeto.
@@ -104,7 +38,7 @@ const FAQS = [
     },
     {
         q: "A câmera identifica comportamento de risco?",
-        a: "Sim. A câmera com IA detecta uso de celular, sono e distração em tempo real e alerta na hora, com o vídeo de antes e depois da ocorrência para dar contexto.",
+        a: "Sim. A câmera com IA detecta uso de celular, sono, distração e motorista sem cinto em tempo real e alerta na hora, com o vídeo de antes e depois da ocorrência para dar contexto.",
     },
     {
         q: "E a documentação dos motoristas?",
@@ -176,84 +110,8 @@ export function MonitoramentoContent() {
                     </svg>
                 </section>
 
-                {/* ===================== O QUE VOCÊ MONITORA ===================== */}
-                <section className="relative overflow-hidden bg-white px-5 py-16 sm:px-8 lg:py-24">
-                    <div className="gf-aurora-light" aria-hidden="true" />
-                    <div className="relative z-10 mx-auto max-w-[1140px]">
-                        <div className="mx-auto mb-12 max-w-[700px] text-center">
-                            <Eyebrow>O que você enxerga</Eyebrow>
-                            <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">
-                                Seis pontos de controle, o tempo todo.
-                            </h2>
-                            <p className="mt-4 text-pretty text-lg leading-relaxed text-[#52647A]">
-                                Não é só ver onde o ônibus está. É acompanhar cada parâmetro que garante que
-                                o serviço está sendo entregue como prometido.
-                            </p>
-                        </div>
-
-                        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                            {PARAMS.map((p, i) => (
-                                <motion.div
-                                    key={p.title}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: (i % 3) * 0.06 }}
-                                    className="h-full"
-                                >
-                                    <AppWindowCard
-                                        icon={p.icon}
-                                        title={p.title}
-                                        description={p.description}
-                                        label={`0${i + 1} · Ao vivo`}
-                                    />
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* ===================== CÂMERA COM IA ===================== */}
-                <section className="bg-[#F4F7FA] px-5 py-16 sm:px-8 lg:py-24">
-                    <div className="mx-auto max-w-[1140px]">
-                        <div className="mx-auto mb-12 max-w-[740px] text-center">
-                            <Eyebrow>Câmera com inteligência</Eyebrow>
-                            <h2 className="mt-6 text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl">
-                                Você não precisa ficar vendo vídeo o dia todo.
-                            </h2>
-                            <p className="mt-4 text-pretty text-lg leading-relaxed text-[#52647A]">
-                                A câmera com IA identifica o risco em tempo real e te mostra só as imagens
-                                que importam. Em vez de apagar incêndio, você previne.
-                            </p>
-                        </div>
-
-                        <div className="grid gap-6 md:grid-cols-3">
-                            {CAMERA_AI.map((c, i) => {
-                                const Icon = c.icon;
-                                return (
-                                    <motion.div
-                                        key={c.title}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: i * 0.08 }}
-                                        className="group h-full rounded-2xl border border-[#E7EDF3] bg-white p-7 shadow-[0_10px_30px_rgba(11,36,64,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-[#FFD9BF] hover:shadow-[0_20px_50px_rgba(11,36,64,0.12)]"
-                                    >
-                                        <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#FFF0E6] text-brand transition-transform duration-300 group-hover:scale-110">
-                                            <Icon className="h-6 w-6" aria-hidden="true" />
-                                        </span>
-                                        <h3 className="mb-2 text-xl font-bold text-[#0B2440]">{c.title}</h3>
-                                        <p className="text-sm leading-relaxed text-[#52647A]">{c.description}</p>
-                                    </motion.div>
-                                );
-                            })}
-                        </div>
-
-                        <p className="mx-auto mt-10 max-w-[640px] text-center text-lg font-semibold text-[#0B2440]">
-                            É como ter um copiloto inteligente dentro de cada veículo.
-                        </p>
-                    </div>
-                </section>
+                {/* ===================== FUNCIONALIDADES (abas) ===================== */}
+                <MonitoramentoFeatures />
 
                 {/* ===================== A CADA VIAGEM, UM REGISTRO ===================== */}
                 <section className="relative overflow-hidden bg-[#0B2440] px-5 py-24 text-white sm:px-8 lg:py-32">
