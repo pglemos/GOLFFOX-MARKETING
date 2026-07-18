@@ -18,6 +18,7 @@ export const navigation = {
             href: '/produto',
             submenu: [
                 { name: 'Visão Geral', href: '/produto', description: 'Conheça a plataforma completa' },
+                { name: 'Monitoramento', href: '/produto/monitoramento', description: 'Rotas e veículos em tempo real' },
                 { name: 'Portal Empresa', href: '/produto/portal-empresa', description: 'Para empresas contratantes' },
                 { name: 'Portal Transportadora', href: '/produto/portal-transportadora', description: 'Para transportadoras parceiras' },
                 { name: 'App Motorista', href: '/produto/app-motorista', description: 'Execução e segurança em campo' },
@@ -37,6 +38,7 @@ export const navigation = {
     footer: {
         produto: [
             { name: 'Visão Geral', href: '/produto' },
+            { name: 'Monitoramento', href: '/produto/monitoramento' },
             { name: 'Portal Empresa', href: '/produto/portal-empresa' },
             { name: 'Portal Transportadora', href: '/produto/portal-transportadora' },
             { name: 'App Motorista', href: '/produto/app-motorista' },
