@@ -28,6 +28,7 @@ import {
     UserCog,
     Users,
     TrendingUp,
+    Heart,
 } from "lucide-react";
 
 import { AppWindowCard } from "@/components/marketing/app-window-card";
@@ -1026,6 +1027,48 @@ export function HomePage() {
                             </motion.div>
                         </div>
                     </div>
+                </section>
+
+                {/* ===================== NR-01 / SAÚDE MENTAL ===================== */}
+                <section className="relative overflow-hidden bg-white px-5 py-14 sm:px-8 lg:py-20">
+                    <div className="gf-aurora-light" aria-hidden="true" />
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="relative z-10 mx-auto max-w-[860px] rounded-[24px] border border-[#E7EDF3] bg-[#F8FAFC] p-8 shadow-[0_18px_50px_rgba(11,36,64,0.08)] sm:p-10"
+                    >
+                        <span className="inline-flex items-center gap-2 rounded-full bg-[#FFF0E6] px-3.5 py-1.5 text-xs font-bold uppercase tracking-wide text-[#C2410C]">
+                            <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+                            Conformidade · NR-01
+                        </span>
+                        <h2 className="mt-5 text-balance text-2xl font-extrabold leading-[1.12] tracking-[-0.02em] text-[#0B2440] sm:text-[1.9rem]">
+                            Aderentes à NR-01, a favor da saúde mental da sua equipe.
+                        </h2>
+                        <p className="mt-4 text-pretty text-lg leading-relaxed text-[#52647A]">
+                            A nova NR-01 exige gerenciar os riscos psicossociais — e o transporte é um
+                            deles. A Golf Fox reduz o estresse do deslocamento e documenta cada viagem pra
+                            apoiar o seu PGR.
+                        </p>
+                        <div className="mt-6 flex flex-wrap gap-2.5">
+                            {["Aderência à NR-01", "Menos risco psicossocial", "Apoio ao PGR"].map((chip) => (
+                                <span
+                                    key={chip}
+                                    className="inline-flex items-center gap-1.5 rounded-full border border-[#E7EDF3] bg-white px-3.5 py-1.5 text-sm font-semibold text-[#0B2440]"
+                                >
+                                    <Heart className="h-3.5 w-3.5 text-brand" aria-hidden="true" />
+                                    {chip}
+                                </span>
+                            ))}
+                        </div>
+                        <Link
+                            href="/demo"
+                            className="group mt-7 inline-flex items-center gap-2 text-base font-bold text-[#C2410C] transition-colors hover:text-[#A83800]"
+                        >
+                            Ficar em conformidade com a Golf Fox
+                            <ArrowRight className="h-[18px] w-[18px] transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+                        </Link>
+                    </motion.div>
                 </section>
 
                 {/* ===================== FAQ ===================== */}
