@@ -25,7 +25,7 @@ import { Eyebrow, RouteBackdrop } from "@/components/marketing/landing-ui";
 const STATS = [
     { value: "Tempo real", label: "posição atualizada a cada 30s" },
     { value: "100%", label: "das viagens registradas e auditadas" },
-    { value: "31 anos", label: "de operação em transporte" },
+    { value: "IA", label: "que detecta risco de condução na hora" },
 ];
 
 // "O que você vê" — parâmetros monitorados (inspirado no formato do vídeo).

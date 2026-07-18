@@ -32,6 +32,7 @@ import {
 
 import { AppWindowCard } from "@/components/marketing/app-window-card";
 import { FaqTwoColumn } from "@/components/marketing/faq-two-column";
+import { VideoLightbox } from "@/components/marketing/video-lightbox";
 import { FinalCtaForm } from "@/components/marketing/final-cta-form";
 import { trackProfileTabSelect } from "@/lib/analytics/track-events";
 
@@ -886,6 +887,54 @@ export function HomePage() {
                                 entende de transporte construiu a ferramenta para controlá-lo.
                             </p>
                         </div>
+                    </div>
+                </section>
+
+                {/* ===================== VÍDEO INSTITUCIONAL ===================== */}
+                <section className="relative overflow-hidden bg-white px-5 py-16 sm:px-8 lg:py-20">
+                    <div className="gf-aurora-light" aria-hidden="true" />
+                    <div className="relative z-10 mx-auto flex max-w-[720px] flex-col items-center text-center">
+                        <motion.span
+                            initial={{ opacity: 0, filter: "blur(10px)", y: 12 }}
+                            whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5 }}
+                            className="mb-5 inline-flex text-xs font-bold uppercase tracking-[0.22em] text-[#C2410C]"
+                        >
+                            Golf Fox em ação
+                        </motion.span>
+                        <motion.h2
+                            initial={{ opacity: 0, filter: "blur(10px)", y: 12 }}
+                            whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.08 }}
+                            className="text-balance text-[2rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#0B2440] sm:text-[2.6rem] lg:text-5xl"
+                        >
+                            Veja a Golf Fox por dentro.
+                        </motion.h2>
+                        <motion.p
+                            initial={{ opacity: 0, filter: "blur(10px)", y: 12 }}
+                            whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.16 }}
+                            className="mt-4 max-w-[520px] text-pretty text-lg leading-relaxed text-[#52647A]"
+                        >
+                            Em um minuto, veja como a Golf Fox coloca a sua operação no controle.
+                        </motion.p>
+                        <motion.div
+                            initial={{ opacity: 0, filter: "blur(10px)", y: 16 }}
+                            whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.24 }}
+                            className="mt-9 flex flex-col items-center"
+                        >
+                            <VideoLightbox
+                                src="/videos/golf-fox-institucional.mp4"
+                                poster="/videos/golf-fox-institucional.jpg"
+                                label="Assistir ao vídeo da Golf Fox"
+                            />
+                            <p className="mt-4 text-sm font-medium text-[#7A8AA0]">Clique para assistir · 1 min</p>
+                        </motion.div>
                     </div>
                 </section>
 
