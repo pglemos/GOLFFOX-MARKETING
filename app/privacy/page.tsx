@@ -19,7 +19,7 @@ export default function PrivacyPolicyPage() {
                 <section className="mb-8">
                     <h2 className="text-2xl font-semibold text-gray-800 mb-4">1. Introdução</h2>
                     <p className="text-gray-700 leading-relaxed">
-                        A Synvolt Soluções Tecnológicas ("nós", "nosso" ou "GOLFFOX") respeita sua privacidade e está comprometida em proteger seus dados pessoais. Esta Política de Privacidade explica como coletamos, usamos, armazenamos e compartilhamos suas informações quando você usa o aplicativo móvel GOLFFOX.
+                        A Synvolt Soluções Tecnológicas (&quot;nós&quot;, &quot;nosso&quot; ou &quot;GOLFFOX&quot;) respeita sua privacidade e está comprometida em proteger seus dados pessoais. Esta Política de Privacidade explica como coletamos, usamos, armazenamos e compartilhamos suas informações quando você usa o aplicativo móvel GOLFFOX.
                     </p>
                     <p className="text-gray-700 leading-relaxed mt-4">
                         Esta política está em conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018) e as políticas do Google Play.
